@@ -44,18 +44,31 @@ let cart = [];
 // === Render products ===
 function renderProducts() {
   productList.innerHTML = "";
+
   products.forEach((p, i) => {
     const card = document.createElement("div");
     card.classList.add("product");
+
+    // contenedor del slider
     card.innerHTML = `
-      <img src="${p.image}" alt="${p.name}">
+      <div class="slider" id="slider-${i}">
+        ${p.images.map((img, index) => `
+          <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
+        `).join("")}
+        <button class="prev" onclick="changeSlide(${i}, -1)">❮</button>
+        <button class="next" onclick="changeSlide(${i}, 1)">❯</button>
+      </div>
       <h3>${p.name}</h3>
       <p class="price">$${p.price.toFixed(2)}</p>
       <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
     `;
+
     productList.appendChild(card);
   });
+
+  startAutoSlides(); // inicia los slides automáticos
 }
+
 
 function addToCart(i) {
   cart.push(products[i]);
@@ -141,6 +154,28 @@ function showToast(msg) {
 
 renderProducts();
 
+let currentSlides = []; // guarda el índice actual de cada producto
+let autoIntervals = [];
+
+function changeSlide(productIndex, direction) {
+  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
+  let current = currentSlides[productIndex] || 0;
+
+  slides[current].classList.remove("active");
+  current = (current + direction + slides.length) % slides.length;
+  slides[current].classList.add("active");
+  currentSlides[productIndex] = current;
+}
+
+function startAutoSlides() {
+  products.forEach((_, i) => {
+    currentSlides[i] = 0;
+    clearInterval(autoIntervals[i]);
+    autoIntervals[i] = setInterval(() => changeSlide(i, 1), 3000); // cambia cada 3s
+  });
+}
+
+
 // === VISOR DE IMÁGENES ===
 const imageViewer = document.getElementById("image-viewer");
 const viewerImg = document.getElementById("viewer-img");
@@ -165,5 +200,6 @@ imageViewer.addEventListener("click", e => {
     imageViewer.classList.add("hidden");
   }
 });
+
 
 
