@@ -172,7 +172,20 @@ cartBtn.addEventListener("click", () => {
   document.body.classList.toggle("modal-open");
 });
 
-closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
+closeCart.addEventListener("click", () => {
+  cartModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+});
+
+// 🔹 Cerrar carrito al hacer clic fuera del contenido
+cartModal.addEventListener("click", e => {
+  if (e.target === cartModal) {
+    cartModal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  }
+});
+
+
 closeCheckout.addEventListener("click", () => checkoutModal.classList.add("hidden"));
 checkoutBtn.addEventListener("click", () => {
   if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
@@ -289,5 +302,6 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
