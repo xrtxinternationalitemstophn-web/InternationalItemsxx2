@@ -1,6 +1,68 @@
 /******************************************
- * 🔹 RAUDA SHOP - SLIDER PROFESIONAL 🔹
+ * 🔹 RAUDA SHOP - SCRIPT COMPLETO 🔹
  ******************************************/
+
+// === LISTA DE PRODUCTOS ===
+const products = [
+  {
+    name: "Audífonos Inalámbricos",
+    price: 39.99,
+    images: [
+      "images/product1.jpg",
+      "images/product2.jpg",
+      "images/product3.jpg",
+      "images/product4.jpg",
+      "images/product5.jpg"
+    ]
+  },
+  {
+    name: "Reloj Smart",
+    price: 59.99,
+    images: [
+      "images/reloj1.jpg",
+      "images/reloj2.jpg",
+      "images/reloj3.jpg",
+      "images/reloj4.jpg",
+      "images/reloj5.jpg"
+    ]
+  },
+  {
+    name: "Zapatillas Urbanas",
+    price: 49.99,
+    images: [
+      "images/tenis1.jpg",
+      "images/tenis2.jpg",
+      "images/tenis3.jpg",
+      "images/tenis4.jpg",
+      "images/tenis5.jpg"
+    ]
+  },
+  {
+    name: "Lentes de Sol",
+    price: 29.99,
+    images: [
+      "images/lentes1.jpg",
+      "images/lentes2.jpg",
+      "images/lentes3.jpg",
+      "images/lentes4.jpg",
+      "images/lentes5.jpg"
+    ]
+  },
+  {
+    name: "Mochila Casual",
+    price: 44.99,
+    images: [
+      "images/mochila1.jpg",
+      "images/mochila2.jpg",
+      "images/mochila3.jpg",
+      "images/mochila4.jpg",
+      "images/mochila5.jpg"
+    ]
+  }
+];
+
+// === CONFIGURACIÓN ===
+const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
 
 const productList = document.getElementById("product-list");
 const cartBtn = document.getElementById("cart-btn");
@@ -13,7 +75,6 @@ const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
-const FORMSPREE_URL = "https://formspree.io/f/TU_ID_AQUI";
 
 let cart = [];
 
@@ -78,7 +139,7 @@ function changeSlide(productIndex, direction) {
   slides[slideIndices[productIndex]].classList.add("active");
 }
 
-/* === CARRITO (igual que antes) === */
+/* === CARRITO === */
 function addToCart(i) {
   cart.push(products[i]);
   updateCart();
@@ -163,7 +224,7 @@ imageViewer.addEventListener("click", e => {
   if (e.target === imageViewer) imageViewer.classList.add("hidden");
 });
 
-/* === TOAST (MENSAJE EMERGENTE) === */
+/* === TOAST === */
 function showToast(msg) {
   const toast = document.createElement("div");
   toast.className = "toast-msg";
@@ -176,9 +237,3 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
-
-
-
-
-
-
