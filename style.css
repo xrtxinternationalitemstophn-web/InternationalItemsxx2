@@ -167,6 +167,7 @@ body {
 }
 
 
+
 .product h3 {
   margin: 1rem 0 0.5rem;
 }
@@ -177,6 +178,32 @@ body {
   margin-bottom: 1rem;
 }
 
+/* === DESCRIPCIÓN DE PRODUCTO === */
+.product .description {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+  text-align: left;
+}
+
+.product .description li {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 0.3rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.product .description li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* === BOTÓN AGREGAR === */
 .add-btn {
   background: var(--primary);
   color: white;
@@ -719,6 +746,7 @@ body.modal-open {
     opacity: 1;
   }
 }
+
 
 
 
