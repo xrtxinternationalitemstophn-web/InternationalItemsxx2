@@ -5,19 +5,17 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
   {
-    name: "Audífonos Inalámbricos",
-    price: 39.99,
+    name: "PowerBank 20,000 MaH",
+    price: 160.00,
      description: [
-    "Sonido 1080 HD calidad premium",
-    "Altamente cómodos para uso prolongado",
-    "100% compatibles con iOS y Android"
+    "Carga tu teléfono hasta 4 – 6 veces sin preocuparte por quedarte sin energía. Ideal para viajes, trabajo o emergencias.",
+    "Muestra el porcentaje exacto de batería, para que siempre sepas cuánta carga tienes disponible.",
+    "Acabado elegante en colores pastel (rosa y celeste) con textura antideslizante. Incluye cable USB y linterna LED integrada."
   ],
     images: [
       "images/product1.jpg",
       "images/product2.jpg",
-      "images/product3.jpg",
-      "images/product4.jpg",
-      "images/product5.jpg"
+      "images/product3.jpg"
     ]
   },
   {
@@ -471,6 +469,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
