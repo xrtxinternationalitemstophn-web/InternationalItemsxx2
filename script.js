@@ -122,3 +122,28 @@ function showToast(msg) {
 
 renderProducts();
 
+// === VISOR DE IMÁGENES ===
+const imageViewer = document.getElementById("image-viewer");
+const viewerImg = document.getElementById("viewer-img");
+const closeViewer = document.getElementById("close-viewer");
+
+document.addEventListener("click", e => {
+  // Si se hace click en una imagen de producto
+  if (e.target.tagName === "IMG" && e.target.closest(".product")) {
+    viewerImg.src = e.target.src;
+    imageViewer.classList.remove("hidden");
+  }
+});
+
+// Cerrar el visor
+closeViewer.addEventListener("click", () => {
+  imageViewer.classList.add("hidden");
+});
+
+// Cerrar al tocar fuera de la imagen (móvil o PC)
+imageViewer.addEventListener("click", e => {
+  if (e.target === imageViewer) {
+    imageViewer.classList.add("hidden");
+  }
+});
+
