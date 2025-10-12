@@ -76,6 +76,28 @@ const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
 
+// 🛒 Botón flotante del carrito
+const floatingCart = document.getElementById("floating-cart");
+const floatingCartCount = document.getElementById("floating-cart-count");
+
+// Mostrar/ocultar según scroll
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
+  else floatingCart.classList.add("hidden");
+});
+
+// Abrir el carrito al presionar el botón flotante
+floatingCart.addEventListener("click", () => {
+  cartModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+});
+
+// Sincronizar cantidad del carrito
+function updateFloatingCartCount() {
+  floatingCartCount.textContent = cart.length;
+}
+
+
 let cart = [];
 
 /* === RENDERIZAR PRODUCTOS CON SLIDER === */
@@ -160,6 +182,7 @@ function updateCart() {
   });
   cartTotal.textContent = `$${total.toFixed(2)}`;
   cartCount.textContent = cart.length;
+  updateFloatingCartCount();
 }
 
 function removeFromCart(i) {
@@ -302,6 +325,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
