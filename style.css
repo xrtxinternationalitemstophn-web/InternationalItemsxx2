@@ -520,6 +520,38 @@ body {
   }
 }
 
+/* === FLECHAS EN VISOR AMPLIADO === */
+.viewer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  border-radius: 50%;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  z-index: 4001;
+  transition: background 0.3s;
+  user-select: none;
+}
+
+.viewer-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#viewer-prev { left: 30px; }
+#viewer-next { right: 30px; }
+
+@media (max-width: 600px) {
+  .viewer-arrow {
+    font-size: 1.6rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+
 
 
 
