@@ -1,10 +1,29 @@
 const products = [
-  { name: "Audífonos Inalámbricos", price: 39.99, image: "images/product1.jpg" },
-  { name: "Reloj Smart", price: 59.99, image: "images/product2.jpg" },
-  { name: "Zapatillas Urbanas", price: 49.99, image: "images/product3.jpg" },
-  { name: "Lentes de Sol", price: 29.99, image: "images/product4.jpg" },
-  { name: "Mochila Casual", price: 44.99, image: "images/product5.jpg" },
+  {
+    name: "Audífonos Inalámbricos",
+    price: 39.99,
+    images: [
+      "images/product1.jpg",
+      "images/product2.jpg",
+      "images/product3.jpg",
+      "images/product4.jpg",
+      "images/product5.jpg"
+    ]
+  },
+  {
+    name: "Reloj Smart",
+    price: 59.99,
+    images: [
+      "images/reloj1.jpg",
+      "images/reloj2.jpg",
+      "images/reloj3.jpg",
+      "images/reloj4.jpg",
+      "images/reloj5.jpg"
+    ]
+  },
+  // 🔹 puedes seguir agregando más productos igual
 ];
+
 
 const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
 
@@ -146,4 +165,5 @@ imageViewer.addEventListener("click", e => {
     imageViewer.classList.add("hidden");
   }
 });
+
 
