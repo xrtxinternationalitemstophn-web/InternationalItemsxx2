@@ -17,7 +17,6 @@
       <nav class="nav-links">
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
-        <a href="#ofertas">Ofertas</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
@@ -36,9 +35,7 @@
   <!-- 💎 PRODUCTOS -->
   <section class="products" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
-    <div class="product-grid" id="product-list">
-      <!-- Productos generados por script.js -->
-    </div>
+    <div class="product-grid" id="product-list"></div>
   </section>
 
   <!-- 🛒 MODAL CARRITO -->
@@ -49,50 +46,70 @@
       <div id="cart-items"></div>
       <div class="cart-footer">
         <p>Total: <span id="cart-total">$0.00</span></p>
-        <button class="btn-checkout">Finalizar compra</button>
+        <button class="btn-checkout" id="checkout-btn">Finalizar compra</button>
       </div>
+    </div>
+  </div>
+
+  <!-- 💳 FORMULARIO DE CHECKOUT -->
+  <div id="checkout-modal" class="cart-modal hidden">
+    <div class="cart-content">
+      <button id="close-checkout" class="close-cart">&times;</button>
+      <h3>📦 Datos de envío</h3>
+
+      <p class="checkout-note">
+        <strong>NOTA:</strong> ESPERAR ENTRE 2-10 MINUTOS EL COSTO DEL ENVÍO YA QUE ESE COSTO ES INDEPENDIENTE DEL ENTREGADOR EN MOTOCICLETA.<br>
+        <strong>SI COMPRAS IGUAL O MÁS DE 2,500 LPS, RECIBES ENVÍO GRATIS</strong> <span class="emoji">😊</span>
+      </p>
+
+      <form id="checkout-form">
+        <label>Nombre del cliente*</label>
+        <input type="text" name="nombre" required>
+
+        <label>Dirección de envío*</label>
+        <input type="text" name="direccion" required>
+
+        <label>Referencia (ej. frente a hotel Clarion)</label>
+        <input type="text" name="referencia">
+
+        <label>Número para llamadas 1*</label>
+        <input type="tel" name="telefono1" required>
+
+        <label>Número para llamadas 2 (opcional)</label>
+        <input type="tel" name="telefono2">
+
+        <label>Día que desea el envío</label>
+        <select name="dia">
+          <option value="Hoy">Hoy</option>
+          <option value="Mañana">Mañana</option>
+          <option value="Otro">Otro (digitar abajo)</option>
+        </select>
+        <input type="text" name="dia_otro" placeholder="Escriba el día si eligió 'Otro'">
+
+        <label>¿De dónde eres?</label>
+        <select name="ubicacion">
+          <option value="Tegucigalpa">Tegucigalpa</option>
+          <option value="Otro departamento">Otro departamento</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Enviar pedido</button>
+      </form>
     </div>
   </div>
 
   <!-- 📞 CONTACTO -->
   <section class="contact" id="contacto">
     <h2 class="section-title">Contáctanos</h2>
-    <p>¿Tienes dudas? Escríbenos y te ayudaremos con gusto.</p>
-    <form class="contact-form" action="https://formspree.io/f/xovkkovk" method="POST">
-  <input type="text" name="nombre" placeholder="Tu nombre" required>
-  <input type="email" name="correo" placeholder="Tu correo" required>
-  <textarea name="mensaje" placeholder="Tu mensaje..." required></textarea>
-  <button class="btn-primary" type="submit">Enviar mensaje</button>
-</form>
+    <form class="contact-form" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="correo" placeholder="Tu correo" required>
+      <textarea name="mensaje" placeholder="Tu mensaje..." required></textarea>
+      <button class="btn-primary" type="submit">Enviar mensaje</button>
+    </form>
   </section>
 
-  <!-- ⚡ FOOTER -->
   <footer class="footer">
     <p>© 2025 RAUDA Shop — Todos los derechos reservados</p>
-    <div class="social">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
-    </div>
   </footer>
-  <script>
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const response = await fetch(form.action, {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  });
-  if (response.ok) {
-    alert("✅ Gracias por tu mensaje. ¡Te responderemos pronto!");
-    form.reset();
-  } else {
-    alert("❌ Hubo un error. Intenta de nuevo por favor.");
-  }
-});
-</script>
 </body>
 </html>
-
