@@ -147,13 +147,14 @@ window.addEventListener("scroll", () => {
 // 🔹 Abrir el carrito desde el botón flotante (funciona en PC y móviles)
 ["click", "touchend"].forEach(evt => {
   floatingCart.addEventListener(evt, e => {
-    // Evita conflicto si fue un arrastre
     if (isDragging) return;
     e.preventDefault();
+    e.stopPropagation();
     cartModal.classList.remove("hidden");
     document.body.classList.add("modal-open");
   });
 });
+
 
 
 // Sincronizar cantidad del carrito
@@ -312,15 +313,32 @@ checkoutBtn.addEventListener("click", () => {
 });
 
 // === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES) ===
-["click", "touchend"].forEach(evt => {
-  floatingCart.addEventListener(evt, e => {
-    if (isDragging) return; // Evita abrir si el usuario lo está moviendo
-    e.preventDefault();
-    e.stopPropagation();
-    cartModal.classList.remove("hidden");
-    document.body.classList.add("modal-open");
-  });
+// === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES, SIN BUGS) ===
+let touchStartTime = 0;
+
+floatingCart.addEventListener("touchstart", () => {
+  touchStartTime = Date.now();
 });
+
+floatingCart.addEventListener("touchend", e => {
+  const touchDuration = Date.now() - touchStartTime;
+  // Evitar activar si fue arrastre o toque muy largo
+  if (isDragging || touchDuration > 250) return;
+  e.preventDefault();
+  openCartModal();
+});
+
+floatingCart.addEventListener("click", e => {
+  if (isDragging) return;
+  e.preventDefault();
+  openCartModal();
+});
+
+function openCartModal() {
+  cartModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+}
+
 
 
 
@@ -431,6 +449,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
