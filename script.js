@@ -1,31 +1,6 @@
-const products = [
-  {
-    name: "Audífonos Inalámbricos",
-    price: 39.99,
-    images: [
-      "images/product1.jpg",
-      "images/product2.jpg",
-      "images/product3.jpg",
-      "images/product4.jpg",
-      "images/product5.jpg"
-    ]
-  },
-  {
-    name: "Reloj Smart",
-    price: 59.99,
-    images: [
-      "images/reloj1.jpg",
-      "images/reloj2.jpg",
-      "images/reloj3.jpg",
-      "images/reloj4.jpg",
-      "images/reloj5.jpg"
-    ]
-  },
-  // 🔹 puedes seguir agregando más productos igual
-];
-
-
-const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
+/******************************************
+ * 🔹 RAUDA SHOP - SLIDER PROFESIONAL 🔹
+ ******************************************/
 
 const productList = document.getElementById("product-list");
 const cartBtn = document.getElementById("cart-btn");
@@ -38,38 +13,72 @@ const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
+const FORMSPREE_URL = "https://formspree.io/f/TU_ID_AQUI";
 
 let cart = [];
 
-// === Render products ===
+/* === RENDERIZAR PRODUCTOS CON SLIDER === */
 function renderProducts() {
   productList.innerHTML = "";
-
   products.forEach((p, i) => {
     const card = document.createElement("div");
     card.classList.add("product");
 
-    // contenedor del slider
     card.innerHTML = `
       <div class="slider" id="slider-${i}">
-        ${p.images.map((img, index) => `
-          <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
-        `).join("")}
-        <button class="prev" onclick="changeSlide(${i}, -1)">❮</button>
-        <button class="next" onclick="changeSlide(${i}, 1)">❯</button>
+        <div class="slides-container">
+          ${p.images.map((img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="${i}">❮</button>
+        <button class="next" data-index="${i}">❯</button>
       </div>
       <h3>${p.name}</h3>
       <p class="price">$${p.price.toFixed(2)}</p>
       <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
     `;
-
     productList.appendChild(card);
   });
 
-  startAutoSlides(); // inicia los slides automáticos
+  initSliders();
 }
 
+/* === SLIDERS AUTOMÁTICOS Y MANUALES === */
+let slideIndices = [];
+let slideIntervals = [];
 
+function initSliders() {
+  products.forEach((_, i) => {
+    slideIndices[i] = 0;
+    const slides = document.querySelectorAll(`#slider-${i} .slide`);
+    const prevBtn = document.querySelector(`#slider-${i} .prev`);
+    const nextBtn = document.querySelector(`#slider-${i} .next`);
+
+    // Mostrar flechas
+    prevBtn.style.display = "block";
+    nextBtn.style.display = "block";
+
+    // Botones manuales
+    prevBtn.addEventListener("click", () => changeSlide(i, -1));
+    nextBtn.addEventListener("click", () => changeSlide(i, 1));
+
+    // Auto cambio cada 3 segundos
+    clearInterval(slideIntervals[i]);
+    slideIntervals[i] = setInterval(() => changeSlide(i, 1), 3000);
+  });
+}
+
+function changeSlide(productIndex, direction) {
+  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
+  if (!slides.length) return;
+  slides[slideIndices[productIndex]].classList.remove("active");
+  slideIndices[productIndex] =
+    (slideIndices[productIndex] + direction + slides.length) % slides.length;
+  slides[slideIndices[productIndex]].classList.add("active");
+}
+
+/* === CARRITO (igual que antes) === */
 function addToCart(i) {
   cart.push(products[i]);
   updateCart();
@@ -83,7 +92,8 @@ function updateCart() {
     total += item.price;
     const div = document.createElement("div");
     div.classList.add("cart-item");
-    div.innerHTML = `<p>${item.name} — $${item.price.toFixed(2)}</p>
+    div.innerHTML = `
+      <p>${item.name} — $${item.price.toFixed(2)}</p>
       <button onclick="removeFromCart(${i})">❌</button>`;
     cartItems.appendChild(div);
   });
@@ -96,23 +106,20 @@ function removeFromCart(i) {
   updateCart();
 }
 
-// === Mostrar modales ===
 cartBtn.addEventListener("click", () => cartModal.classList.toggle("hidden"));
 closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
 closeCheckout.addEventListener("click", () => checkoutModal.classList.add("hidden"));
 checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) {
-    showToast("Tu carrito está vacío 🛒");
-  } else {
+  if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
+  else {
     cartModal.classList.add("hidden");
     checkoutModal.classList.remove("hidden");
   }
 });
 
-// === Enviar formulario a Formspree con pedido ===
+/* === ENVÍO A FORMSPREE === */
 checkoutForm.addEventListener("submit", async e => {
   e.preventDefault();
-
   let total = cart.reduce((sum, i) => sum + i.price, 0);
   let pedido = cart.map(i => `- ${i.name}: $${i.price.toFixed(2)}`).join("\n");
 
@@ -133,50 +140,13 @@ checkoutForm.addEventListener("submit", async e => {
       cart = [];
       updateCart();
       checkoutModal.classList.add("hidden");
-    } else {
-      showToast("❌ Error al enviar el pedido.");
-    }
+    } else showToast("❌ Error al enviar el pedido.");
   } catch {
     showToast("⚠️ Conexión fallida.");
   }
 });
 
-// === Toast visual ===
-function showToast(msg) {
-  const toast = document.createElement("div");
-  toast.className = "toast-msg";
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.classList.add("show"), 100);
-  setTimeout(() => toast.classList.remove("show"), 2500);
-  setTimeout(() => toast.remove(), 3000);
-}
-
-renderProducts();
-
-let currentSlides = []; // guarda el índice actual de cada producto
-let autoIntervals = [];
-
-function changeSlide(productIndex, direction) {
-  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
-  let current = currentSlides[productIndex] || 0;
-
-  slides[current].classList.remove("active");
-  current = (current + direction + slides.length) % slides.length;
-  slides[current].classList.add("active");
-  currentSlides[productIndex] = current;
-}
-
-function startAutoSlides() {
-  products.forEach((_, i) => {
-    currentSlides[i] = 0;
-    clearInterval(autoIntervals[i]);
-    autoIntervals[i] = setInterval(() => changeSlide(i, 1), 3000); // cambia cada 3s
-  });
-}
-
-
-// === VISOR DE IMÁGENES ===
+/* === LIGHTBOX PARA AMPLIAR IMAGEN === */
 const imageViewer = document.getElementById("image-viewer");
 const viewerImg = document.getElementById("viewer-img");
 const closeViewer = document.getElementById("close-viewer");
@@ -188,18 +158,26 @@ document.addEventListener("click", e => {
   }
 });
 
-
-// Cerrar el visor
-closeViewer.addEventListener("click", () => {
-  imageViewer.classList.add("hidden");
-});
-
-// Cerrar al tocar fuera de la imagen (móvil o PC)
+closeViewer.addEventListener("click", () => imageViewer.classList.add("hidden"));
 imageViewer.addEventListener("click", e => {
-  if (e.target === imageViewer) {
-    imageViewer.classList.add("hidden");
-  }
+  if (e.target === imageViewer) imageViewer.classList.add("hidden");
 });
+
+/* === TOAST (MENSAJE EMERGENTE) === */
+function showToast(msg) {
+  const toast = document.createElement("div");
+  toast.className = "toast-msg";
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add("show"), 100);
+  setTimeout(() => toast.classList.remove("show"), 2500);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+/* === INICIO === */
+renderProducts();
+
+
 
 
 
