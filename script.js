@@ -7,6 +7,11 @@ const products = [
   {
     name: "Audífonos Inalámbricos",
     price: 39.99,
+     description: [
+    "Sonido 1080 HD calidad premium",
+    "Altamente cómodos para uso prolongado",
+    "100% compatibles con iOS y Android"
+  ],
     images: [
       "images/product1.jpg",
       "images/product2.jpg",
@@ -466,6 +471,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
