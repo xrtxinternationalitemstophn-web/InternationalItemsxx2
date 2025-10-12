@@ -19,47 +19,54 @@ const products = [
     ]
   },
   {
-    name: "Reloj Smart",
-    price: 59.99,
+    name: "Pasamontañas",
+    price: 100.00,
+     description: [
+    "Fabricado con tela elástica y transpirable que se ajusta perfectamente al rostro sin incomodar o rayar.",
+    "Ideal para motos, ciclismo, deportes al aire libre o trabajos donde necesites cubrirte del sol, viento o polvo.",
+    "Puede usarse como máscara completa, gorro o cuello térmico. Ligero, duradero y fácil de lavar."
+  ],
     images: [
-      "images/reloj1.jpg",
-      "images/reloj2.jpg",
-      "images/reloj3.jpg",
-      "images/reloj4.jpg",
-      "images/reloj5.jpg"
+      "images/pasm1.jpg"
     ]
   },
   {
-    name: "Zapatillas Urbanas",
-    price: 49.99,
+    name: "Proyector HD Portatil",
+    price: 620.00,
+    description: [
+    "Disfruta tus películas, series o juegos con calidad HD y colores vivos, incluso en espacios con poca luz.",
+    "Conecta tu PS4/PS5, Nintendo Switch, laptop, celular, USB o TV Stick fácilmente gracias a sus múltiples entradas (USB, AV, audio y más).",
+    "Diseño portátil, ligero y fácil de transportar. Ideal para noches de cine, presentaciones o viajes."
+  ],
     images: [
-      "images/tenis1.jpg",
-      "images/tenis2.jpg",
-      "images/tenis3.jpg",
-      "images/tenis4.jpg",
-      "images/tenis5.jpg"
+      "images/proy1.jpg",
+      "images/proy2.jpg",
+      "images/proy3.jpg"
     ]
   },
   {
-    name: "Lentes de Sol",
-    price: 29.99,
+    name: "Foco Camara Wifi Giratoria App YiIot",
+    price: 240.00,
+    description: [
+    "Se enrosca como un foco común y se conecta al WiFi en minutos mediante la app Yi IOT.",
+    "Cámara giratoria 360° con calidad Full HD, visión nocturna y detección de movimiento para no perder ningún detalle.",
+    "Mira en vivo, graba y recibe alertas directamente desde tu smartphone, estés donde estés no importa que pais."
+  ],
     images: [
-      "images/lentes1.jpg",
-      "images/lentes2.jpg",
-      "images/lentes3.jpg",
-      "images/lentes4.jpg",
-      "images/lentes5.jpg"
+      "images/focam1.jpg"
     ]
   },
   {
-    name: "Mochila Casual",
-    price: 44.99,
+    name: "Camara Exterior Wifi Giratoria 360°",
+    price: 550.00,
+    description: [
+    "Vigila tu casa, negocio o patio con visión Full HD, detección de movimiento y visión nocturna.",
+    "Se controla desde tu celular por app, con audio bidireccional y alertas en tiempo real.",
+    "Ideal para exterior, impermeable y con rotación de 360° para cubrir cada ángulo sin puntos ciegos."
+  ],
     images: [
-      "images/mochila1.jpg",
-      "images/mochila2.jpg",
-      "images/mochila3.jpg",
-      "images/mochila4.jpg",
-      "images/mochila5.jpg"
+      "images/cam1.jpg",
+      "images/cam2.jpg"
     ]
   }
 ];
@@ -469,6 +476,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
