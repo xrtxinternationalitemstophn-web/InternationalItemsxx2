@@ -274,3 +274,25 @@ body {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.toast-msg {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #0078ff;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 2000;
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
