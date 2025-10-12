@@ -551,23 +551,6 @@ body {
   }
 }
 
-/* === FIX: Prioridad de modales sobre sliders === */
-.cart-modal,
-#cart-modal,
-#checkout-modal,
-#image-viewer {
-  position: fixed;
-  z-index: 5000 !important;
-}
-
-/* Evitar que los productos se superpongan sobre modales */
-.slider,
-.product,
-.product * {
-  z-index: 1;
-  position: relative;
-}
-
 /* === FIX COMPLETO para Android / iPhone === */
 
 /* Fuerza al carrito y modales a estar siempre encima */
@@ -599,6 +582,33 @@ body {
   will-change: opacity;
   transform: none !important;
 }
+
+/* === FIX Android flotante + ajuste de desplazamiento === */
+html, body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+
+#cart-modal .cart-content {
+  margin-top: 0 !important;
+  transform: translateY(0) !important;
+}
+
+/* Fondo oscuro suave cuando el carrito esté abierto */
+body.modal-open::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 9998;
+}
+
+
 
 
 
