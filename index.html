@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAUDA SHOP | Tu Tienda Favorita</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🔝 NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <h1 class="logo">RAUDA<span>Shop</span></h1>
+      <nav class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button id="cart-btn" class="cart-btn">🛒 <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <!-- 🦋 HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h2>Tu estilo, tu tienda</h2>
+      <p>Productos modernos, precios irresistibles y calidad garantizada.</p>
+      <button class="btn-primary scroll-to" data-target="#productos">Explorar productos</button>
+    </div>
+  </section>
+
+  <!-- 💎 PRODUCTOS -->
+  <section class="products" id="productos">
+    <h2 class="section-title">Nuestros Productos</h2>
+    <div class="product-grid" id="product-list">
+      <!-- Productos generados por script.js -->
+    </div>
+  </section>
+
+  <!-- 🛒 MODAL CARRITO -->
+  <div id="cart-modal" class="cart-modal hidden">
+    <div class="cart-content">
+      <button id="close-cart" class="close-cart">&times;</button>
+      <h3>🛍️ Tu Carrito</h3>
+      <div id="cart-items"></div>
+      <div class="cart-footer">
+        <p>Total: <span id="cart-total">$0.00</span></p>
+        <button class="btn-checkout">Finalizar compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📞 CONTACTO -->
+  <section class="contact" id="contacto">
+    <h2 class="section-title">Contáctanos</h2>
+    <p>¿Tienes dudas? Escríbenos y te ayudaremos con gusto.</p>
+    <form class="contact-form">
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu correo" required>
+      <textarea placeholder="Tu mensaje..." required></textarea>
+      <button class="btn-primary">Enviar mensaje</button>
+    </form>
+  </section>
+
+  <!-- ⚡ FOOTER -->
+  <footer class="footer">
+    <p>© 2025 RAUDA Shop — Todos los derechos reservados</p>
+    <div class="social">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
+  </footer>
+</body>
+</html>
