@@ -6,18 +6,23 @@ const products = [
   { name: "Mochila Casual", price: 44.99, image: "images/product5.jpg" },
 ];
 
-const FORMSPREE_URL = "https://formspree.io/f/xovkkovk"; // 👈 Pega aquí tu enlace de Formspree
+const FORMSPREE_URL = "https://formspree.io/f/TU_ID_AQUI";
 
 const productList = document.getElementById("product-list");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
+const checkoutModal = document.getElementById("checkout-modal");
 const closeCart = document.getElementById("close-cart");
+const closeCheckout = document.getElementById("close-checkout");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
+const checkoutForm = document.getElementById("checkout-form");
+const checkoutBtn = document.getElementById("checkout-btn");
 
 let cart = [];
 
+// === Render products ===
 function renderProducts() {
   productList.innerHTML = "";
   products.forEach((p, i) => {
@@ -33,8 +38,8 @@ function renderProducts() {
   });
 }
 
-function addToCart(index) {
-  cart.push(products[index]);
+function addToCart(i) {
+  cart.push(products[i]);
   updateCart();
   showToast("Producto agregado 🛒");
 }
@@ -46,32 +51,40 @@ function updateCart() {
     total += item.price;
     const div = document.createElement("div");
     div.classList.add("cart-item");
-    div.innerHTML = `
-      <p>${item.name} - $${item.price.toFixed(2)}</p>
-      <button onclick="removeFromCart(${i})">❌</button>
-    `;
+    div.innerHTML = `<p>${item.name} — $${item.price.toFixed(2)}</p>
+      <button onclick="removeFromCart(${i})">❌</button>`;
     cartItems.appendChild(div);
   });
   cartTotal.textContent = `$${total.toFixed(2)}`;
   cartCount.textContent = cart.length;
 }
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
+function removeFromCart(i) {
+  cart.splice(i, 1);
   updateCart();
 }
 
-// === FINALIZAR COMPRA ===
-document.querySelector(".btn-checkout").addEventListener("click", async () => {
+// === Mostrar modales ===
+cartBtn.addEventListener("click", () => cartModal.classList.toggle("hidden"));
+closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
+closeCheckout.addEventListener("click", () => checkoutModal.classList.add("hidden"));
+checkoutBtn.addEventListener("click", () => {
   if (cart.length === 0) {
     showToast("Tu carrito está vacío 🛒");
-    return;
+  } else {
+    cartModal.classList.add("hidden");
+    checkoutModal.classList.remove("hidden");
   }
+});
 
-  let total = cart.reduce((sum, item) => sum + item.price, 0);
+// === Enviar formulario a Formspree con pedido ===
+checkoutForm.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  let total = cart.reduce((sum, i) => sum + i.price, 0);
   let pedido = cart.map(i => `- ${i.name}: $${i.price.toFixed(2)}`).join("\n");
 
-  const formData = new FormData();
+  const formData = new FormData(checkoutForm);
   formData.append("pedido", pedido);
   formData.append("total", `$${total.toFixed(2)}`);
 
@@ -79,42 +92,32 @@ document.querySelector(".btn-checkout").addEventListener("click", async () => {
     const res = await fetch(FORMSPREE_URL, {
       method: "POST",
       body: formData,
-      headers: { Accept: "application/json" }
+      headers: { Accept: "application/json" },
     });
 
     if (res.ok) {
-      showToast("✅ Pedido enviado correctamente. ¡Gracias por tu compra!");
+      showToast("✅ Pedido enviado correctamente ¡Gracias por tu compra!");
+      checkoutForm.reset();
       cart = [];
       updateCart();
-      cartModal.classList.add("hidden");
+      checkoutModal.classList.add("hidden");
     } else {
-      showToast("❌ Error al enviar el pedido. Intenta de nuevo.");
+      showToast("❌ Error al enviar el pedido.");
     }
   } catch {
-    showToast("⚠️ Conexión fallida. Verifica tu red.");
+    showToast("⚠️ Conexión fallida.");
   }
 });
 
-// === INTERFAZ ===
-cartBtn.addEventListener("click", () => cartModal.classList.toggle("hidden"));
-closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
-
-document.querySelectorAll(".scroll-to").forEach(btn => {
-  btn.addEventListener("click", e => {
-    const target = document.querySelector(e.target.dataset.target);
-    target.scrollIntoView({ behavior: "smooth" });
-  });
-});
-
-// === ALERTA BONITA (TOAST) ===
+// === Toast visual ===
 function showToast(msg) {
-  let toast = document.createElement("div");
+  const toast = document.createElement("div");
   toast.className = "toast-msg";
   toast.textContent = msg;
   document.body.appendChild(toast);
-  setTimeout(() => { toast.classList.add("show"); }, 100);
-  setTimeout(() => { toast.classList.remove("show"); }, 2500);
-  setTimeout(() => { toast.remove(); }, 3000);
+  setTimeout(() => toast.classList.add("show"), 100);
+  setTimeout(() => toast.classList.remove("show"), 2500);
+  setTimeout(() => toast.remove(), 3000);
 }
 
 renderProducts();
