@@ -182,12 +182,12 @@ const viewerImg = document.getElementById("viewer-img");
 const closeViewer = document.getElementById("close-viewer");
 
 document.addEventListener("click", e => {
-  // Si se hace click en una imagen de producto
-  if (e.target.tagName === "IMG" && e.target.closest(".product")) {
+  if (e.target.classList.contains("slide")) {
     viewerImg.src = e.target.src;
     imageViewer.classList.remove("hidden");
   }
 });
+
 
 // Cerrar el visor
 closeViewer.addEventListener("click", () => {
@@ -200,6 +200,7 @@ imageViewer.addEventListener("click", e => {
     imageViewer.classList.add("hidden");
   }
 });
+
 
 
 
