@@ -6,6 +6,8 @@ const products = [
   { name: "Mochila Casual", price: 44.99, image: "images/product5.jpg" },
 ];
 
+const FORMSPREE_URL = "https://formspree.io/f/xovkkovk"; // 👈 Pega aquí tu enlace de Formspree
+
 const productList = document.getElementById("product-list");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
@@ -34,7 +36,7 @@ function renderProducts() {
 function addToCart(index) {
   cart.push(products[index]);
   updateCart();
-  alert("Producto agregado 🛒");
+  showToast("Producto agregado 🛒");
 }
 
 function updateCart() {
@@ -59,6 +61,41 @@ function removeFromCart(index) {
   updateCart();
 }
 
+// === FINALIZAR COMPRA ===
+document.querySelector(".btn-checkout").addEventListener("click", async () => {
+  if (cart.length === 0) {
+    showToast("Tu carrito está vacío 🛒");
+    return;
+  }
+
+  let total = cart.reduce((sum, item) => sum + item.price, 0);
+  let pedido = cart.map(i => `- ${i.name}: $${i.price.toFixed(2)}`).join("\n");
+
+  const formData = new FormData();
+  formData.append("pedido", pedido);
+  formData.append("total", `$${total.toFixed(2)}`);
+
+  try {
+    const res = await fetch(FORMSPREE_URL, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" }
+    });
+
+    if (res.ok) {
+      showToast("✅ Pedido enviado correctamente. ¡Gracias por tu compra!");
+      cart = [];
+      updateCart();
+      cartModal.classList.add("hidden");
+    } else {
+      showToast("❌ Error al enviar el pedido. Intenta de nuevo.");
+    }
+  } catch {
+    showToast("⚠️ Conexión fallida. Verifica tu red.");
+  }
+});
+
+// === INTERFAZ ===
 cartBtn.addEventListener("click", () => cartModal.classList.toggle("hidden"));
 closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
 
@@ -68,5 +105,16 @@ document.querySelectorAll(".scroll-to").forEach(btn => {
     target.scrollIntoView({ behavior: "smooth" });
   });
 });
+
+// === ALERTA BONITA (TOAST) ===
+function showToast(msg) {
+  let toast = document.createElement("div");
+  toast.className = "toast-msg";
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.classList.add("show"); }, 100);
+  setTimeout(() => { toast.classList.remove("show"); }, 2500);
+  setTimeout(() => { toast.remove(); }, 3000);
+}
 
 renderProducts();
