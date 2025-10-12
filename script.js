@@ -78,7 +78,7 @@ const checkoutBtn = document.getElementById("checkout-btn");
 
 // 🛒 Botón flotante del carrito
 const floatingCart = document.getElementById("floating-cart");
-// === Mover el botón flotante (touch y mouse) ===
+// === Mover el botón flotante (touch + mouse, con límites de pantalla) ===
 let isDragging = false;
 let offsetX, offsetY;
 
@@ -91,7 +91,7 @@ window.addEventListener("touchend", endDrag);
 
 function startDrag(e) {
   isDragging = true;
-  floatingCart.style.transition = "none"; // 🔹 desactiva animaciones mientras se arrastra
+  floatingCart.style.transition = "none";
 
   const rect = floatingCart.getBoundingClientRect();
   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -105,11 +105,23 @@ function startDrag(e) {
 
 function drag(e) {
   if (!isDragging) return;
+
   const clientX = e.touches ? e.touches[0].clientX : e.clientX;
   const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const buttonWidth = floatingCart.offsetWidth;
+  const buttonHeight = floatingCart.offsetHeight;
 
-  const x = clientX - offsetX;
-  const y = clientY - offsetY;
+  let x = clientX - offsetX;
+  let y = clientY - offsetY;
+
+  // === Limitar a los bordes de la ventana ===
+  const maxX = window.innerWidth - buttonWidth - 5;
+  const maxY = window.innerHeight - buttonHeight - 5;
+
+  if (x < 5) x = 5;
+  if (y < 5) y = 5;
+  if (x > maxX) x = maxX;
+  if (y > maxY) y = maxY;
 
   floatingCart.style.left = `${x}px`;
   floatingCart.style.top = `${y}px`;
@@ -117,10 +129,12 @@ function drag(e) {
   floatingCart.style.bottom = "auto";
 }
 
-function endDrag() {
+function endDrag(e) {
+  if (!isDragging) return;
   isDragging = false;
   floatingCart.style.transition = "transform 0.2s ease";
 }
+
 
 const floatingCartCount = document.getElementById("floating-cart-count");
 
@@ -130,11 +144,17 @@ window.addEventListener("scroll", () => {
   else floatingCart.classList.add("hidden");
 });
 
-// Abrir el carrito al presionar el botón flotante
-floatingCart.addEventListener("click", () => {
-  cartModal.classList.remove("hidden");
-  document.body.classList.add("modal-open");
+// 🔹 Abrir el carrito desde el botón flotante (funciona en PC y móviles)
+["click", "touchend"].forEach(evt => {
+  floatingCart.addEventListener(evt, e => {
+    // Evita conflicto si fue un arrastre
+    if (isDragging) return;
+    e.preventDefault();
+    cartModal.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+  });
 });
+
 
 // Sincronizar cantidad del carrito
 function updateFloatingCartCount() {
@@ -206,11 +226,26 @@ function changeSlide(productIndex, direction) {
 }
 
 /* === CARRITO === */
+
+// 🔹 Animación de rebote cuando se agrega un producto
+function bounceFloatingCart() {
+  floatingCart.animate(
+    [
+      { transform: "scale(1)" },
+      { transform: "scale(1.25)" },
+      { transform: "scale(1)" }
+    ],
+    { duration: 400, easing: "ease-out" }
+  );
+}
+
 function addToCart(i) {
   cart.push(products[i]);
   updateCart();
   showToast("Producto agregado 🛒");
+  bounceFloatingCart(); // 🔹 rebote visual al agregar producto
 }
+
 
 function updateCart() {
   cartItems.innerHTML = "";
@@ -253,7 +288,19 @@ cartModal.addEventListener("click", e => {
 });
 
 
-closeCheckout.addEventListener("click", () => checkoutModal.classList.add("hidden"));
+closeCheckout.addEventListener("click", () => {
+  checkoutModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+});
+
+// 🔹 Cerrar checkout tocando fuera del modal
+checkoutModal.addEventListener("click", e => {
+  if (e.target === checkoutModal) {
+    checkoutModal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  }
+});
+
 checkoutBtn.addEventListener("click", () => {
   if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
   else {
@@ -369,6 +416,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
