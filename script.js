@@ -76,64 +76,73 @@ const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
 
-// 🛒 Botón flotante del carrito
+// === BOTÓN FLOTANTE (DRAG + TAP FIABLE EN TODOS LOS DISPOSITIVOS) ===
 const floatingCart = document.getElementById("floating-cart");
-// === Mover el botón flotante (touch + mouse, con límites de pantalla) ===
 let isDragging = false;
-let offsetX, offsetY;
+let dragStart = { x: 0, y: 0 };
+let offset = { x: 0, y: 0 };
 
-floatingCart.addEventListener("mousedown", startDrag);
-floatingCart.addEventListener("touchstart", startDrag, { passive: false });
-window.addEventListener("mousemove", drag);
-window.addEventListener("touchmove", drag, { passive: false });
-window.addEventListener("mouseup", endDrag);
-window.addEventListener("touchend", endDrag);
-
-function startDrag(e) {
-  isDragging = true;
-  floatingCart.style.transition = "none";
-
+// Iniciar movimiento o detectar toque
+floatingCart.addEventListener("pointerdown", e => {
+  floatingCart.setPointerCapture(e.pointerId);
+  isDragging = false;
+  dragStart = { x: e.clientX, y: e.clientY };
   const rect = floatingCart.getBoundingClientRect();
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  offset.x = e.clientX - rect.left;
+  offset.y = e.clientY - rect.top;
+});
 
-  offsetX = clientX - rect.left;
-  offsetY = clientY - rect.top;
+// Detectar movimiento real
+floatingCart.addEventListener("pointermove", e => {
+  if (e.pressure === 0) return; // dedo levantado
+  const dx = Math.abs(e.clientX - dragStart.x);
+  const dy = Math.abs(e.clientY - dragStart.y);
+  if (dx > 5 || dy > 5) {
+    isDragging = true;
+    moveFloatingCart(e.clientX, e.clientY);
+  }
+});
 
-  e.preventDefault();
-}
+// Finalizar movimiento o toque
+floatingCart.addEventListener("pointerup", e => {
+  floatingCart.releasePointerCapture(e.pointerId);
+  if (!isDragging) {
+    e.preventDefault();
+    openCartModal(); // 👉 tap corto = abrir carrito
+  } else {
+    isDragging = false;
+  }
+});
 
-function drag(e) {
-  if (!isDragging) return;
-
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+function moveFloatingCart(x, y) {
   const buttonWidth = floatingCart.offsetWidth;
   const buttonHeight = floatingCart.offsetHeight;
+  let newX = x - offset.x;
+  let newY = y - offset.y;
 
-  let x = clientX - offsetX;
-  let y = clientY - offsetY;
-
-  // === Limitar a los bordes de la ventana ===
+  // Limitar a bordes de pantalla
   const maxX = window.innerWidth - buttonWidth - 5;
   const maxY = window.innerHeight - buttonHeight - 5;
+  newX = Math.min(Math.max(newX, 5), maxX);
+  newY = Math.min(Math.max(newY, 5), maxY);
 
-  if (x < 5) x = 5;
-  if (y < 5) y = 5;
-  if (x > maxX) x = maxX;
-  if (y > maxY) y = maxY;
-
-  floatingCart.style.left = `${x}px`;
-  floatingCart.style.top = `${y}px`;
+  floatingCart.style.left = `${newX}px`;
+  floatingCart.style.top = `${newY}px`;
   floatingCart.style.right = "auto";
   floatingCart.style.bottom = "auto";
 }
 
-function endDrag(e) {
-  if (!isDragging) return;
-  isDragging = false;
-  floatingCart.style.transition = "transform 0.2s ease";
+function openCartModal() {
+  cartModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
 }
+
+// Mostrar/ocultar según scroll
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
+  else floatingCart.classList.add("hidden");
+});
+
 
 
 const floatingCartCount = document.getElementById("floating-cart-count");
@@ -449,6 +458,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
