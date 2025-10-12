@@ -302,12 +302,27 @@ checkoutModal.addEventListener("click", e => {
 });
 
 checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
-  else {
+  if (cart.length === 0) {
+    showToast("Tu carrito está vacío 🛒");
+  } else {
     cartModal.classList.add("hidden");
     checkoutModal.classList.remove("hidden");
+    document.body.classList.add("modal-open"); // 🔹 agrega esto
   }
 });
+
+// === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES) ===
+["click", "touchend"].forEach(evt => {
+  floatingCart.addEventListener(evt, e => {
+    if (isDragging) return; // Evita abrir si el usuario lo está moviendo
+    e.preventDefault();
+    e.stopPropagation();
+    cartModal.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+  });
+});
+
+
 
 /* === ENVÍO A FORMSPREE === */
 checkoutForm.addEventListener("submit", async e => {
@@ -416,6 +431,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
