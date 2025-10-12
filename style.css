@@ -551,6 +551,23 @@ body {
   }
 }
 
+/* === FIX: Prioridad de modales sobre sliders === */
+.cart-modal,
+#cart-modal,
+#checkout-modal,
+#image-viewer {
+  position: fixed;
+  z-index: 5000 !important;
+}
+
+/* Evitar que los productos se superpongan sobre modales */
+.slider,
+.product,
+.product * {
+  z-index: 1;
+  position: relative;
+}
+
 
 
 
