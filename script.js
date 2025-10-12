@@ -344,6 +344,7 @@ floatingCart.addEventListener("click", e => {
 });
 
 function openCartModal() {
+  if (navigator.vibrate) navigator.vibrate(40);
   cartModal.classList.remove("hidden");
   document.body.classList.add("modal-open");
 }
@@ -458,6 +459,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
