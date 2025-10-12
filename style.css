@@ -295,4 +295,55 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
+/* === CHECKOUT MODAL === */
+.checkout-note {
+  background: #fff7d1;
+  padding: 1rem;
+  border-left: 5px solid #ffb400;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+  animation: fadeIn 1s ease;
+}
+
+.checkout-note .emoji {
+  display: inline-block;
+  animation: bounce 1.2s infinite;
+}
+
+#checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+#checkout-form label {
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+#checkout-form input,
+#checkout-form select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+#checkout-form button {
+  margin-top: 1rem;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
 
