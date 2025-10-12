@@ -167,7 +167,11 @@ function removeFromCart(i) {
   updateCart();
 }
 
-cartBtn.addEventListener("click", () => cartModal.classList.toggle("hidden"));
+cartBtn.addEventListener("click", () => {
+  cartModal.classList.toggle("hidden");
+  document.body.classList.toggle("modal-open");
+});
+
 closeCart.addEventListener("click", () => cartModal.classList.add("hidden"));
 closeCheckout.addEventListener("click", () => checkoutModal.classList.add("hidden"));
 checkoutBtn.addEventListener("click", () => {
@@ -285,4 +289,5 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
