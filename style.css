@@ -626,6 +626,7 @@ body.modal-open::after {
   z-index: 2 !important;
 }
 
+/* === BOTÓN FLOTANTE DE CARRITO === */
 .floating-cart {
   position: fixed;
   bottom: 20px;
@@ -643,13 +644,78 @@ body.modal-open::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.3s ease;
+  transition: transform 0.2s ease, background 0.3s ease, opacity 0.4s ease, bottom 0.4s ease;
   user-select: none; /* 🔹 evita seleccionar texto al arrastrar */
   touch-action: none; /* 🔹 esencial para Android/iPhone */
+  opacity: 0;
+  pointer-events: none;
 }
+
+.floating-cart:not(.hidden) {
+  opacity: 1;
+  pointer-events: all;
+}
+
 .floating-cart:active {
   cursor: grabbing;
   transform: scale(0.95);
+}
+
+/* 🔹 Contador del carrito sobre el botón */
+.floating-cart span {
+  position: absolute;
+  top: 6px;
+  right: 9px;
+  background: #fff;
+  color: var(--secondary);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* 🔹 Aparición con animación suave */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floating-cart.show {
+  animation: fadeUp 0.4s ease forwards;
+}
+
+/* === LIMITES Y FIJACIÓN SEGURA EN MÓVIL === */
+html, body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* === EXTRA: Suavidad visual al abrir modales === */
+.cart-content,
+#checkout-modal .cart-content {
+  animation: modalSlideIn 0.35s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 
