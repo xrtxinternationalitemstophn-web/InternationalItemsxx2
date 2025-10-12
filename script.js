@@ -193,13 +193,20 @@ function renderProducts() {
       </div>
       <h3>${p.name}</h3>
       <p class="price">$${p.price.toFixed(2)}</p>
+
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+
       <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
     `;
+
     productList.appendChild(card);
   });
 
   initSliders();
 }
+
 
 /* === SLIDERS AUTOMÁTICOS Y MANUALES === */
 let slideIndices = [];
@@ -459,6 +466,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
