@@ -568,6 +568,39 @@ body {
   position: relative;
 }
 
+/* === FIX COMPLETO para Android / iPhone === */
+
+/* Fuerza al carrito y modales a estar siempre encima */
+#cart-modal,
+#checkout-modal,
+#image-viewer {
+  position: fixed !important;
+  z-index: 9999 !important;
+  inset: 0;
+}
+
+/* Fondo del carrito */
+#cart-modal {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(4px);
+}
+
+/* Asegura que los sliders y productos NUNCA se sobrepongan */
+.product,
+.slider,
+.product * {
+  position: relative !important;
+  z-index: auto !important;
+  transform: none !important;
+}
+
+/* Prevenir que animaciones o transiciones de los slides creen nuevas capas */
+.slide {
+  will-change: opacity;
+  transform: none !important;
+}
+
+
 
 
 
