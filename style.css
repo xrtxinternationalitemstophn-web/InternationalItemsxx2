@@ -361,6 +361,47 @@ body {
   to { opacity: 1; }
 }
 
+/* === LIGHTBOX (visor de imagen ampliada) === */
+.image-viewer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  transition: opacity 0.3s;
+}
+
+.image-viewer.hidden {
+  display: none;
+}
+
+.image-viewer img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+  animation: zoomIn 0.3s ease;
+}
+
+#close-viewer {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
 
 
 
