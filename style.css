@@ -647,9 +647,11 @@ body.modal-open::after {
   transition: transform 0.2s ease, background 0.3s ease, opacity 0.4s ease, bottom 0.4s ease;
   user-select: none; /* 🔹 evita seleccionar texto al arrastrar */
   touch-action: none; /* 🔹 esencial para Android/iPhone */
+  -webkit-tap-highlight-color: transparent; /* 🔹 quita el flash azul de iPhone */
   opacity: 0;
   pointer-events: none;
 }
+
 
 .floating-cart:not(.hidden) {
   opacity: 1;
@@ -717,5 +719,6 @@ body.modal-open {
     opacity: 1;
   }
 }
+
 
 
