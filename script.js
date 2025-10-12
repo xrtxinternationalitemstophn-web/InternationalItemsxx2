@@ -224,6 +224,54 @@ imageViewer.addEventListener("click", e => {
   if (e.target === imageViewer) imageViewer.classList.add("hidden");
 });
 
+/* === NAVEGACIÓN DENTRO DEL VISOR === */
+const viewerPrev = document.getElementById("viewer-prev");
+const viewerNext = document.getElementById("viewer-next");
+
+let currentProductIndex = null;
+let currentSlideIndex = 0;
+
+// Detectar qué producto y foto se amplía
+document.addEventListener("click", e => {
+  if (e.target.classList.contains("slide")) {
+    const parentSlider = e.target.closest(".slider");
+    if (!parentSlider) return;
+    const id = parentSlider.id.split("-")[1];
+    currentProductIndex = parseInt(id);
+    const slides = parentSlider.querySelectorAll(".slide");
+    currentSlideIndex = Array.from(slides).indexOf(e.target);
+    viewerImg.src = e.target.src;
+    imageViewer.classList.remove("hidden");
+  }
+});
+
+// Cambiar imagen en el visor
+function changeViewerImage(direction) {
+  if (currentProductIndex === null) return;
+  const slides = document.querySelectorAll(`#slider-${currentProductIndex} .slide`);
+  currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+  viewerImg.src = slides[currentSlideIndex].src;
+}
+
+viewerPrev.addEventListener("click", e => {
+  e.stopPropagation();
+  changeViewerImage(-1);
+});
+
+viewerNext.addEventListener("click", e => {
+  e.stopPropagation();
+  changeViewerImage(1);
+});
+
+// Teclado (izquierda/derecha)
+document.addEventListener("keydown", e => {
+  if (imageViewer.classList.contains("hidden")) return;
+  if (e.key === "ArrowLeft") changeViewerImage(-1);
+  if (e.key === "ArrowRight") changeViewerImage(1);
+  if (e.key === "Escape") imageViewer.classList.add("hidden");
+});
+
+
 /* === TOAST === */
 function showToast(msg) {
   const toast = document.createElement("div");
@@ -237,3 +285,4 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
