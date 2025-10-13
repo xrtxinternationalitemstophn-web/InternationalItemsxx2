@@ -133,9 +133,24 @@
 <button id="floating-cart" class="floating-cart hidden">
   🛍️ <span id="floating-cart-count">0</span>
 </button>
+<!-- 🔎 Botón flotante de búsqueda -->
+<button id="floating-search" class="floating-search" aria-label="Buscar productos">🔎</button>
 
+<!-- 🔎 Panel de búsqueda -->
+<div id="fs-overlay" class="fs-overlay hidden" aria-hidden="true"></div>
+<div id="fs-panel" class="fs-panel hidden" role="dialog" aria-modal="true" aria-labelledby="fs-title">
+  <div class="fs-header">
+    <span id="fs-title">Buscar productos</span>
+    <button id="fs-close" class="fs-close" aria-label="Cerrar búsqueda">✕</button>
+  </div>
+  <input id="fs-input" type="search" placeholder="Escribe para buscar… (nombre o descripción)" autocomplete="off" />
+  <p id="fs-noresults" class="fs-noresults hidden">No se encontraron productos.</p>
+</div>
+
+  
 </body>
 </html>
+
 
 
 
