@@ -882,165 +882,89 @@ body.modal-open {
   animation: shake 0.4s;
 }
 
-/* === BUSCADOR FLOTANTE === */
+/* === 🔎 BUSCADOR FLOTANTE === */
 .floating-search{
   position: fixed;
-  left: 16px;
-  bottom: 16px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  left: 20px;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
   border: none;
-  box-shadow: var(--shadow, 0 10px 25px rgba(0,0,0,.15));
-  background: var(--primary, #0066ff);
+  border-radius: 50%;
+  background: var(--primary);
   color: #fff;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 99990;
+  font-size: 1.4rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,.25);
   display: grid;
   place-items: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: transform .2s ease, opacity .25s ease;
+  user-select: none;
+  touch-action: manipulation;
 }
+.floating-search.hidden{ opacity:0; pointer-events:none; }
+.floating-search:active{ transform: scale(.95); }
+.floating-search:focus{ outline: none; }
 
 /* Overlay y panel */
 .fs-overlay{
   position: fixed; inset: 0;
-  background: rgba(0,0,0,.45);
-  z-index: 99995;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(2px);
+  z-index: 10010;
 }
 .fs-panel{
-  position: fixed;
-  left: 50%; top: 10%;
+  position: fixed; left: 50%; top: 12%;
   transform: translateX(-50%);
-  width: min(720px, 92vw);
+  width: min(700px, 92%);
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  z-index: 10011;
   padding: 16px;
-  z-index: 99996;
 }
 .fs-panel.hidden, .fs-overlay.hidden{ display: none !important; }
 
 .fs-header{
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 10px; gap: 12px;
+  margin-bottom: 10px;
 }
-.fs-header #fs-title{ font-weight: 600; color: #222; }
+.fs-header h4{ margin: 0; font-size: 1.1rem; color: var(--primary); }
 .fs-close{
-  border: none; background: transparent; font-size: 22px; cursor: pointer;
+  background: transparent; border: none; font-size: 24px; line-height: 1;
+  cursor: pointer; color: #333;
 }
 
+.fs-input-row{
+  display: grid; grid-template-columns: 1fr auto; gap: 10px;
+}
 #fs-input{
   width: 100%;
   padding: 12px 14px;
-  border: 2px solid var(--primary, #0066ff);
-  border-radius: 10px;
-  font-size: 16px;
-  outline: none;
-}
-#fs-input:focus{
-  border-color: var(--secondary, #ff7a00);
-  box-shadow: 0 0 0 4px rgba(0,102,255,.08);
-}
-
-.fs-noresults{
-  margin-top: 10px;
-  color: #666;
-  text-align: center;
-}
-
-/* Asegurar capas sobre el resto (modales, etc.) */
-.toast-msg{ z-index: 99999 !important; }
-
-/* === BUSCADOR FLOTANTE === */
-.floating-search {
-  position: fixed;
-  bottom: 100px;   /* a la izquierda del carrito, ajusta si quieres */
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  display: grid;
-  place-items: center;
-  font-size: 1.4rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,.25);
-  z-index: 10050;
-  cursor: pointer;
-  transition: transform .2s ease, opacity .3s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.floating-search.hidden { opacity: 0; pointer-events: none; }
-
-.fs-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(2px);
-  z-index: 10060;
-}
-
-.fs-panel {
-  position: fixed;
-  left: 50%; transform: translateX(-50%);
-  bottom: 20px;
-  width: min(680px, 92%);
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.25);
-  z-index: 10070;
-  padding: 14px;
-}
-
-.fs-panel.hidden, .fs-overlay.hidden { display: none !important; }
-
-.fs-input-wrap {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 8px;
-}
-
-#fs-input {
-  padding: .8rem 1rem;
   border: 2px solid var(--primary);
   border-radius: 10px;
   font-size: 1rem;
   outline: none;
 }
+#fs-input:focus{ border-color: var(--secondary); }
 
-.fs-search-btn {
-  padding: .8rem 1rem;
-  border: none;
-  border-radius: 10px;
+.fs-do{
+  padding: 12px 16px;
   background: var(--secondary);
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
+  color:#fff; border:none; border-radius: 10px;
+  font-weight: 600; cursor: pointer;
+}
+.fs-do:active{ transform: scale(.98); }
+
+.fs-noresults{
+  margin: 12px 2px 0;
+  color: #666; font-size: .95rem;
 }
 
-.fs-close {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  border: 2px solid #eee;
-  background: #fff;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-
-.fs-help {
-  margin: 8px 2px 0;
-  color: #666; font-size: .9rem;
-}
-
-.fs-noresults { margin: 10px 2px 0; color: #888; }
-.hidden { display: none !important; }
-
-/* Asegurar toques fiables en Android */
-#floating-search, #fs-submit, #fs-close, #fs-input {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
+/* Asegurar z-index por encima de modales y blur del body */
+body.modal-open::after{ z-index: 9998; }
+.toast-msg{ z-index: 999999999 !important; }
 
 
 
