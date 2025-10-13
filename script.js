@@ -1002,13 +1002,21 @@ function filterProducts(query) {
 }
 
 // Disparar al presionar “Buscar” o Enter
-fsSubmitBtn.addEventListener("click", () => filterProducts(fsInput.value));
+fsSubmitBtn.addEventListener("click", () => {
+  filterProducts(fsInput.value);
+  closeSearch(); // ✅ cierra el panel
+  window.scrollTo({ top: document.getElementById("productos").offsetTop - 80, behavior: "smooth" }); // ✅ baja a la sección de productos
+});
+
 fsInput.addEventListener("keydown", e => {
   if (e.key === "Enter") {
     e.preventDefault();
     filterProducts(fsInput.value);
+    closeSearch(); // ✅ cierra el panel
+    window.scrollTo({ top: document.getElementById("productos").offsetTop - 80, behavior: "smooth" });
   }
 });
+
 
 // === Mostrar resultados filtrados ===
 function renderSearchResults(list) {
@@ -1077,5 +1085,6 @@ function changeSearchSlide(id, dir) {
 
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
 
 
