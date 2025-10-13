@@ -303,6 +303,10 @@ const products = [
 // === CONFIGURACIÓN ===
 const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
 
+// === FORMATEADOR DE MONEDA ===
+const formatLempiras = amount =>
+  new Intl.NumberFormat("es-HN", { style: "currency", currency: "HNL" }).format(amount);
+
 const productList = document.getElementById("product-list");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
@@ -431,7 +435,7 @@ function renderProducts() {
         <button class="next" data-index="${i}">❯</button>
       </div>
       <h3>${p.name}</h3>
-      <p class="price">LPS ${p.price.toFixed(2)}</p>
+      <p class="price">${formatLempiras(p.price)}</p>
 
       <ul class="description">
         ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
@@ -511,11 +515,11 @@ function updateCart() {
     const div = document.createElement("div");
     div.classList.add("cart-item");
     div.innerHTML = `
-  <p>${item.name} — LPS ${item.price.toFixed(2)}</p>
+  <p>${item.name} — ${formatLempiras(item.price)}</p>
   <button onclick="removeFromCart(${i})">❌</button>`;
     cartItems.appendChild(div);
   });
-  cartTotal.textContent = `$${total.toFixed(2)}`;
+  cartTotal.textContent = formatLempiras(total);
   cartCount.textContent = cart.length;
   updateFloatingCartCount();
 }
@@ -606,7 +610,7 @@ checkoutForm.addEventListener("submit", async e => {
 
   const formData = new FormData(checkoutForm);
   formData.append("pedido", pedido);
-  formData.append("total", `$${total.toFixed(2)}`);
+  formData.append("total", formatLempiras(total));
 
   try {
     const res = await fetch(FORMSPREE_URL, {
@@ -705,6 +709,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
