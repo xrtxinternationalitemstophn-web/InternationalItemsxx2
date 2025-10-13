@@ -36,6 +36,11 @@
   <!-- 💎 PRODUCTOS -->
   <section class="products" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
+    <!-- 🔎 Banner de resultados de búsqueda -->
+<div id="search-banner" class="search-banner hidden">
+  <span id="search-banner-text"></span>
+  <button id="clear-search" class="search-banner-close" aria-label="Quitar filtro">✕</button>
+</div>
     <div class="product-grid" id="product-list"></div>
   </section>
 
@@ -133,9 +138,28 @@
 <button id="floating-cart" class="floating-cart hidden">
   🛍️ <span id="floating-cart-count">0</span>
 </button>
+  
+<!-- 🔎 Botón flotante de búsqueda -->
+<button id="floating-search" class="floating-search hidden" aria-label="Buscar productos">🔎</button>
 
+<!-- 🔍 Modal de búsqueda -->
+<div id="search-modal" class="search-modal hidden">
+  <div class="search-content" role="dialog" aria-modal="true" aria-labelledby="search-title">
+    <button id="close-search-modal" class="close-search" aria-label="Cerrar">×</button>
+    <h3 id="search-title">Buscar productos</h3>
+    <div class="search-bar">
+      <input id="fs-input" type="text" placeholder="Nombre, descripción o precio..." autocomplete="off" />
+      <button id="search-confirm" class="btn-search">Buscar</button>
+    </div>
+    <p class="search-hint">Consejos: prueba “powerbank”, “cámara”, “300”, “HNL 140”, etc.</p>
+  </div>
+</div>
+
+
+  
 </body>
 </html>
+
 
 
 
