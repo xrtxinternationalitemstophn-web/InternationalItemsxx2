@@ -1429,11 +1429,11 @@ function showToast(message) {
 /* === BUSCADOR FLOTANTE === */
 const floatingSearch = document.getElementById("floating-search");
 const searchBar = document.getElementById("search-bar");
-const searchInput = document.getElementById("search-input");
+const searchInput = document.getElementById("floating-search-input"); // ✅ ID corregido
 const closeSearch = document.getElementById("close-search");
 const noResults = document.getElementById("no-results");
 
-// Mostrar/ocultar botón de búsqueda al hacer scroll
+// Mostrar/ocultar el botón 🔍 al hacer scroll
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
     floatingSearch.classList.remove("hidden");
@@ -1454,7 +1454,8 @@ closeSearch.addEventListener("click", () => {
   searchBar.classList.remove("show");
   setTimeout(() => searchBar.classList.add("hidden"), 300);
   searchInput.value = "";
-  renderProducts(); // 🔹 restaura todos los productos
+  renderProducts(); // 🔹 Restaura todos los productos
+  noResults.classList.add("hidden");
 });
 
 // Filtrar productos en tiempo real
@@ -1470,6 +1471,7 @@ searchInput.addEventListener("input", () => {
   else noResults.classList.add("hidden");
 });
 
+// Mostrar productos filtrados
 function renderFilteredProducts(list) {
   productList.innerHTML = "";
   list.forEach((p, i) => {
@@ -1496,6 +1498,7 @@ function renderFilteredProducts(list) {
   });
   initSliders();
 }
+
 
 
 /* === INICIO === */
@@ -1549,6 +1552,7 @@ function renderFilteredProducts(list) {
 
   initSliders();
 }
+
 
 
 
