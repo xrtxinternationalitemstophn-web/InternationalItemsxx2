@@ -500,29 +500,66 @@ function bounceFloatingCart() {
 }
 
 function addToCart(i) {
-  cart.push(products[i]);
+  const product = products[i];
+  const existing = cart.find(item => item.name === product.name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+
   updateCart();
   showToast("Producto agregado 🛒");
-  bounceFloatingCart(); // 🔹 rebote visual al agregar producto
+  bounceFloatingCart();
 }
+
 
 
 function updateCart() {
   cartItems.innerHTML = "";
   let total = 0;
+
   cart.forEach((item, i) => {
-    total += item.price;
+    total += item.price * item.qty;
+
     const div = document.createElement("div");
     div.classList.add("cart-item");
     div.innerHTML = `
-  <p>${item.name} — ${formatLempiras(item.price)}</p>
-  <button onclick="removeFromCart(${i})">❌</button>`;
+      <div class="cart-item-info">
+        <p><strong>${item.name}</strong></p>
+        <p class="price">${formatLempiras(item.price)} x ${item.qty}</p>
+      </div>
+      <div class="cart-item-actions">
+        <button onclick="changeQty(${i}, -1)">−</button>
+        <input type="number" min="1" value="${item.qty}" onchange="setQty(${i}, this.value)">
+        <button onclick="changeQty(${i}, 1)">+</button>
+        <button class="remove" onclick="removeFromCart(${i})">🗑️</button>
+      </div>
+    `;
     cartItems.appendChild(div);
   });
+
   cartTotal.textContent = formatLempiras(total);
-  cartCount.textContent = cart.length;
+  cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
   updateFloatingCartCount();
 }
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty < 1) cart[index].qty = 1;
+  updateCart();
+}
+
+function setQty(index, value) {
+  const val = parseInt(value);
+  if (!isNaN(val) && val > 0) {
+    cart[index].qty = val;
+    updateCart();
+  }
+}
+
+
 
 function removeFromCart(i) {
   cart.splice(i, 1);
@@ -709,6 +746,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
