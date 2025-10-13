@@ -504,15 +504,16 @@ function addToCart(i) {
   const existing = cart.find(item => item.name === product.name);
 
   if (existing) {
-    existing.qty += 1;
+    existing.qty += 1; // 🔹 Incrementa cantidad
   } else {
-    cart.push({ ...product, qty: 1 });
+    cart.push({ ...product, qty: 1 }); // 🔹 Nuevo producto con cantidad 1
   }
 
   updateCart();
   showToast("Producto agregado 🛒");
   bounceFloatingCart();
 }
+
 
 
 
@@ -540,10 +541,11 @@ function updateCart() {
     cartItems.appendChild(div);
   });
 
-  cartTotal.textContent = formatLempiras(total);
+  animateCartTotal(total);
   cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
   updateFloatingCartCount();
 }
+
 
 function changeQty(index, delta) {
   cart[index].qty += delta;
@@ -746,6 +748,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
