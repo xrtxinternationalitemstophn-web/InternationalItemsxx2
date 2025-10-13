@@ -945,512 +945,88 @@ const checkoutBtn   = document.getElementById("checkout-btn");
    #fs-submit        (botón Buscar) → opcional, pero recomendado
    #fs-noresults     (mensaje “no hay resultados”)
 */
+/* === 🔎 BUSCADOR FLOTANTE === */
 const fsBtn       = document.getElementById("floating-search");
 const fsOverlay   = document.getElementById("fs-overlay");
 const fsPanel     = document.getElementById("fs-panel");
 const fsClose     = document.getElementById("fs-close");
 const fsInput     = document.getElementById("fs-input");
-const fsSubmitBtn = document.getElementById("fs-do");  // ✅ este es el ID correcto del HTML
+const fsSubmitBtn = document.getElementById("fs-do");
 const fsNoResults = document.getElementById("fs-noresults");
 
-// Mostrar el botón de búsqueda al cargar la página
+// ✅ Mostrar el botón de búsqueda al cargar
 window.addEventListener("load", () => {
   fsBtn?.classList.remove("hidden");
 });
 
-// Abrir/cerrar
+// === Abrir / cerrar buscador ===
 function openSearch() {
   fsOverlay.classList.remove("hidden");
   fsPanel.classList.remove("hidden");
   setTimeout(() => fsInput.focus(), 50);
 }
-
 function closeSearch() {
   fsOverlay.classList.add("hidden");
   fsPanel.classList.add("hidden");
   fsInput.value = "";
   fsNoResults.classList.add("hidden");
-  renderProducts(); // restaura todos
-}
-/******************************************
- * 🔹 BOTÓN CARRITO FLOTANTE (drag + tap)
- ******************************************/
-const floatingCart = document.getElementById("floating-cart");
-const floatingCartCount = document.getElementById("floating-cart-count");
-
-let isDragging = false;
-let dragStart = { x: 0, y: 0 };
-let offset = { x: 0, y: 0 };
-
-if (floatingCart) {
-  floatingCart.addEventListener("pointerdown", e => {
-    floatingCart.setPointerCapture(e.pointerId);
-    isDragging = false;
-    dragStart = { x: e.clientX, y: e.clientY };
-    const rect = floatingCart.getBoundingClientRect();
-    offset.x = e.clientX - rect.left;
-    offset.y = e.clientY - rect.top;
-  });
-
-  floatingCart.addEventListener("pointermove", e => {
-    if (e.pressure === 0) return; // dedo levantado
-    const dx = Math.abs(e.clientX - dragStart.x);
-    const dy = Math.abs(e.clientY - dragStart.y);
-    if (dx > 5 || dy > 5) {
-      isDragging = true;
-      moveFloatingCart(e.clientX, e.clientY);
-    }
-  });
-
-  floatingCart.addEventListener("pointerup", e => {
-    floatingCart.releasePointerCapture(e.pointerId);
-    if (!isDragging) {
-      e.preventDefault();
-      openCartModal();
-    } else {
-      isDragging = false;
-    }
-  });
-
-  // Mostrar/ocultar según scroll
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-    else floatingCart.classList.add("hidden");
-  });
+  renderProducts(); // restaura todos los productos
 }
 
-function moveFloatingCart(x, y) {
-  const buttonWidth = floatingCart.offsetWidth;
-  const buttonHeight = floatingCart.offsetHeight;
-  let newX = x - offset.x;
-  let newY = y - offset.y;
-
-  const maxX = window.innerWidth - buttonWidth - 5;
-  const maxY = window.innerHeight - buttonHeight - 5;
-  newX = Math.min(Math.max(newX, 5), maxX);
-  newY = Math.min(Math.max(newY, 5), maxY);
-
-  floatingCart.style.left = `${newX}px`;
-  floatingCart.style.top  = `${newY}px`;
-  floatingCart.style.right = "auto";
-  floatingCart.style.bottom = "auto";
-}
-
-function openCartModal() {
-  if (!cartModal) return;
-  cartModal.classList.remove("hidden");
-  document.body.classList.add("modal-open");
-}
-
-/******************************************
- * 🔹 CARRITO (datos y lógica)
- ******************************************/
-let cart = [];
-
-function bounceFloatingCart() {
-  if (!floatingCart) return;
-  floatingCart.animate(
-    [{ transform: "scale(1)" }, { transform: "scale(1.25)" }, { transform: "scale(1)" }],
-    { duration: 400, easing: "ease-out" }
-  );
-}
-
-function updateFloatingCartCount() {
-  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
-  if (floatingCartCount) {
-    floatingCartCount.textContent = totalQty;
-    floatingCartCount.classList.add("bounce");
-    setTimeout(() => floatingCartCount.classList.remove("bounce"), 300);
-  }
-  if (cartCount) cartCount.textContent = totalQty; // contador del header
-}
-
-function addToCart(i) {
-  const product = products[i];
-  const existing = cart.find(item => item.name === product.name);
-
-  if (existing) existing.qty += 1;
-  else cart.push({ ...product, qty: 1 });
-
-  updateCart();
-  showToast("Producto agregado 🛒");
-  bounceFloatingCart();
-}
-
-function updateCart() {
-  if (!cartItems) return;
-  cartItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, i) => {
-    const subtotal = item.price * item.qty;
-    total += subtotal;
-
-    const div = document.createElement("div");
-    div.classList.add("cart-item");
-    div.innerHTML = `
-      <div class="cart-item-info">
-        <p><strong>${item.name}</strong></p>
-        <p class="price">${formatLempiras(item.price)} × ${item.qty}</p>
-      </div>
-      <div class="cart-item-actions">
-        <button onclick="changeQty(${i}, -1)">−</button>
-        <input type="number" min="1" value="${item.qty}" onchange="setQty(${i}, this.value)">
-        <button onclick="changeQty(${i}, 1)">+</button>
-        <button class="remove" onclick="removeFromCart(${i})">🗑️</button>
-      </div>
-    `;
-    cartItems.appendChild(div);
-  });
-
-  if (cartTotal) {
-    cartTotal.textContent = formatLempiras(total);
-    cartTotal.classList.add("highlight");
-    setTimeout(() => cartTotal.classList.remove("highlight"), 400);
-  }
-
-  updateFloatingCartCount();
-}
-
-function changeQty(index, delta) {
-  cart[index].qty += delta;
-  if (cart[index].qty < 1) cart[index].qty = 1;
-  updateCart();
-}
-
-function setQty(index, value) {
-  const val = parseInt(value);
-  if (!isNaN(val) && val > 0) {
-    cart[index].qty = val;
-    updateCart();
-  }
-}
-
-function removeFromCart(i) {
-  cart.splice(i, 1);
-  updateCart();
-}
-
-/******************************************
- * 🔹 MODALES (carrito / checkout)
- ******************************************/
-if (cartBtn) {
-  cartBtn.addEventListener("click", () => {
-    cartModal.classList.toggle("hidden");
-    document.body.classList.toggle("modal-open");
-  });
-}
-
-if (closeCart) {
-  closeCart.addEventListener("click", () => {
-    cartModal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  });
-}
-
-if (cartModal) {
-  cartModal.addEventListener("click", e => {
-    if (e.target === cartModal) {
-      cartModal.classList.add("hidden");
-      document.body.classList.remove("modal-open");
-    }
-  });
-}
-
-if (closeCheckout) {
-  closeCheckout.addEventListener("click", () => {
-    checkoutModal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  });
-}
-
-if (checkoutModal) {
-  checkoutModal.addEventListener("click", e => {
-    if (e.target === checkoutModal) {
-      checkoutModal.classList.add("hidden");
-      document.body.classList.remove("modal-open");
-    }
-  });
-}
-
-if (checkoutBtn) {
-  checkoutBtn.addEventListener("click", () => {
-    if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
-    else {
-      cartModal.classList.add("hidden");
-      checkoutModal.classList.remove("hidden");
-      document.body.classList.add("modal-open");
-    }
-  });
-}
-
-/******************************************
- * 🔹 CHECKOUT → Formspree + validación
- ******************************************/
-if (checkoutForm) {
-  checkoutForm.addEventListener("submit", async e => {
-    e.preventDefault();
-
-    // Validación manual de todos los required
-    const requiredFields = checkoutForm.querySelectorAll("[required]");
-    let allFilled = true;
-    requiredFields.forEach(field => {
-      const value = field.value.trim();
-      if (!value) {
-        field.style.border = "2px solid red";
-        allFilled = false;
-      } else {
-        field.style.border = "1px solid #ccc";
-      }
-    });
-
-    if (!allFilled) {
-      showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
-      return;
-    }
-
-    // Total con cantidades + detalle
-    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-    const pedido = cart
-      .map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`)
-      .join("\n");
-
-    // Preparar datos
-    const formData = new FormData(checkoutForm);
-    formData.append("pedido", pedido);
-    formData.append("total", formatLempiras(total));
-    if (checkoutForm.metodo_pago) {
-      formData.append("metodo_pago", checkoutForm.metodo_pago.value);
-    }
-
-    try {
-      const res = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        showToast(
-          `✅ Pedido enviado correctamente<br>¡Gracias por tu compra!<br>📞 Pendiente de tu celular, te contactaremos pronto 😉`
-        );
-        checkoutForm.reset();
-        cart = [];
-        updateCart();
-        checkoutModal.classList.add("hidden");
-        document.body.classList.remove("modal-open");
-      } else {
-        showToast("❌ Error al enviar el pedido.");
-      }
-    } catch {
-      showToast("⚠️ Conexión fallida.");
-    }
-  });
-}
-
-/******************************************
- * 🔹 SLIDERS de productos
- ******************************************/
-let slideIndices = [];
-let slideIntervals = [];
-
-function renderProducts() {
-  if (!productList) return;
-  productList.innerHTML = "";
-  products.forEach((p, i) => {
-    const card = document.createElement("div");
-    card.classList.add("product");
-    card.innerHTML = `
-      <div class="slider" id="slider-${i}">
-        <div class="slides-container">
-          ${p.images.map((img, index) => `
-            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
-          `).join("")}
-        </div>
-        <button class="prev" data-index="${i}">❮</button>
-        <button class="next" data-index="${i}">❯</button>
-      </div>
-      <h3>${p.name}</h3>
-      <p class="price">${formatLempiras(p.price)}</p>
-      <ul class="description">
-        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
-      </ul>
-      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
-    `;
-    productList.appendChild(card);
-  });
-  initSliders();
-}
-
-function initSliders() {
-  products.forEach((_, i) => {
-    slideIndices[i] = 0;
-    const prevBtn = document.querySelector(`#slider-${i} .prev`);
-    const nextBtn = document.querySelector(`#slider-${i} .next`);
-
-    prevBtn.style.display = "block";
-    nextBtn.style.display = "block";
-
-    prevBtn.addEventListener("click", () => changeSlide(i, -1));
-    nextBtn.addEventListener("click", () => changeSlide(i, 1));
-
-    clearInterval(slideIntervals[i]);
-    slideIntervals[i] = setInterval(() => changeSlide(i, 1), 3000);
-  });
-}
-
-function changeSlide(productIndex, direction) {
-  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
-  if (!slides.length) return;
-  slides[slideIndices[productIndex]].classList.remove("active");
-  slideIndices[productIndex] =
-    (slideIndices[productIndex] + direction + slides.length) % slides.length;
-  slides[slideIndices[productIndex]].classList.add("active");
-}
-
-/******************************************
- * 🔹 LIGHTBOX (visor de imagen)
- ******************************************/
-const imageViewer = document.getElementById("image-viewer");
-const viewerImg   = document.getElementById("viewer-img");
-const closeViewer = document.getElementById("close-viewer");
-const viewerPrev  = document.getElementById("viewer-prev");
-const viewerNext  = document.getElementById("viewer-next");
-
-let currentProductIndex = null;
-let currentSlideIndex   = 0;
-
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("slide")) {
-    const parentSlider = e.target.closest(".slider");
-    if (!parentSlider) return;
-    const id = parentSlider.id.split("-")[1];
-    currentProductIndex = parseInt(id);
-    const slides = parentSlider.querySelectorAll(".slide");
-    currentSlideIndex = Array.from(slides).indexOf(e.target);
-    viewerImg.src = e.target.src;
-    imageViewer.classList.remove("hidden");
-  }
-});
-
-if (closeViewer) {
-  closeViewer.addEventListener("click", () => imageViewer.classList.add("hidden"));
-  imageViewer.addEventListener("click", e => {
-    if (e.target === imageViewer) imageViewer.classList.add("hidden");
-  });
-}
-function changeViewerImage(direction) {
-  if (currentProductIndex === null) return;
-  const slides = document.querySelectorAll(`#slider-${currentProductIndex} .slide`);
-  currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
-  viewerImg.src = slides[currentSlideIndex].src;
-}
-if (viewerPrev) viewerPrev.addEventListener("click", e => { e.stopPropagation(); changeViewerImage(-1); });
-if (viewerNext) viewerNext.addEventListener("click", e => { e.stopPropagation(); changeViewerImage(1); });
-
-document.addEventListener("keydown", e => {
-  if (!imageViewer || imageViewer.classList.contains("hidden")) return;
-  if (e.key === "ArrowLeft")  changeViewerImage(-1);
-  if (e.key === "ArrowRight") changeViewerImage(1);
-  if (e.key === "Escape")     imageViewer.classList.add("hidden");
-});
-
-/******************************************
- * 🔹 TOAST (centrado, siempre encima)
- ******************************************/
-function showToast(message) {
-  const oldToast = document.querySelector(".toast-msg");
-  if (oldToast) oldToast.remove();
-
-  const toast = document.createElement("div");
-  toast.className = "toast-msg";
-  toast.innerHTML = String(message).replace(/\n/g, "<br>");
-  document.body.appendChild(toast);
-
-  setTimeout(() => toast.classList.add("show"), 10);
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
-}
-
-/******************************************
- * 🔹 BUSCADOR FLOTANTE (🔍)
- ******************************************/
-function openSearch(){
-  if (!fsOverlay || !fsPanel) return;
-  fsOverlay.classList.remove("hidden");
-  fsPanel.classList.remove("hidden");
-  setTimeout(() => fsInput && fsInput.focus(), 50);
-}
-function closeSearch(){
-  if (!fsOverlay || !fsPanel) return;
-  fsOverlay.classList.add("hidden");
-  fsPanel.classList.add("hidden");
-  if (fsInput) fsInput.value = "";
-  if (fsNoResults) fsNoResults.classList.add("hidden");
-  renderProducts(); // restaurar todos
-}
-
-if (fsBtn)     fsBtn.addEventListener("click", openSearch);
-if (fsClose)   fsClose.addEventListener("click", closeSearch);
-if (fsOverlay) fsOverlay.addEventListener("click", closeSearch);
+// Eventos básicos
+fsBtn.addEventListener("click", openSearch);
+fsClose.addEventListener("click", closeSearch);
+fsOverlay.addEventListener("click", closeSearch);
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && fsPanel && !fsPanel.classList.contains("hidden")) closeSearch();
+  if (e.key === "Escape" && !fsPanel.classList.contains("hidden")) closeSearch();
 });
 
-// Buscar en vivo (nombre/desc/precio)
-if (fsInput) {
-  fsInput.addEventListener("input", () => {
-    const q = fsInput.value.toLowerCase().trim();
-    const filtered = products.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.description || []).some(d => d.toLowerCase().includes(q)) ||
-      String(p.price).includes(q)
-    );
-    renderSearchResults(filtered);
-    if (fsNoResults) {
-      if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
-      else fsNoResults.classList.add("hidden");
-    }
+// === Filtrar productos (nombre, descripción o precio) ===
+function filterProducts(query) {
+  const q = query.toLowerCase().trim();
+
+  // Buscar coincidencias
+  const filtered = products.filter(p => {
+    const byName = p.name.toLowerCase().includes(q);
+    const byDesc = (p.description || []).some(d => d.toLowerCase().includes(q));
+    const byPrice = String(p.price).includes(q) || formatLempiras(p.price).toLowerCase().includes(q);
+    return byName || byDesc || byPrice;
   });
+
+  // Render resultados
+  renderSearchResults(filtered);
+
+  // Mostrar aviso si no hay resultados
+  if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
+  else fsNoResults.classList.add("hidden");
 }
 
-// Botón Buscar (útil en Android)
-if (fsSubmitBtn) {
-  fsSubmitBtn.addEventListener("click", (e) => {
+// Disparar al presionar “Buscar” o Enter
+fsSubmitBtn.addEventListener("click", () => filterProducts(fsInput.value));
+fsInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
     e.preventDefault();
-    const q = (fsInput?.value || "").toLowerCase().trim();
-    const filtered = products.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.description || []).some(d => d.toLowerCase().includes(q)) ||
-      String(p.price).includes(q)
-    );
-    renderSearchResults(filtered);
-    if (fsNoResults) {
-      if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
-      else fsNoResults.classList.add("hidden");
-    }
-  });
-}
+    filterProducts(fsInput.value);
+  }
+});
 
-function renderSearchResults(list){
-  if (!productList) return;
+// === Mostrar resultados filtrados ===
+function renderSearchResults(list) {
   productList.innerHTML = "";
+
   list.forEach((p, i) => {
     const card = document.createElement("div");
     card.classList.add("product");
-    const sliderId = `slider-s-${i}`;
+
     card.innerHTML = `
-      <div class="slider" id="${sliderId}">
+      <div class="slider" id="slider-s-${i}">
         <div class="slides-container">
           ${p.images.map((img, idx) => `
             <img src="${img}" class="slide ${idx === 0 ? "active" : ""}" alt="${p.name}">
           `).join("")}
         </div>
-        <button class="prev" data-index="${sliderId}">❮</button>
-        <button class="next" data-index="${sliderId}">❯</button>
+        <button class="prev" data-index="s-${i}">❮</button>
+        <button class="next" data-index="s-${i}">❯</button>
       </div>
       <h3>${p.name}</h3>
       <p class="price">${formatLempiras(p.price)}</p>
@@ -1459,25 +1035,38 @@ function renderSearchResults(list){
       </ul>
       <button class="add-btn">Agregar al carrito</button>
     `;
+
+    // ✅ Vincular correctamente el botón de agregar
     card.querySelector(".add-btn").addEventListener("click", () => {
       const realIndex = products.findIndex(x => x.name === p.name);
       addToCart(realIndex);
     });
+
     productList.appendChild(card);
   });
 
-  // Re-enganchar flechas de sliders en resultados
+  rebindSearchSliders();
+}
+
+// === Slider de los resultados ===
+function rebindSearchSliders() {
   document.querySelectorAll(".slider .prev").forEach(btn => {
-    btn.onclick = () => changeSearchSlide(btn.getAttribute("data-index"), -1);
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-index");
+      changeSearchSlide(id, -1);
+    };
   });
   document.querySelectorAll(".slider .next").forEach(btn => {
-    btn.onclick = () => changeSearchSlide(btn.getAttribute("data-index"), 1);
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-index");
+      changeSearchSlide(id, 1);
+    };
   });
 }
 
 const searchSlideIndex = {};
-function changeSearchSlide(id, dir){
-  const slides = document.querySelectorAll(`#${id} .slide`);
+function changeSearchSlide(id, dir) {
+  const slides = document.querySelectorAll(`#slider-${id} .slide`);
   if (!slides.length) return;
   if (!(id in searchSlideIndex)) searchSlideIndex[id] = 0;
   slides[searchSlideIndex[id]].classList.remove("active");
@@ -1485,9 +1074,8 @@ function changeSearchSlide(id, dir){
   slides[searchSlideIndex[id]].classList.add("active");
 }
 
-/******************************************
- * 🔹 INICIO
- ******************************************/
+
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
 
