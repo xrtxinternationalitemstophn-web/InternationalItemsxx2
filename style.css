@@ -881,6 +881,75 @@ body.modal-open {
 #checkout-form.shake {
   animation: shake 0.4s;
 }
+/* 🔧 Asegurar que el modal de búsqueda se fije igual que los demás */
+#cart-modal,
+#checkout-modal,
+#image-viewer,
+#search-modal {
+  position: fixed !important;
+  z-index: 9999 !important;
+  inset: 0;
+}
+
+/* 🔎 Botón flotante de búsqueda (lado izquierdo) */
+.floating-search {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;              /* ⇦ opuesto al carrito */
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 1.4rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  cursor: grab;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease, background .3s ease, opacity .4s ease, bottom .4s ease;
+  user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+.floating-search:not(.hidden){ opacity:1; pointer-events:all; }
+.floating-search:active{ cursor: grabbing; transform: scale(0.95); }
+
+/* 🔎 Resultados del buscador */
+#search-input{
+  width:100%;
+  padding:.6rem .8rem;
+  margin:.5rem 0 1rem;
+  border:1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+#search-results .search-result{
+  display:flex;
+  gap:.8rem;
+  align-items:center;
+  padding:.6rem;
+  border:1px solid #eee;
+  border-radius:10px;
+  margin-bottom:.6rem;
+  background:#f8fafc;
+}
+#search-results .search-result img{
+  width:64px;height:64px;object-fit:cover;border-radius:8px;
+}
+#search-results .search-result .meta{ flex:1; }
+#search-results .search-result .meta h4{ margin:0 0 .2rem 0; font-size:1rem; }
+#search-results .search-result .meta .price{ margin:0; font-weight:600; color:var(--secondary); }
+#search-results .search-result button{
+  background:var(--primary);color:#fff;border:none;border-radius:8px;
+  padding:.4rem .6rem;font-weight:600;cursor:pointer;
+}
+#search-results .search-result button:hover{ background:var(--secondary); }
+
 
 
 
