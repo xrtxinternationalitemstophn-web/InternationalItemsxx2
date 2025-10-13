@@ -1426,13 +1426,137 @@ function showToast(message) {
   }, 3500);
 }
 
+/* ========== 🔎 BUSCADOR FLOTANTE ========== */
+const searchModal   = document.getElementById("search-modal");
+const closeSearch   = document.getElementById("close-search");
+const searchInput   = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
+const floatingSearch= document.getElementById("floating-search");
+
+// Abrir / cerrar
+function openSearch() {
+  searchModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  if (searchInput) {
+    searchInput.value = "";
+    renderSearchResults([]);
+    setTimeout(() => searchInput.focus(), 0);
+  }
+}
+function closeSearchModal() {
+  searchModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+closeSearch.addEventListener("click", closeSearchModal);
+searchModal.addEventListener("click", e => { if (e.target === searchModal) closeSearchModal(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !searchModal.classList.contains("hidden")) closeSearchModal();
+});
+
+// Mostrar/ocultar según scroll (igual que el carrito)
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) floatingSearch.classList.remove("hidden");
+  else floatingSearch.classList.add("hidden");
+});
+
+// Drag como el carrito
+let isDragSearch = false, dragStartSearch = {x:0,y:0}, offsetSearch = {x:0,y:0};
+floatingSearch.addEventListener("pointerdown", e => {
+  floatingSearch.setPointerCapture(e.pointerId);
+  isDragSearch = false;
+  dragStartSearch = { x: e.clientX, y: e.clientY };
+  const r = floatingSearch.getBoundingClientRect();
+  offsetSearch.x = e.clientX - r.left;
+  offsetSearch.y = e.clientY - r.top;
+});
+floatingSearch.addEventListener("pointermove", e => {
+  if (e.pressure === 0) return;
+  const dx = Math.abs(e.clientX - dragStartSearch.x);
+  const dy = Math.abs(e.clientY - dragStartSearch.y);
+  if (dx > 5 || dy > 5) {
+    isDragSearch = true;
+    moveFloatingSearch(e.clientX, e.clientY);
+  }
+});
+floatingSearch.addEventListener("pointerup", e => {
+  floatingSearch.releasePointerCapture(e.pointerId);
+  if (!isDragSearch) { e.preventDefault(); openSearch(); }
+  else { isDragSearch = false; }
+});
+function moveFloatingSearch(x, y) {
+  const w = floatingSearch.offsetWidth, h = floatingSearch.offsetHeight;
+  let newX = x - offsetSearch.x, newY = y - offsetSearch.y;
+  const maxX = window.innerWidth - w - 5, maxY = window.innerHeight - h - 5;
+  newX = Math.min(Math.max(newX, 5), maxX);
+  newY = Math.min(Math.max(newY, 5), maxY);
+  floatingSearch.style.left = `${newX}px`;
+  floatingSearch.style.top  = `${newY}px`;
+  floatingSearch.style.right = "auto";
+  floatingSearch.style.bottom= "auto";
+}
+
+// Filtrado con “similitudes” simples (normaliza acentos y busca en nombre/desc/precio)
+const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+function filterProducts(query) {
+  const q = normalize(query.trim());
+  if (!q) return [];
+  return products
+    .map((p, idx) => {
+      const name = normalize(p.name);
+      const desc = (p.description || []).map(d => normalize(d)).join(" ");
+      const priceStr = String(p.price);
+      const priceFmt = formatLempiras(p.price).toLowerCase(); // ya existe en tu código
+      const score =
+        (name.includes(q) ? 3 : 0) +
+        (desc.includes(q) ? 2 : 0) +
+        ((priceStr.includes(q) || priceFmt.includes(q)) ? 1 : 0);
+      return score > 0 ? { idx, score } : null;
+    })
+    .filter(Boolean)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 30);
+}
+
+function renderSearchResults(matches) {
+  if (!searchResults) return;
+  if (matches.length === 0) {
+    searchResults.innerHTML = `<p style="text-align:center;color:#666;">Escribe para buscar…</p>`;
+    return;
+  }
+  searchResults.innerHTML = matches.map(m => {
+    const p = products[m.idx];
+    const img = (p.images && p.images[0]) || "";
+    return `
+      <div class="search-result">
+        <img src="${img}" alt="${p.name}">
+        <div class="meta">
+          <h4>${p.name}</h4>
+          <p class="price">${formatLempiras(p.price)}</p>
+        </div>
+        <button onclick="addToCart(${m.idx})">Agregar</button>
+      </div>
+    `;
+  }).join("");
+}
+
+// Búsqueda en vivo (con debounce suave)
+let searchDebounce;
+searchInput.addEventListener("input", e => {
+  clearTimeout(searchDebounce);
+  const val = e.target.value;
+  searchDebounce = setTimeout(() => {
+    const matches = filterProducts(val);
+    renderSearchResults(matches);
+  }, 120);
+});
 
 /* === INICIO === */
 renderProducts();
 
 
-/* === INICIO === */
-renderProducts();
+
+
 
 
 
