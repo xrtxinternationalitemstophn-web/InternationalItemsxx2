@@ -1040,9 +1040,9 @@ function updateFloatingCartCount() {
 let cart = [];
 
 /* === RENDERIZAR PRODUCTOS CON SLIDER === */
-function renderProducts() {
+function renderProducts(list = products) {
   productList.innerHTML = "";
-  products.forEach((p, i) => {
+  list.forEach((p, i) => {
     const card = document.createElement("div");
     card.classList.add("product");
 
@@ -1426,6 +1426,166 @@ function showToast(message) {
   }, 3500);
 }
 
+/************** 🔎 BUSCADOR – CÓDIGO NUEVO (no toca nada existente) **************/
+const floatingSearch = document.getElementById("floating-search");
+const searchModal = document.getElementById("search-modal");
+const closeSearchModalBtn = document.getElementById("close-search-modal");
+const fsInput = document.getElementById("fs-input");
+const searchConfirm = document.getElementById("search-confirm");
+const searchBanner = document.getElementById("search-banner");
+const searchBannerText = document.getElementById("search-banner-text");
+const clearSearchBtn = document.getElementById("clear-search");
+
+/* Mostrar/ocultar el botón de la lupa con el scroll (igual que el carrito) */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) floatingSearch.classList.remove("hidden");
+  else floatingSearch.classList.add("hidden");
+});
+
+/* Drag seguro como el carrito */
+let isDraggingSearch = false;
+let dragStartSearch = { x: 0, y: 0 };
+let offsetSearch = { x: 0, y: 0 };
+
+floatingSearch.addEventListener("pointerdown", e => {
+  floatingSearch.setPointerCapture(e.pointerId);
+  isDraggingSearch = false;
+  dragStartSearch = { x: e.clientX, y: e.clientY };
+  const rect = floatingSearch.getBoundingClientRect();
+  offsetSearch.x = e.clientX - rect.left;
+  offsetSearch.y = e.clientY - rect.top;
+});
+floatingSearch.addEventListener("pointermove", e => {
+  if (e.pressure === 0) return;
+  const dx = Math.abs(e.clientX - dragStartSearch.x);
+  const dy = Math.abs(e.clientY - dragStartSearch.y);
+  if (dx > 5 || dy > 5) {
+    isDraggingSearch = true;
+    moveFloatingSearch(e.clientX, e.clientY);
+  }
+});
+floatingSearch.addEventListener("pointerup", e => {
+  floatingSearch.releasePointerCapture(e.pointerId);
+  if (!isDraggingSearch) {
+    e.preventDefault();
+    openSearchModal();
+  } else {
+    isDraggingSearch = false;
+  }
+});
+function moveFloatingSearch(x, y) {
+  const w = floatingSearch.offsetWidth;
+  const h = floatingSearch.offsetHeight;
+  let nx = x - offsetSearch.x;
+  let ny = y - offsetSearch.y;
+  const maxX = window.innerWidth - w - 5;
+  const maxY = window.innerHeight - h - 5;
+  nx = Math.min(Math.max(nx, 5), maxX);
+  ny = Math.min(Math.max(ny, 5), maxY);
+  floatingSearch.style.left = `${nx}px`;
+  floatingSearch.style.top = `${ny}px`;
+  floatingSearch.style.right = "auto";
+  floatingSearch.style.bottom = "auto";
+}
+
+/* Abrir / cerrar modal */
+function openSearchModal() {
+  searchModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  setTimeout(() => fsInput && fsInput.focus(), 50);
+}
+function closeSearchModal() {
+  searchModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+  const sb = document.querySelector(".search-bar");
+  if (sb) sb.classList.remove("shake");
+}
+if (closeSearchModalBtn) closeSearchModalBtn.addEventListener("click", closeSearchModal);
+if (searchModal) {
+  searchModal.addEventListener("click", (e) => {
+    if (e.target === searchModal) closeSearchModal();
+  });
+}
+
+/* Normalización (quita acentos y pasa a minúsculas) */
+const normalize = (str) => (str || "")
+  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .toLowerCase();
+
+/* Filtrar por nombre, descripción o precio */
+function filterProductsByQuery(q) {
+  const queryNorm = normalize(q);
+  const queryLower = q.toLowerCase();
+  const digits = q.replace(/[^\d.]/g, "");
+
+  return products.filter(p => {
+    const nameMatch = normalize(p.name).includes(queryNorm);
+    const descMatch = (p.description || []).some(d => normalize(d).includes(queryNorm));
+    const priceMatch =
+      String(p.price).includes(digits) ||
+      formatLempiras(p.price).toLowerCase().includes(queryLower);
+    return nameMatch || descMatch || priceMatch;
+  });
+}
+
+/* Ejecutar búsqueda */
+function performSearch() {
+  const bar = document.querySelector(".search-bar");
+  const q = (fsInput?.value || "").trim();
+  if (!q) {
+    // pequeña vibración si está vacío
+    if (bar) {
+      bar.classList.remove("shake");
+      void bar.offsetWidth; // reflow para reiniciar anim
+      bar.classList.add("shake");
+    }
+    return;
+  }
+
+  const filtered = filterProductsByQuery(q);
+
+  // Renderiza SOLO lo encontrado y avisa
+  renderProducts(filtered);
+  showSearchBanner(q, filtered.length);
+
+  // Cerrar modal y hacer scroll a productos
+  closeSearchModal();
+  const prodSection = document.getElementById("productos");
+  if (prodSection) {
+    const top = prodSection.offsetTop - 60;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
+/* Banner “Mostrando X resultados...” con botón X para limpiar */
+function showSearchBanner(q, count) {
+  if (!searchBanner) return;
+  searchBannerText.textContent = `Mostrando ${count} resultado${count === 1 ? "" : "s"} para “${q}”.`;
+  searchBanner.classList.remove("hidden");
+}
+function clearSearch() {
+  if (searchBanner) searchBanner.classList.add("hidden");
+  if (fsInput) fsInput.value = "";
+  renderProducts(); // ← vuelve a todos los productos
+  const prodSection = document.getElementById("productos");
+  if (prodSection) {
+    const top = prodSection.offsetTop - 60;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+if (clearSearchBtn) clearSearchBtn.addEventListener("click", clearSearch);
+
+/* Eventos del buscador */
+if (floatingSearch) floatingSearch.addEventListener("click", openSearchModal);
+if (searchConfirm) searchConfirm.addEventListener("click", performSearch);
+if (fsInput) {
+  fsInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performSearch();
+    }
+  });
+}
 
 /* === INICIO === */
 renderProducts();
@@ -1433,6 +1593,7 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
