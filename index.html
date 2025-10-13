@@ -63,38 +63,47 @@
         <strong>SI COMPRAS IGUAL O MÁS DE 2,500 LPS, RECIBES ENVÍO GRATIS</strong> <span class="emoji">😊</span>
       </p>
 
-      <form id="checkout-form">
-        <label>Nombre del cliente*</label>
-        <input type="text" name="nombre" required>
+     <form id="checkout-form">
+  <label>Nombre del cliente*</label>
+  <input type="text" name="nombre" required>
 
-        <label>Dirección de envío*</label>
-        <input type="text" name="direccion" required>
+  <label>Dirección de envío*</label>
+  <input type="text" name="direccion" required>
 
-        <label>Referencia (ej. frente a hotel Clarion)</label>
-        <input type="text" name="referencia">
+  <label>Referencia (ej. frente a hotel Clarion)*</label>
+  <input type="text" name="referencia" required>
 
-        <label>Número para llamadas 1*</label>
-        <input type="tel" name="telefono1" required>
+  <label>Número para llamadas 1*</label>
+  <input type="tel" name="telefono1" required>
 
-        <label>Número para llamadas 2 (opcional)</label>
-        <input type="tel" name="telefono2">
+  <label>Número para llamadas 2 (opcional)</label>
+  <input type="tel" name="telefono2">
 
-        <label>Día que desea el envío</label>
-        <select name="dia">
-          <option value="Hoy">Hoy</option>
-          <option value="Mañana">Mañana</option>
-          <option value="Otro">Otro (digitar abajo)</option>
-        </select>
-        <input type="text" name="dia_otro" placeholder="Escriba el día si eligió 'Otro'">
+  <label>Día que desea el envío*</label>
+  <select name="dia" required>
+    <option value="">Selecciona una opción</option>
+    <option value="Hoy">Hoy</option>
+    <option value="Mañana">Mañana</option>
+    <option value="Otro">Otro (escriba debajo)</option>
+  </select>
+  <input type="text" name="dia_otro" placeholder="Escriba el día si eligió 'Otro'">
 
-        <label>¿De dónde eres?</label>
-        <select name="ubicacion">
-          <option value="Tegucigalpa">Tegucigalpa</option>
-          <option value="Otro departamento">Otro departamento</option>
-        </select>
+  <label>¿De dónde eres?*</label>
+  <select name="ubicacion" required>
+    <option value="">Selecciona una ubicación</option>
+    <option value="Tegucigalpa">Tegucigalpa</option>
+    <option value="Otro departamento">Otro departamento</option>
+  </select>
 
-        <button type="submit" class="btn-primary">Enviar pedido</button>
-      </form>
+  <label>Método de pago*</label>
+  <select name="metodo_pago" required>
+    <option value="">Selecciona un método</option>
+    <option value="Efectivo">Efectivo</option>
+    <option value="Transferencia">Transferencia</option>
+  </select>
+
+  <button type="submit" class="btn-primary">Enviar pedido</button>
+</form>
     </div>
   </div>
 
@@ -127,6 +136,7 @@
 
 </body>
 </html>
+
 
 
 
