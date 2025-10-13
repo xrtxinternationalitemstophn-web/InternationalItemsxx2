@@ -882,6 +882,120 @@ body.modal-open {
   animation: shake 0.4s;
 }
 
+/* === 🔎 BOTÓN FLOTANTE DE BÚSQUEDA (lado izquierdo) === */
+.floating-search {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;                 /* ⇦ opuesto al carrito */
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  font-size: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  cursor: grab;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.3s ease, opacity 0.4s ease;
+  user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+.floating-search:not(.hidden) { opacity: 1; pointer-events: all; }
+.floating-search:active { cursor: grabbing; transform: scale(0.95); }
+
+/* === 🔍 MODAL DE BÚSQUEDA === */
+.search-modal {
+  position: fixed !important;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999 !important;
+}
+.search-modal.hidden { display: none; }
+
+.search-content {
+  width: min(700px, 92vw);
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  position: relative;
+}
+.close-search {
+  position: absolute;
+  top: 10px; right: 12px;
+  background: none; border: none;
+  font-size: 1.6rem; cursor: pointer;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .6rem;
+  margin-top: .6rem;
+}
+.search-bar input {
+  padding: .7rem .9rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+.btn-search {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: .7rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-search:hover { background: var(--secondary); }
+
+.search-hint {
+  margin-top: .6rem;
+  font-size: .9rem;
+  color: #666;
+}
+
+/* === 📌 BANNER DE RESULTADOS === */
+.search-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  background: #eef5ff;
+  border: 1px solid #bcd7ff;
+  color: #0b3b84;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  margin: .6rem auto 1rem;
+  max-width: 1200px;
+  box-shadow: var(--shadow);
+}
+.search-banner.hidden { display: none; }
+.search-banner-close {
+  background: none; border: none;
+  font-size: 1rem; cursor: pointer; color: #0b3b84;
+}
+
+/* Pequeña animación de “shake” si envían vacío */
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+.search-bar.shake { animation: shake .35s; }
+
 
 
 
