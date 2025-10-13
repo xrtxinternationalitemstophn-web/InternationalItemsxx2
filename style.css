@@ -915,6 +915,95 @@ body.modal-open {
   animation: shake 0.4s;
 }
 
+/* === BOTÓN FLOTANTE DE BUSCADOR === */
+.floating-search {
+  position: fixed;
+  bottom: 100px; /* 🔹 Encima del carrito */
+  right: 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease, opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.floating-search:not(.hidden) {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.floating-search:hover {
+  background: var(--secondary);
+  transform: scale(1.05);
+}
+
+/* === BARRA FLOTANTE DE BÚSQUEDA === */
+.search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 11000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.search-bar.show {
+  transform: translateY(0);
+}
+
+.search-bar input {
+  width: 80%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+}
+
+.close-search {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.close-search:hover {
+  background: #e02e64;
+}
+
+/* Resultado de búsqueda vacío */
+.no-results {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+
 
 
 
