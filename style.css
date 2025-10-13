@@ -367,29 +367,35 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* === MENSAJES FLOTANTES (TOAST) — SIEMPRE ENCIMA DE LOS MODALES === */
+/* === FIX FINAL: el toast por encima del fondo borroso del modal === */
 .toast-msg {
   position: fixed;
-  top: 50%; /* 🔹 centrado verticalmente */
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.85);
+  transform: translate(-50%, -50%) scale(1);
+  background: rgba(0, 0, 0, 0.9);
   color: #fff;
-  padding: 14px 22px;
+  padding: 16px 24px;
   border-radius: 10px;
-  font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
   opacity: 0;
-  z-index: 1000000; /* 🔹 asegura que esté sobre el blur del modal */
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999999999 !important; /* 🔥 más alto que cualquier modal o pseudo-elemento */
 }
 
 .toast-msg.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.03);
+  transform: translate(-50%, -50%) scale(1.05);
 }
+
+/* 🔹 aseguramos que el fondo borroso quede debajo */
+body.modal-open::after {
+  z-index: 9998 !important;
+}
+
 
 
 
@@ -869,6 +875,7 @@ body.modal-open {
 #checkout-form.shake {
   animation: shake 0.4s;
 }
+
 
 
 
