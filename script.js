@@ -936,6 +936,16 @@ const cartCount     = document.getElementById("cart-count");
 const checkoutForm  = document.getElementById("checkout-form");
 const checkoutBtn   = document.getElementById("checkout-btn");
 
+// ⬇️ INICIALIZACIÓN AL ENTRAR
+document.addEventListener("DOMContentLoaded", () => {
+  // 1) Pinta el catálogo completo
+  renderProducts();
+
+  // 2) Muestra los flotantes sin depender del scroll
+  document.getElementById("floating-cart")?.classList.remove("hidden");
+  document.getElementById("floating-search")?.classList.remove("hidden");
+});
+
 /* === Buscador flotante (ids requeridos en el HTML) ===
    #floating-search  (botón 🔍)
    #fs-overlay       (overlay click=cerrar)
@@ -1120,6 +1130,7 @@ function changeSearchSlide(id, dir) {
 
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
 
 
 
