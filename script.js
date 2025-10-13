@@ -939,6 +939,109 @@ const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
 
+/* === BUSCADOR FLOTANTE === */
+const fsBtn = document.getElementById("floating-search");
+const fsOverlay = document.getElementById("fs-overlay");
+const fsPanel = document.getElementById("fs-panel");
+const fsClose = document.getElementById("fs-close");
+const fsInput = document.getElementById("fs-input");
+const fsNoResults = document.getElementById("fs-noresults");
+
+// Abrir/cerrar
+function openSearch(){
+  fsOverlay.classList.remove("hidden");
+  fsPanel.classList.remove("hidden");
+  setTimeout(() => fsInput.focus(), 50);
+}
+function closeSearch(){
+  fsOverlay.classList.add("hidden");
+  fsPanel.classList.add("hidden");
+  fsInput.value = "";
+  fsNoResults.classList.add("hidden");
+  renderProducts();          // restaura todos
+}
+
+// Eventos
+fsBtn.addEventListener("click", openSearch);
+fsClose.addEventListener("click", closeSearch);
+fsOverlay.addEventListener("click", closeSearch);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !fsPanel.classList.contains("hidden")) closeSearch();
+});
+
+// Filtrar en vivo (nombre o descripción)
+fsInput.addEventListener("input", () => {
+  const q = fsInput.value.toLowerCase().trim();
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    (p.description || []).some(d => d.toLowerCase().includes(q))
+  );
+
+  renderSearchResults(filtered);
+  if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
+  else fsNoResults.classList.add("hidden");
+});
+
+// Render de resultados sin tocar tu render principal
+function renderSearchResults(list){
+  productList.innerHTML = "";
+  list.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.classList.add("product");
+    card.innerHTML = `
+      <div class="slider" id="slider-s-${i}">
+        <div class="slides-container">
+          ${p.images.map((img, idx) => `
+            <img src="${img}" class="slide ${idx === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="s-${i}">❮</button>
+        <button class="next" data-index="s-${i}">❯</button>
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${formatLempiras(p.price)}</p>
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+      <button class="add-btn">Agregar al carrito</button>
+    `;
+    // addToCart con índice real del catálogo
+    card.querySelector(".add-btn").addEventListener("click", () => {
+      const realIndex = products.findIndex(x => x.name === p.name);
+      addToCart(realIndex);
+    });
+    productList.appendChild(card);
+  });
+  // Re-enganchar sliders para resultados
+  rebindSearchSliders();
+}
+
+function rebindSearchSliders(){
+  // botones prev/next dentro de resultados
+  document.querySelectorAll(".slider .prev").forEach(btn => {
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-index");
+      changeSearchSlide(id, -1);
+    };
+  });
+  document.querySelectorAll(".slider .next").forEach(btn => {
+    btn.onclick = () => {
+      const id = btn.getAttribute("data-index");
+      changeSearchSlide(id, 1);
+    };
+  });
+}
+const searchSlideIndex = {};
+function changeSearchSlide(id, dir){
+  const slides = document.querySelectorAll(`#slider-${id} .slide`);
+  if (!slides.length) return;
+  if (!(id in searchSlideIndex)) searchSlideIndex[id] = 0;
+  slides[searchSlideIndex[id]].classList.remove("active");
+  searchSlideIndex[id] = (searchSlideIndex[id] + dir + slides.length) % slides.length;
+  slides[searchSlideIndex[id]].classList.add("active");
+}
+
+
 // === BOTÓN FLOTANTE (DRAG + TAP FIABLE EN TODOS LOS DISPOSITIVOS) ===
 const floatingCart = document.getElementById("floating-cart");
 let isDragging = false;
@@ -1433,6 +1536,7 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
