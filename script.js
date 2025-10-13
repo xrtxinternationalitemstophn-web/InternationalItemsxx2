@@ -950,9 +950,28 @@ const fsOverlay   = document.getElementById("fs-overlay");
 const fsPanel     = document.getElementById("fs-panel");
 const fsClose     = document.getElementById("fs-close");
 const fsInput     = document.getElementById("fs-input");
-const fsSubmitBtn = document.getElementById("fs-submit");
+const fsSubmitBtn = document.getElementById("fs-do");  // ✅ este es el ID correcto del HTML
 const fsNoResults = document.getElementById("fs-noresults");
 
+// Mostrar el botón de búsqueda al cargar la página
+window.addEventListener("load", () => {
+  fsBtn?.classList.remove("hidden");
+});
+
+// Abrir/cerrar
+function openSearch() {
+  fsOverlay.classList.remove("hidden");
+  fsPanel.classList.remove("hidden");
+  setTimeout(() => fsInput.focus(), 50);
+}
+
+function closeSearch() {
+  fsOverlay.classList.add("hidden");
+  fsPanel.classList.add("hidden");
+  fsInput.value = "";
+  fsNoResults.classList.add("hidden");
+  renderProducts(); // restaura todos
+}
 /******************************************
  * 🔹 BOTÓN CARRITO FLOTANTE (drag + tap)
  ******************************************/
@@ -1471,3 +1490,4 @@ function changeSearchSlide(id, dir){
  ******************************************/
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
