@@ -1016,16 +1016,7 @@ window.addEventListener("scroll", () => {
   else floatingCart.classList.add("hidden");
 });
 
-// 🔹 Abrir el carrito desde el botón flotante (funciona en PC y móviles)
-["click", "touchend"].forEach(evt => {
-  floatingCart.addEventListener(evt, e => {
-    if (isDragging) return;
-    e.preventDefault();
-    e.stopPropagation();
-    cartModal.classList.remove("hidden");
-    document.body.classList.add("modal-open");
-  });
-});
+
 
 
 
@@ -1143,6 +1134,8 @@ function addToCart(i) {
   updateCart();
   showToast("Producto agregado 🛒");
   bounceFloatingCart();
+  updateFloatingCartCount(); // 🔹 fuerza actualización inmediata del contador flotante
+
 }
 
 
@@ -1391,6 +1384,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
