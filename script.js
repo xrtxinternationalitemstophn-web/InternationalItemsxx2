@@ -1512,21 +1512,75 @@ const normalize = (str) => (str || "")
   .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   .toLowerCase();
 
+/* --- Ajuste de similitud (0..1). Más bajo = MÁS resultados parecidos --- */
+let SEARCH_THRESHOLD = 0.45; // Prueba 0.45 (más laxo). Si quieres aún más, usa 0.35
+
+/* Levenshtein ratio normalizado */
+function levenshtein(a, b) {
+  const al = a.length, bl = b.length;
+  if (al === 0) return bl;
+  if (bl === 0) return al;
+  const dp = new Array(bl + 1);
+  for (let j = 0; j <= bl; j++) dp[j] = j;
+  for (let i = 1; i <= al; i++) {
+    let prev = dp[0];
+    dp[0] = i;
+    for (let j = 1; j <= bl; j++) {
+      const tmp = dp[j];
+      dp[j] = Math.min(
+        dp[j] + 1,         // borrado
+        dp[j - 1] + 1,     // inserción
+        prev + (a[i - 1] === b[j - 1] ? 0 : 1) // sustitución
+      );
+      prev = tmp;
+    }
+  }
+  return dp[bl];
+}
+function similarity(a, b) {
+  a = normalize(a);
+  b = normalize(b);
+  const maxLen = Math.max(a.length, b.length);
+  if (maxLen === 0) return 1;
+  const dist = levenshtein(a, b);
+  return 1 - dist / maxLen; // 0..1 (1 = idéntico)
+}
+
+/* Coincidencia difusa: incluye match directo y “palabra a palabra” */
+function fuzzyContains(text, query, threshold = SEARCH_THRESHOLD) {
+  text = normalize(text);
+  query = normalize(query);
+  if (!query) return true;
+  if (text.includes(query)) return true; // atajo rápido
+
+  const tWords = text.split(/\s+/).filter(Boolean);
+  const qWords = query.split(/\s+/).filter(Boolean);
+
+  // si cualquier palabra del query se parece a cualquier palabra del texto
+  for (const qw of qWords) {
+    for (const tw of tWords) {
+      if (similarity(tw, qw) >= threshold) return true;
+    }
+  }
+  return false;
+}
+
+
 /* Filtrar por nombre, descripción o precio */
 function filterProductsByQuery(q) {
-  const queryNorm = normalize(q);
-  const queryLower = q.toLowerCase();
-  const digits = q.replace(/[^\d.]/g, "");
-
+  const digits = q.replace(/[^\d.]/g, ""); // para precio
   return products.filter(p => {
-    const nameMatch = normalize(p.name).includes(queryNorm);
-    const descMatch = (p.description || []).some(d => normalize(d).includes(queryNorm));
+    const nameMatch = fuzzyContains(p.name, q);
+    const descMatch = (p.description || []).some(d => fuzzyContains(d, q));
     const priceMatch =
-      String(p.price).includes(digits) ||
-      formatLempiras(p.price).toLowerCase().includes(queryLower);
+      digits && (
+        String(p.price).includes(digits) ||
+        formatLempiras(p.price).toLowerCase().includes(q.toLowerCase())
+      );
     return nameMatch || descMatch || priceMatch;
   });
 }
+
 
 /* Ejecutar búsqueda */
 function performSearch() {
@@ -1593,6 +1647,7 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
