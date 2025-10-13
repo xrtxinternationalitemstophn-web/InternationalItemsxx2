@@ -796,6 +796,16 @@ body.modal-open {
   }
 }
 
+#cart-total.highlight {
+  animation: flashTotal 0.4s ease;
+}
+
+@keyframes flashTotal {
+  0% { color: var(--secondary); transform: scale(1.1); }
+  100% { color: var(--text); transform: scale(1); }
+}
+
+
 
 
 
