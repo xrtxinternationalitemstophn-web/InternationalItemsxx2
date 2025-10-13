@@ -1426,6 +1426,77 @@ function showToast(message) {
   }, 3500);
 }
 
+/* === BUSCADOR FLOTANTE === */
+const floatingSearch = document.getElementById("floating-search");
+const searchBar = document.getElementById("search-bar");
+const searchInput = document.getElementById("search-input");
+const closeSearch = document.getElementById("close-search");
+const noResults = document.getElementById("no-results");
+
+// Mostrar/ocultar botón de búsqueda al hacer scroll
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    floatingSearch.classList.remove("hidden");
+  } else {
+    floatingSearch.classList.add("hidden");
+  }
+});
+
+// Abrir la barra de búsqueda
+floatingSearch.addEventListener("click", () => {
+  searchBar.classList.add("show");
+  searchBar.classList.remove("hidden");
+  searchInput.focus();
+});
+
+// Cerrar la barra de búsqueda
+closeSearch.addEventListener("click", () => {
+  searchBar.classList.remove("show");
+  setTimeout(() => searchBar.classList.add("hidden"), 300);
+  searchInput.value = "";
+  renderProducts(); // 🔹 restaura todos los productos
+});
+
+// Filtrar productos en tiempo real
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase().trim();
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    (p.description || []).some(d => d.toLowerCase().includes(query))
+  );
+
+  renderFilteredProducts(filtered);
+  if (filtered.length === 0) noResults.classList.remove("hidden");
+  else noResults.classList.add("hidden");
+});
+
+function renderFilteredProducts(list) {
+  productList.innerHTML = "";
+  list.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.classList.add("product");
+    card.innerHTML = `
+      <div class="slider" id="slider-${i}">
+        <div class="slides-container">
+          ${p.images.map((img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="${i}">❮</button>
+        <button class="next" data-index="${i}">❯</button>
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${formatLempiras(p.price)}</p>
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
+    `;
+    productList.appendChild(card);
+  });
+  initSliders();
+}
+
 
 /* === INICIO === */
 renderProducts();
@@ -1478,6 +1549,7 @@ function renderFilteredProducts(list) {
 
   initSliders();
 }
+
 
 
 
