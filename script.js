@@ -1000,21 +1000,18 @@ function openCartModal() {
   document.body.classList.add("modal-open");
 }
 
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
-});
-
-
-
 const floatingCartCount = document.getElementById("floating-cart-count");
 
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
+// 🔹 Mostrar los botones flotantes siempre (sin depender del scroll)
+window.addEventListener("load", () => {
+  // Mostrar carrito flotante
+  floatingCart.classList.remove("hidden");
+
+  // Mostrar buscador flotante si existe
+  const floatingSearch = document.getElementById("floating-search");
+  if (floatingSearch) floatingSearch.classList.remove("hidden");
 });
+
 
 
 
@@ -1552,6 +1549,7 @@ function renderFilteredProducts(list) {
 
   initSliders();
 }
+
 
 
 
