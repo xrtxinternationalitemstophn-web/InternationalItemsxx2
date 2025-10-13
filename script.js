@@ -1430,9 +1430,57 @@ function showToast(message) {
 /* === INICIO === */
 renderProducts();
 
+/* === BUSCADOR DE PRODUCTOS === */
+const searchInput = document.getElementById("search-input");
+const noResults = document.getElementById("no-results");
 
-/* === INICIO === */
-renderProducts();
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase().trim();
+
+  // Filtrar productos según coincidencia en el nombre
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(query)
+  );
+
+  // Renderizar solo los productos filtrados
+  renderFilteredProducts(filtered);
+
+  // Mostrar o esconder el mensaje "No se encontraron"
+  if (filtered.length === 0) noResults.classList.remove("hidden");
+  else noResults.classList.add("hidden");
+});
+
+function renderFilteredProducts(list) {
+  productList.innerHTML = "";
+
+  list.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.classList.add("product");
+    card.innerHTML = `
+      <div class="slider" id="slider-${i}">
+        <div class="slides-container">
+          ${p.images.map((img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="${i}">❮</button>
+        <button class="next" data-index="${i}">❯</button>
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${formatLempiras(p.price)}</p>
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
+    `;
+    productList.appendChild(card);
+  });
+
+  initSliders();
+}
+
+
+
 
 
 
