@@ -7,6 +7,7 @@ const products = [
   {
     name: "PowerBank 20,000 MaH",
     price: 160.00,
+    categories: ["Tecnologia y Juegos", "Accesorios Varios"],  // 👈 Debe coincidir con CATEGORIES
      description: [
     "Carga tu teléfono hasta 4 – 6 veces sin preocuparte por quedarte sin energía. Ideal para viajes, trabajo o emergencias.",
     "Muestra el porcentaje exacto de batería, para que siempre sepas cuánta carga tienes disponible.",
@@ -21,6 +22,7 @@ const products = [
   {
     name: "Pasamontañas",
     price: 100.00,
+    category: "Auto y Moto",
      description: [
     "Fabricado con tela elástica y transpirable que se ajusta perfectamente al rostro sin incomodar o rayar.",
     "Ideal para motos, ciclismo, deportes al aire libre o trabajos donde necesites cubrirte del sol, viento o polvo.",
@@ -33,6 +35,7 @@ const products = [
   {
     name: "Proyector HD Portatil",
     price: 620.00,
+    category: "Tecnologia y Juegos",
     description: [
     "Disfruta tus películas, series o juegos con calidad HD y colores vivos, incluso en espacios con poca luz.",
     "Conecta tu PS4/PS5, Nintendo Switch, laptop, celular, USB o TV Stick fácilmente gracias a sus múltiples entradas (USB, AV, audio y más).",
@@ -47,6 +50,7 @@ const products = [
   {
     name: "Foco Camara Wifi Giratoria App YiIot",
     price: 240.00,
+    categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
     description: [
     "Se enrosca como un foco común y se conecta al WiFi en minutos mediante la app Yi IOT.",
     "Cámara giratoria 360° con calidad Full HD, visión nocturna y detección de movimiento para no perder ningún detalle.",
@@ -59,6 +63,7 @@ const products = [
   {
     name: "Camara Exterior Wifi Giratoria 360°",
     price: 550.00,
+    categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
     description: [
     "Vigila tu casa, negocio o patio con visión Full HD, detección de movimiento y visión nocturna.",
     "Se controla desde tu celular por app, con audio bidireccional y alertas en tiempo real.",
@@ -72,6 +77,7 @@ const products = [
   {
     name: "Pecheras para Cámaras o Go Pro",
     price: 300.00,
+    category: "Auto y Moto",
     description: [
     "Captura tus aventuras con perspectiva real desde el pecho, ideal para ciclismo, motos, senderismo, deportes extremos y más.",
     "Arnés elástico, ajustable y ligero, se adapta perfectamente a cualquier tamaño y garantiza libertad de movimiento.",
@@ -84,6 +90,7 @@ const products = [
   {
     name: "Cargador iPhone 20W Tipo C Carga Rápida",
     price: 140.00,
+    category: "Tecnologia y Juegos",
     description: [
     "Carga tu iPhone del 0% al 50% en solo 30 minutos gracias a la tecnología Power Delivery (PD).",
     "Fabricado con materiales de alta calidad, resistente al calor y compatible con todos los modelos de iPhone con entrada Lightning.",
@@ -97,6 +104,7 @@ const products = [
   {
     name: "Mochila Ojos LED Multifuncional con Powerbank Incluida",
     price: 4000.00,
+    categories: ["Auto y Moto", "Tecnologia y Juegos"],
     description: [
     "Ojos LED controlables desde tu celular por app — ¡personaliza colores, efectos y animaciones únicas!",
     "Versión grande,para laptop u otros objetos personales. Ideal para motociclistas o viajes.",
@@ -113,6 +121,7 @@ const products = [
   {
     name: "Repetidor WiFi 300 Mbps",
     price: 300.00,
+    categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
     description: [
     "Elimina las zonas sin señal y mejora la conexión en dormitorios, terrazas u oficinas.",
     "Transmite hasta 300 Mbps en 2.4 GHz, ideal para streaming, videollamadas y juegos online.",
@@ -127,6 +136,7 @@ const products = [
   {
   name: "GPS Premium Magnetico Localizador Tiempo Real",
   price: 350.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Rastrea vehículos, personas o mascotas desde tu celular con precisión en tiempo real.",
     "Se adhiere fácilmente a cualquier superficie metálica, ideal para autos, motos o equipaje.",
@@ -141,6 +151,7 @@ const products = [
   {
   name: "GPS Premium Guarda rutas, horas, Velocidad, Tiempo Real",
   price: 750.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Localiza tu vehículo o persona en tiempo real y revisa historial de rutas, velocidad, hora y distancia recorrida.",
     "Rastreo estable y continuo con batería de larga duración y carga rápida por USB.",
@@ -156,6 +167,7 @@ const products = [
   {
   name: "M90 Pro Auriculares con Pantalla de carga de cada auricular",
   price: 240.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Muestra el nivel de batería de cada auricular y del estuche en tiempo real.",
     "Tecnología Bluetooth 5.3 con audio nítido, graves profundos y conexión sin cortes.",
@@ -171,6 +183,7 @@ const products = [
   {
   name: "Vidrio Templado para Nintendo Switch",
   price: 100.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Vidrio templado ultra duro que protege tu pantalla contra golpes, caídas y rayones.",
     "Mantiene la calidad original de la imagen y el brillo de tu consola sin afectar la sensibilidad táctil.",
@@ -183,6 +196,7 @@ const products = [
   {
   name: "Hub Adaptador para 7 Puertos USB con Luz Led Corta Corriente",
   price: 220.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Expande tu laptop o PC con 7 puertos USB para conectar mouse, teclado, memorias, impresoras y más.",
     "Cada puerto tiene su propio botón con luz LED — enciende o apaga sin desconectar tus dispositivos.",
@@ -200,6 +214,7 @@ const products = [
   {
   name: "OFERTA ‼️Set Destornilladores Profesional para Celulares 115",
   price: 220.00,
+  categories: ["Herramientas", "Tecnologia y Juegos"],
   description: [
     "Incluye 115 piezas con puntas magnéticas y herramientas especiales para reparar celulares, consolas, laptops, relojes y más.",
     "Mango ergonómico, antideslizante y extensible para trabajos precisos y cómodos.",
@@ -214,6 +229,7 @@ const products = [
 {
   name: "Kit Go Pro 9/10/11/12 Funda Silicona y Vidrios Templados",
   price: 500.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Protege tu cámara al máximo: Funda de silicona resistente a golpes, rayones y polvo.",
     "Vidrios templados incluidos: Pantalla y lente siempre seguros con protección anti-rayaduras y claridad total.",
@@ -227,6 +243,7 @@ const products = [
 {
   name: "Carcasa Go Pro 8 Impermeable Contra el Agua",
   price: 400.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Resiste hasta 45 metros de profundidad, ideal para buceo, surf, natación o lluvia intensa.",
     "Evita daños por agua, polvo o golpes sin afectar la calidad de video ni el audio.",
@@ -239,6 +256,7 @@ const products = [
 {
   name: "Carcasa Go Pro 9/10/11/12 Impermeable Contra el Agua",
   price: 550.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Resistente hasta 45 m de profundidad, perfecta para buceo, surf, snorkel o lluvia intensa.",
     "Evita daños por agua, polvo y golpes sin afectar la claridad de imagen ni el rendimiento de tu cámara.",
@@ -253,6 +271,8 @@ const products = [
 {
   name: "Intercomunicador Y20 para Casco PREMIUM Musica Llamadas",
   price: 700.00,
+  categories: ["Auto y Moto", "Tecnologia y Juegos"],
+  category: "Tecnologia y Juegos",
   description: [
     "Versión 2024 con Bluetooth 5.3: Conexión más estable, sonido estéreo HD y micrófono con cancelación de ruido.",
     "Escucha música, responde llamadas y comunícate con otros pilotos fácilmente mientras conduces.",
@@ -267,6 +287,7 @@ const products = [
 {
   name: "Cargador de Bateria para Carro 12V",
   price: 360.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Carga inteligente: Detecta el nivel de batería y ajusta la corriente automáticamente para una carga rápida y segura.",
     "Ideal para autos, motos, camionetas o baterías de 12V tipo plomo-ácido, AGM o gel.",
@@ -283,6 +304,7 @@ const products = [
 {
   name: "Memoria USB 128GB con Musica",
   price: 250.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Gran capacidad: 128GB de espacio para guardar miles de canciones, archivos, fotos o videos.",
     "Plug & Play: Solo conéctala a tu carro, bocina o computadora y disfruta de tu música favorita al instante",
@@ -295,6 +317,8 @@ const products = [
 {
   name: "SanDisk Ultra Micro SD 128 GB con Adaptador y Lector USB",
   price: 650.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
+  category: "Tecnologia y Juegos",
   description: [
     "Velocidades de lectura de hasta 100 MB/s para grabar, transferir o reproducir sin interrupciones.",
     "Ideal para celulares, cámaras, tablets, drones o consolas. Incluye adaptador SD y lector USB.",
@@ -308,6 +332,7 @@ const products = [
 {
   name: "Mouse Logitech G502 Hero",
   price: 1400.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Precisión extrema con hasta 25,600 DPI y respuesta inmediata, ideal para gamers exigentes.",
     "11 botones programables: Personaliza tus comandos, macros y sensibilidad para cada juego o tarea.",
@@ -325,6 +350,7 @@ const products = [
 {
   name: "Kawasaki Ninja Moto a Escala 1:18 con Base Metal y Plástico",
   price: 400.00,
+  categories: ["Juguetes", "Auto y Moto"],
   description: [
     "Réplica fiel de la legendaria Kawasaki Ninja, con acabados precisos en metal y plástico de alta calidad.",
     "Ideal para exhibir en vitrinas, escritorios o como regalo para amantes de las motos.",
@@ -342,6 +368,7 @@ const products = [
 {
   name: "Pechera para Cámara y Celular",
   price: 480.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Captura tus recorridos en moto, bicicleta, caminatas o deportes con vista real desde el pecho.",
     "Adaptadores incluidos para cámaras de acción, GoPro y celulares de distintos tamaños.",
@@ -358,6 +385,7 @@ const products = [
 {
   name: "Cargador Doble Controles PlayStation 5",
   price: 250.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Carga dos mandos a la vez: Diseñada para controles DualSense, permite recargar ambos al mismo tiempo en solo 3.5 a 4 horas.",
     "Conexión tipo C y LED indicador: Conector magnético preciso y luces que muestran el estado de carga de cada control.",
@@ -372,6 +400,7 @@ const products = [
 {
   name: "Handgrip Ejercitador INDESTRUCTIBLE APTO PARA FUERTES",
   price: 450.00,
+  category: "Gimnasia y Deporte",
   description: [
     "Con 200 libras de tensión real, diseñado para quienes buscan potencia y agarre de nivel avanzado.",
     "Estructura 100% metálica con empuñaduras antideslizantes, hecha para durar toda la vida.",
@@ -387,6 +416,7 @@ const products = [
 {
   name: "Set Destornilladores 32 en 1 Portátil",
   price: 180.00,
+  categories: ["Tecnologia y Juegos", "Herramientas"],
   description: [
     "Incluye 32 puntas magnéticas diferentes para reparar celulares, relojes, consolas, laptops y más.",
     "Mango ergonómico y antideslizante: Facilita el agarre y precisión en cada uso, ideal para trabajos delicados.",
@@ -403,6 +433,7 @@ const products = [
 {
   name: "Auriculares F9 Inalámbricos y Powerbank",
   price: 185.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Tecnología Bluetooth 5.1 con llamadas nítidas.",
     "Además de cargar los audífonos, funciona como powerbank para tu celular.",
@@ -417,6 +448,7 @@ const products = [
 {
   name: "Microfono Inalambrico Doble para iPhone y Tipo C de Solapa",
   price: 300.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Compatibilidad universal: Incluye adaptadores para iPhone (Lightning) y Android (Tipo C).",
     "Sonido nítido y sin ruidos: Ideal para grabar videos, entrevistas, TikToks, reels o transmisiones en vivo.",
@@ -429,6 +461,7 @@ const products = [
 {
   name: "Powerbank 200,000 MaH 100W iPhone/Android Cualquier Celular con Panel Solar",
   price: 1500.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Carga todos tus dispositivos: Compatible con Android, iPhone, tablets y más, salida de hasta 100W.",
     "Energía solar y digital display: Se recarga con el sol e incluye pantalla inteligente con porcentaje de carga.",
@@ -446,6 +479,7 @@ const products = [
 {
   name: "Disco SSD 960GB NUEVO SELLADO",
   price: 1800.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Hasta 10x más rápido que un disco duro tradicional: arranque, carga y transferencia en segundos.",
     "960GB para tus juegos, programas, archivos o sistema operativo.",
@@ -460,6 +494,7 @@ const products = [
 {
   name: "Lego de Construcción de Accion Variedad",
   price: 400.00,
+  categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Arma 6 modelos diferentes (carros, helicóptero y más) con las mismas piezas.",
     "Despierta la imaginación: Ideal para niños y niñas que aman construir y crear sus propias aventuras.",
@@ -481,6 +516,7 @@ const products = [
 {
   name: "Intercomunicador Casco P10 2X para Parejas o Amigos",
   price: 1600.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Conexión doble Bluetooth 5.3: Permite hablar entre dos motociclistas o escuchar música y llamadas al mismo tiempo.",
     "Micrófono duro ideal para cascos cerrados o abiertos, con audio nítido incluso a alta velocidad.",
@@ -499,6 +535,7 @@ const products = [
 {
   name: "Mouse Gaming Razer Deathadder Essential",
   price: 850.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Sensor óptico de 6400 DPI reales: precisión milimétrica para juegos de alto rendimiento.",
     "Diseño ergonómico clásico Razer, ideal para largas sesiones de juego sin fatiga.",
@@ -514,6 +551,7 @@ const products = [
 {
   name: "Set Gorros Bebé 3 pzs 0-6 meses y 1-2 años",
   price: 320.00,
+  categories: ["Ropa y Calzado", "Juguetes"],
   description: [
     "Incluye 3 gorros ideales para combinar con cualquier outfit.",
     "Material suave y elástico, perfecto para proteger la cabecita del bebé del frío.",
@@ -527,6 +565,7 @@ const products = [
 {
   name: "Monitor Gaming 240hz KTC Certificado 32”",
   price: 11000.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Pantalla curva FHD (1920×1080) con tecnología Fast HVA para colores más vivos y realismo total.",
     "Frecuencia ultra rápida de 240 Hz y 1 ms de respuesta, ideal para shooters y eSports.",
@@ -544,6 +583,7 @@ const products = [
 {
   name: "Camara Exterior Wifi Gira 360",
   price: 400.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Rotación 360° y visión nocturna HD, vigila cada rincón de tu hogar día y noche.",
     "Control desde tu celular, habla y escucha en tiempo real con la app YI IOT.",
@@ -557,6 +597,7 @@ const products = [
 {
   name: "Foco Camara Doble Lente Wifi Gira 360",
   price: 600.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Cobertura total 360°, doble lente inteligente que graba cada ángulo sin dejar puntos ciegos.",
     "Control desde tu celular, mira en vivo, escucha y habla en tiempo real desde la app.",
@@ -572,6 +613,7 @@ const products = [
 {
   name: "Intercomunicador para Casco 7 Dias de Uso P10",
   price: 820.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Sonido claro y potente, habla con tu compañero o escucha música mientras conduces sin interrupciones.",
     "Bluetooth estable y multifunción, atiende llamadas, cambia canciones o activa el asistente de voz con un solo toque.",
@@ -588,6 +630,7 @@ const products = [
 {
   name: "Accesorios Go Pro 50 en 1 4/5/6/7/8/9/10/11/12 Insta 360",
   price: 1650.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "50 accesorios en un solo set, incluye estuche, soportes, correas, adaptadores, trípode y más para cualquier situación.",
     "Compatibilidad total, funciona con todas las versiones GoPro e Insta360, ideal para deporte, viaje o grabación profesional.",
@@ -605,6 +648,7 @@ const products = [
 {
   name: "Kit Organizador Ropa Interior",
   price: 250.00,
+  categories: ["Ropa y Calzado", "Accesorios Varios"],
   description: [
     "Orden inmediato, guarda ropa interior, calcetines y brasieres en compartimientos separados y visibles.",
     "Diseño elegante y transpirable, hecho con tela resistente y malla ventilada para mantener todo limpio y fresco.",
@@ -618,6 +662,7 @@ const products = [
 {
   name: "Drone E99 Pro Doble Camara",
   price: 700.00,
+  categories: ["Tecnologia y Juegos", "Juguetes"],
   description: [
     "Doble cámara HD gran angular, graba y fotografía desde ángulos espectaculares con calidad profesional.",
     "Vuelo estable y fácil de controlar, gracias a su sensor de presión de aire, ideal para principiantes y expertos.",
@@ -634,6 +679,7 @@ const products = [
 {
   name: "Cargador de Bateria Carro 12V",
   price: 500.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Restaura y recarga tu batería fácilmente, con tecnología Smart Pulse Repair que recupera baterías dañadas o descargadas.",
     "Pantalla LCD inteligente, muestra voltaje, temperatura y modo de carga en tiempo real para un control total.",
@@ -649,6 +695,8 @@ const products = [
 {
   name: "Mousepad RGB XXL Gaming",
   price: 450.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
+  category: "Tecnologia y Juegos",
   description: [
     "Tamaño gigante 80x30 cm, espacio perfecto para teclado y ratón, ideal para setups gaming o trabajo.",
     "Luces RGB multicolor, con varios modos de iluminación que puedes cambiar con un solo toque.",
@@ -664,6 +712,8 @@ const products = [
 {
   name: "Camara Deportiva 4K Full Accesorios",
   price: 550.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
+  category: "Tecnologia y Juegos",
   description: [
     "Ideal para capturar tus aventuras con una nitidez impresionante en cualquier entorno.",
     "Resistente al agua y a impactos, perfecta para moto, bicicleta, buceo o deportes extremos.",
@@ -678,6 +728,7 @@ const products = [
 {
   name: "Set Reloj para Regalo",
   price: 280.00,
+  categories: ["Joyeria", "Damas"],
   description: [
     "Diseño elegante y brillante, incluye accesorios como lo ves, ideal para sorprender con estilo.",
     "Acabado premium, con detalles dorados y piedras decorativas que reflejan lujo y feminidad.",
@@ -690,6 +741,7 @@ const products = [
 {
   name: "Handgrip con Contador hasta 60kg",
   price: 250.00,
+  categories: ["Gimnasia y Deporte", "Accesorios Varios"],
   description: [
     "Resistencia ajustable de 5 kg a 60 kg, ideal para todos los niveles: desde principiantes hasta atletas.",
     "Contador integrado, registra automáticamente cada repetición para medir tu progreso con precisión.",
@@ -703,6 +755,7 @@ const products = [
 {
   name: "Powerbank 40,000 MaH OFERTA❗️",
   price: 700.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Carga solar y doble salida USB, ideal para mantener todos tus dispositivos con energía en cualquier lugar.",
     "Incluye linterna LED súper brillante, perfecta para viajes, emergencias o acampadas.",
@@ -718,6 +771,7 @@ const products = [
 {
   name: "Lapiz Para iPad Rechazo de Palma LIQUIDACION‼️",
   price: 320.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Rechazo de palma y alta precisión, escribe o dibuja naturalmente sin interrupciones ni marcas accidentales.",
     "Compatible con muchos modelos de iPad, incluyendo modelos Air, Pro y Mini (ver imagen para referencia).",
@@ -732,6 +786,7 @@ const products = [
 {
   name: "Lapiz Tactil Universal LIQUIDACIÓN‼️",
   price: 300.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Compatible con iOS, Android y Windows, úsalo en tablets, celulares y pantallas táctiles sin configuraciones.",
     "Respuesta inmediata y suave, ideal para escribir, dibujar o tomar notas con total precisión.",
@@ -745,6 +800,7 @@ const products = [
  {
   name: "Kit Grabacion Celular y Camara",
   price: 220.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Luz LED potente y regulable, perfecta para grabaciones nocturnas o en interiores con calidad profesional.",
     "Micrófono direccional de alta claridad, capta tu voz con nitidez y elimina ruidos externos.",
@@ -757,6 +813,7 @@ const products = [
  {
   name: "Samsung Tab S10 FE 128GB 1 AÑO DE GARANTIA NUEVA CON SU S-PEN NUEVA DE CAJA",
   price: 10200.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Rendimiento superior y fluido, ideal para trabajo, estudio y entretenimiento con su procesador optimizado.",
     "Incluye S-Pen original, perfecta para tomar notas, dibujar y trabajar con precisión profesional.",
@@ -771,6 +828,7 @@ const products = [
 {
   name: "Adaptador Sata para Disco Duro 2 en 1",
   price: 250.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidad ultrarrápida USB 3.0, transfiere archivos grandes en segundos entre tu disco duro y PC o laptop.",
     "Compatible con HDD y SSD de 2.5”, ideal para respaldar, clonar o recuperar información fácilmente.",
@@ -784,6 +842,7 @@ const products = [
 {
   name: "Intercomunicador Auricular para Casco Y10",
   price: 550.00,
+  categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Audio potente y claro, ideal para escuchar música, responder llamadas o usar GPS sin quitarte el casco.",
     "Conexión Bluetooth estable y de largo alcance, perfecta para motociclistas, ciclistas o aventureros.",
@@ -799,6 +858,7 @@ const products = [
 {
   name: "Camara Vigilancia Giratoria Wifi Exterior 360°",
   price: 400.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Conexión WiFi 2.4GHz estable y visión panorámica de 360°, controla cada rincón desde tu celular en tiempo real.",
     "Visión nocturna a color y detección inteligente de movimiento, recibe alertas instantáneas ante cualquier actividad sospechosa.",
@@ -814,6 +874,7 @@ const products = [
 {
   name: "Camara Giratoria Exterior Multiled 360°",
   price: 550.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Iluminación LED e infrarroja dual, ofrece imagen nítida tanto de día como de noche con visión a color.",
     "Conexión WiFi estable y control remoto, gira 360° y monitorea tu hogar desde tu celular estés donde estés.",
@@ -828,6 +889,7 @@ const products = [
 {
   name: "Helicoptero Control Remoto Recargable",
   price: 250.00,
+  categories: ["Tecnologia y Juegos", "Juguetes"],
   description: [
     "Recargable por USB, olvídate de las pilas y disfruta de vuelos más largos y estables.",
     "Fácil de usar con control remoto y sensor infrarrojo, ideal para niños y adultos que aman volar.",
@@ -843,6 +905,7 @@ const products = [
 {
   name: "Mini Camara WiFi HD",
   price: 220.00,
+  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Conexión WiFi en tiempo real, visualiza desde tu celular todo lo que ocurre en tu hogar u oficina estés donde estés.",
     "Calidad HD y visión nocturna automática, obtén imágenes claras incluso en la oscuridad.",
@@ -856,6 +919,7 @@ const products = [
 {
   name: "Carrito Plegable Metal Hasta 400 lbs",
   price: 1750.00,
+  categories: ["Herramientas", "Seguridad Hogar"],
   description: [
     "Estructura metálica ultra resistente, soporta hasta 400 lbs ideal para carga pesada, herramientas, compras o actividades al aire libre.",
     "Ruedas todoterreno y manija ajustable, se adapta a cualquier superficie y altura para un manejo cómodo y estable.",
@@ -870,6 +934,7 @@ const products = [
 {
   name: "Mouse Inalambrico Económico",
   price: 140.00,
+  category: "Tecnologia y Juegos",
   description: [
     "Conexión inalámbrica estable, sin cables molestos y con respuesta rápida ideal para trabajo o estudio.",
     "Bajo consumo de energía, compatible con baterías AAA (opciones con o sin incluidas).",
@@ -887,6 +952,7 @@ const products = [
 {
   name: "Relojes para Dama Variedad Set",
   price: 250.00,
+  categories: ["Damas", "Joyeria"],
   description: [
     "Diseños exclusivos y femeninos, con relojes decorados y accesorios que realzan cualquier estilo.",
     "Incluye los accesorios como lo ves, ideal para regalar o consentirte con un toque de lujo.",
@@ -901,6 +967,7 @@ const products = [
 {
   name: "Pulseras de Pareja",
   price: 200.00,
+  categories: ["Caballeros", "Joyeria"],
   description: [
     "Diseño combinado blanco y negro, simboliza la conexión y el equilibrio perfecto entre ambos.",
     "Cuentas luminosas que brillan en la oscuridad, para que siempre estén conectados incluso a distancia.",
@@ -1640,6 +1707,115 @@ if (fsInput) {
     }
   });
 }
+
+/************** 🏷️ CATEGORÍAS – CONFIG FIJA **************/
+
+/* 1) EDITA AQUÍ tus categorías visibles en la barra */
+const CATEGORIES = [
+  "Todos",
+  "Tecnologia y Juegos",
+  "Joyeria",
+  "Celulares y Tablets",
+  "Ropa y Calzado",
+  "Auto y Moto",
+  "Gimnasia y Deporte",
+  "Juguetes",
+  "Bolsos y Carteras",
+  "Seguridad Hogar",
+  "Herramientas",
+  "Accesorios Varios",
+  "Damas",
+  "Caballeros",
+  "Otros"
+];
+
+/* Normaliza nombres con o sin acentos para que coincidan con CATEGORIES */
+const canonicalMap = {
+  "tecnologia y juegos": "Tecnologia y Juegos",
+  "tecnología y juegos": "Tecnologia y Juegos",
+  "joyeria": "Joyeria",
+  "joyería": "Joyeria",
+  "celulares y tablets": "Celulares y Tablets",
+  "ropa y calzado": "Ropa y Calzado",
+  "auto y moto": "Auto y Moto",
+  "gimnasia y deporte": "Gimnasia y Deporte", 
+  "juguetes": "Juguetes",
+  "bolsos y carteras": "Bolsos y Carteras",
+  "seguridad hogar": "Seguridad Hogar",
+  "herramientas": "Herramientas",
+  "accesorios varios": "Accesorios Varios",
+  "damas": "Damas",
+  "caballeros": "Caballeros",
+  "otros": "Otros"
+};
+function canonicalCategory(val) {
+  if (!val) return "Otros";
+  const key = val.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+  return canonicalMap[key] || val;
+}
+
+/* Lee la categoría de cada producto (acepta varias claves) */
+// Ahora lee 1..N categorías y siempre devuelve un array
+function getCategories(p) {
+  const raw = p.categories ?? p.categorias ?? p.category ?? p.categoria ?? p.cat ?? "Otros";
+  const arr = Array.isArray(raw) ? raw : String(raw).split(","); // permite "Damas, Caballeros"
+  return arr
+    .map(s => s && s.toString().trim())
+    .filter(Boolean)
+    .map(canonicalCategory);
+}
+
+
+/* Si hay productos sin categoría conocida, agregamos “Otros” al final */
+function computeCategories() {
+  const hasOtros = products.some(p => getCategories(p).includes("Otros"));
+  return hasOtros && !CATEGORIES.includes("Otros")
+    ? [...CATEGORIES, "Otros"]
+    : CATEGORIES;
+}
+
+const categoryBar = document.getElementById("category-bar");
+let activeCategory = "Todos"; // 👈 por defecto “Todos”
+
+function renderCategoryBar() {
+  if (!categoryBar) return;
+  categoryBar.innerHTML = "";
+
+  const cats = computeCategories();
+  cats.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chip" + (cat === activeCategory ? " active" : "");
+    btn.textContent = cat;
+
+    btn.addEventListener("click", () => {
+      activeCategory = cat;
+      [...categoryBar.querySelectorAll(".chip")].forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (cat === "Todos") {
+        // si tienes buscador con banner, lo limpiamos si existe
+        if (typeof clearSearch === "function") try { clearSearch(); } catch {}
+        renderProducts();
+      } else {
+        const filtered = products.filter(p => getCategories(p).includes(cat));
+        renderProducts(filtered);
+        if (typeof showSearchBanner === "function") {
+          try { showSearchBanner(`Categoría: ${cat}`, filtered.length); } catch {}
+        }
+      }
+
+      const prodSection = document.getElementById("productos");
+      if (prodSection) {
+        window.scrollTo({ top: prodSection.offsetTop - 60, behavior: "smooth" });
+      }
+    });
+
+    categoryBar.appendChild(btn);
+  });
+}
+
+renderCategoryBar();
 
 /* === INICIO === */
 renderProducts();
