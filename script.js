@@ -1018,16 +1018,19 @@ function handleSearchConfirm() {
   renderSearchResults(filtered);
 
   if (filtered.length > 0) {
-    // ✅ cerrar buscador y mostrar resultados
-    closeSearch();
-    window.scrollTo({
-      top: document.getElementById("productos").offsetTop - 80,
-      behavior: "smooth"
-    });
-  } else {
-    // ❌ mostrar mensaje si no hay nada
-    fsNoResults.classList.remove("hidden");
-  }
+  // ✅ cerrar buscador y mostrar resultados
+  closeSearch();
+  window.scrollTo({
+    top: document.getElementById("productos").offsetTop - 80,
+    behavior: "smooth"
+  });
+} else {
+  // ❌ si no hay resultados, mostrar todos de nuevo
+  fsNoResults.classList.remove("hidden");
+  renderProducts();
+  const floatingCart = document.getElementById("floating-cart");
+  if (floatingCart) floatingCart.classList.remove("hidden");
+}
 }
 
 // Click en Buscar
@@ -1079,6 +1082,13 @@ function renderSearchResults(list) {
   });
 
   rebindSearchSliders();
+  // === Al cargar la página, mostrar productos y carrito flotante ===
+window.addEventListener("load", () => {
+  renderProducts();
+  const floatingCart = document.getElementById("floating-cart");
+  if (floatingCart) floatingCart.classList.remove("hidden");
+});
+
 }
 
 // === Slider de los resultados ===
@@ -1110,6 +1120,7 @@ function changeSearchSlide(id, dir) {
 
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
 
 
 
