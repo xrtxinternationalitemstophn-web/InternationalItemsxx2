@@ -1400,36 +1400,40 @@ document.addEventListener("keydown", e => {
 });
 
 
-/* === TOAST === */
+/* === TOAST (VERSIÓN MEJORADA CON TEXTO LARGO Y EMOJIS) === */
 function showToast(message) {
-  // Si ya existe un toast anterior, lo eliminamos
+  // Eliminar toast anterior si existe
   const oldToast = document.querySelector(".toast-msg");
   if (oldToast) oldToast.remove();
 
-  // Crear nuevo toast
+  // Crear nuevo contenedor
   const toast = document.createElement("div");
   toast.className = "toast-msg";
-  toast.textContent = message;
 
-  // ✅ Se agrega directamente al <body> (no dentro del modal)
+  // ✅ Usa innerHTML para soportar saltos de línea y emojis correctamente
+  toast.innerHTML = message.replace(/\n/g, "<br>");
+
+  // Agregar al body directamente
   document.body.appendChild(toast);
 
-  // Mostrar con animación
+  // Animación de aparición
   setTimeout(() => toast.classList.add("show"), 10);
 
-  // Ocultar y eliminar tras 3 segundos
+  // Desaparecer después de 3 segundos
   setTimeout(() => {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 300);
-  }, 3000);
+  }, 3500);
 }
 
+
 /* === INICIO === */
 renderProducts();
 
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
