@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INTERNATIONAL ITEMS | WebShop</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -36,26 +37,25 @@
   <section class="products" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
     <div class="product-grid" id="product-list"></div>
-    <p id="no-results" class="no-results hidden">No se encontraron productos.</p>
   </section>
 
   <!-- 🛒 MODAL CARRITO -->
-  <div id="cart-modal" class="cart-modal hidden" aria-hidden="true">
+  <div id="cart-modal" class="cart-modal hidden">
     <div class="cart-content">
-      <button id="close-cart" class="close-cart" aria-label="Cerrar carrito">&times;</button>
+      <button id="close-cart" class="close-cart">&times;</button>
       <h3>🛍️ Tu Carrito</h3>
       <div id="cart-items"></div>
       <div class="cart-footer">
-        <p>Total: <span id="cart-total">L 0.00</span></p>
+        <p>Total: <span id="cart-total">$0.00</span></p>
         <button class="btn-checkout" id="checkout-btn">Finalizar compra</button>
       </div>
     </div>
   </div>
 
   <!-- 💳 FORMULARIO DE CHECKOUT -->
-  <div id="checkout-modal" class="cart-modal hidden" aria-hidden="true">
+  <div id="checkout-modal" class="cart-modal hidden">
     <div class="cart-content">
-      <button id="close-checkout" class="close-cart" aria-label="Cerrar checkout">&times;</button>
+      <button id="close-checkout" class="close-cart">&times;</button>
       <h3>📦 Datos de envío</h3>
 
       <p class="checkout-note">
@@ -63,47 +63,47 @@
         <strong>SI COMPRAS IGUAL O MÁS DE 2,500 LPS, RECIBES ENVÍO GRATIS</strong> <span class="emoji">😊</span>
       </p>
 
-      <form id="checkout-form" novalidate>
-        <label>Nombre del cliente*</label>
-        <input type="text" name="nombre" required>
+<form id="checkout-form" novalidate>
+  <label>Nombre del cliente*</label>
+  <input type="text" name="nombre" required>
 
-        <label>Dirección de envío*</label>
-        <input type="text" name="direccion" required>
+  <label>Dirección de envío*</label>
+  <input type="text" name="direccion" required>
 
-        <label>Referencia (ej. frente a hotel Clarion)*</label>
-        <input type="text" name="referencia" required>
+  <label>Referencia (ej. frente a hotel Clarion)*</label>
+  <input type="text" name="referencia" required>
 
-        <label>Número para llamadas 1*</label>
-        <input type="tel" name="telefono1" required inputmode="tel" pattern="[0-9 +()-]{7,}">
+  <label>Número para llamadas 1*</label>
+  <input type="tel" name="telefono1" required>
 
-        <label>Número para llamadas 2 (opcional)</label>
-        <input type="tel" name="telefono2" inputmode="tel" pattern="[0-9 +()-]{7,}">
+  <label>Número para llamadas 2 (opcional)</label>
+  <input type="tel" name="telefono2">
 
-        <label>¿De dónde eres?*</label>
-        <select name="ubicacion" required>
-          <option value="" selected disabled>Selecciona una ubicación</option>
-          <option value="Tegucigalpa">Tegucigalpa</option>
-          <option value="Otro departamento">Otro departamento</option>
-        </select>
+  <label>Día que desea el envío*</label>
+  <select name="dia" required>
+    <option value="">Selecciona una opción</option>
+    <option value="Hoy">Hoy</option>
+    <option value="Mañana">Mañana</option>
+    <option value="Otro">Otro (escriba debajo)</option>
+  </select>
+  <input type="text" name="dia_otro" placeholder="Escriba el día si eligió 'Otro'">
 
-        <label>Día que desea el envío*</label>
-        <select name="dia" required id="dia-select">
-          <option value="" selected disabled>Selecciona una opción</option>
-          <option value="Hoy">Hoy</option>
-          <option value="Mañana">Mañana</option>
-          <option value="Otro">Otro (digitar abajo)</option>
-        </select>
-        <input type="text" name="dia_otro" id="dia-otro" placeholder="Escriba el día si eligió 'Otro'" class="hidden">
+  <label>¿De dónde eres?*</label>
+  <select name="ubicacion" required>
+    <option value="">Selecciona una ubicación</option>
+    <option value="Tegucigalpa">Tegucigalpa</option>
+    <option value="Otro departamento">Otro departamento</option>
+  </select>
 
-        <label>Método de pago*</label>
-        <select name="metodo_pago" required>
-          <option value="" selected disabled>Selecciona un método</option>
-          <option value="Efectivo">Efectivo</option>
-          <option value="Transferencia">Transferencia</option>
-        </select>
+  <label>Método de pago*</label>
+  <select name="metodo_pago" required>
+    <option value="">Selecciona un método</option>
+    <option value="Efectivo">💵 Efectivo</option>
+    <option value="Transferencia">💳 Transferencia</option>
+  </select>
 
-        <button type="submit" class="btn-primary">Enviar pedido</button>
-      </form>
+  <button type="submit" class="btn-primary">Enviar pedido</button>
+</form>
     </div>
   </div>
 
@@ -121,31 +121,26 @@
   <footer class="footer">
     <p>© 2025 RAUDA Shop — Todos los derechos reservados</p>
   </footer>
+ <!-- 🔍 Lightbox con navegación -->
+<div id="image-viewer" class="image-viewer hidden">
+  <button id="viewer-prev" class="viewer-arrow">❮</button>
+  <img id="viewer-img" src="" alt="Vista ampliada">
+  <button id="viewer-next" class="viewer-arrow">❯</button>
+  <span id="close-viewer">&times;</span>
+</div>
+  
+<!-- 🛒 Botón flotante del carrito -->
+<button id="floating-cart" class="floating-cart hidden">
+  🛍️ <span id="floating-cart-count">0</span>
+</button>
 
-  <!-- 🔍 Barra de búsqueda flotante -->
-  <div id="search-bar" class="search-bar hidden" aria-hidden="true">
-    <div class="search-box">
-      <input id="floating-search-input" type="text" placeholder="Buscar producto por nombre o descripción...">
-      <button id="close-search" aria-label="Cerrar búsqueda">✕</button>
-    </div>
-  </div>
-
-  <!-- 🔍 Botón flotante de búsqueda -->
-  <button id="floating-search" class="floating-search hidden" aria-label="Abrir buscador">🔍</button>
-
-  <!-- 🔍 Botón flotante del carrito -->
-  <button id="floating-cart" class="floating-cart hidden" aria-label="Abrir carrito">
-    🛍️ <span id="floating-cart-count">0</span>
-  </button>
-
-  <!-- 🔍 Lightbox con navegación -->
-  <div id="image-viewer" class="image-viewer hidden" aria-hidden="true">
-    <button id="viewer-prev" class="viewer-arrow" aria-label="Anterior">❮</button>
-    <img id="viewer-img" src="" alt="Vista ampliada">
-    <button id="viewer-next" class="viewer-arrow" aria-label="Siguiente">❯</button>
-    <span id="close-viewer" aria-label="Cerrar">&times;</span>
-  </div>
-
-  <script defer src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
