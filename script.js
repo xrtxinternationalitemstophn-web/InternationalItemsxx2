@@ -511,8 +511,8 @@ function updateCart() {
     const div = document.createElement("div");
     div.classList.add("cart-item");
     div.innerHTML = `
-      <p>${item.name} — $${item.price.toFixed(2)}</p>
-      <button onclick="removeFromCart(${i})">❌</button>`;
+  <p>${item.name} — LPS ${item.price.toFixed(2)}</p>
+  <button onclick="removeFromCart(${i})">❌</button>`;
     cartItems.appendChild(div);
   });
   cartTotal.textContent = `$${total.toFixed(2)}`;
@@ -705,6 +705,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
