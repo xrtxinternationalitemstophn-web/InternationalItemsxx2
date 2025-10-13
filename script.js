@@ -1002,20 +1002,45 @@ function filterProducts(query) {
 }
 
 // Disparar al presionar “Buscar” o Enter
-fsSubmitBtn.addEventListener("click", () => {
-  filterProducts(fsInput.value);
-  closeSearch(); // ✅ cierra el panel
-  window.scrollTo({ top: document.getElementById("productos").offsetTop - 80, behavior: "smooth" }); // ✅ baja a la sección de productos
-});
+function handleSearchConfirm() {
+  const q = fsInput.value.trim();
+  if (!q) return;
 
+  const filtered = products.filter(p => {
+    const normalize = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // elimina acentos
+    const queryNorm = normalize(q.toLowerCase());
+    const nameMatch = normalize(p.name.toLowerCase()).includes(queryNorm);
+    const descMatch = (p.description || []).some(d => normalize(d.toLowerCase()).includes(queryNorm));
+    const priceMatch = String(p.price).includes(q) || formatLempiras(p.price).toLowerCase().includes(q.toLowerCase());
+    return nameMatch || descMatch || priceMatch;
+  });
+
+  renderSearchResults(filtered);
+
+  if (filtered.length > 0) {
+    // ✅ cerrar buscador y mostrar resultados
+    closeSearch();
+    window.scrollTo({
+      top: document.getElementById("productos").offsetTop - 80,
+      behavior: "smooth"
+    });
+  } else {
+    // ❌ mostrar mensaje si no hay nada
+    fsNoResults.classList.remove("hidden");
+  }
+}
+
+// Click en Buscar
+fsSubmitBtn.addEventListener("click", handleSearchConfirm);
+
+// Enter en input
 fsInput.addEventListener("keydown", e => {
   if (e.key === "Enter") {
     e.preventDefault();
-    filterProducts(fsInput.value);
-    closeSearch(); // ✅ cierra el panel
-    window.scrollTo({ top: document.getElementById("productos").offsetTop - 80, behavior: "smooth" });
+    handleSearchConfirm();
   }
 });
+
 
 
 // === Mostrar resultados filtrados ===
@@ -1085,6 +1110,7 @@ function changeSearchSlide(id, dir) {
 
 renderProducts();
 updateCart(); // asegura contadores correctos al cargar
+
 
 
 
