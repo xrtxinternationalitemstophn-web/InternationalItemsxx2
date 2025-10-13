@@ -367,25 +367,28 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* === MENSAJES FLOTANTES (TOAST) === */
 .toast-msg {
   position: fixed;
-  bottom: 30px;
+  bottom: 25px;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: #0078ff;
+  transform: translateX(-50%);
+  background: #222;
   color: #fff;
-  padding: 0.9rem 1.5rem;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
   font-weight: 500;
   opacity: 0;
-  transition: all 0.4s ease;
-  z-index: 2000;
+  z-index: 999999; /* 🔹 siempre por encima de todo */
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .toast-msg.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(-5px);
 }
+
 
 /* === CHECKOUT MODAL === */
 .checkout-note {
@@ -863,6 +866,7 @@ body.modal-open {
 #checkout-form.shake {
   animation: shake 0.4s;
 }
+
 
 
 
