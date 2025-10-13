@@ -133,23 +133,26 @@
 <button id="floating-cart" class="floating-cart hidden">
   🛍️ <span id="floating-cart-count">0</span>
 </button>
-<!-- 🔎 Botón flotante de búsqueda -->
-<button id="floating-search" class="floating-search" aria-label="Buscar productos">🔎</button>
+<!-- 🔍 Botón flotante de búsqueda -->
+<button id="floating-search" class="floating-search hidden" aria-label="Buscar productos">🔎</button>
 
-<!-- 🔎 Panel de búsqueda -->
-<div id="fs-overlay" class="fs-overlay hidden" aria-hidden="true"></div>
-<div id="fs-panel" class="fs-panel hidden" role="dialog" aria-modal="true" aria-labelledby="fs-title">
-  <div class="fs-header">
-    <span id="fs-title">Buscar productos</span>
-    <button id="fs-close" class="fs-close" aria-label="Cerrar búsqueda">✕</button>
+<!-- 🔍 Overlay + panel -->
+<div id="fs-overlay" class="fs-overlay hidden"></div>
+<div id="fs-panel" class="fs-panel hidden" role="dialog" aria-modal="true">
+  <div class="fs-input-wrap">
+    <input id="fs-input" type="search" placeholder="Escribe nombre, descripción o precio..." autocomplete="off" />
+    <button id="fs-submit" type="button" class="fs-search-btn">Buscar</button>
+    <button id="fs-close" type="button" class="fs-close" aria-label="Cerrar">×</button>
   </div>
-  <input id="fs-input" type="search" placeholder="Escribe para buscar… (nombre o descripción)" autocomplete="off" />
+  <p id="fs-help" class="fs-help">Tip: también puedes escribir un número (ej. 300) para buscar por precio.</p>
   <p id="fs-noresults" class="fs-noresults hidden">No se encontraron productos.</p>
 </div>
+
 
   
 </body>
 </html>
+
 
 
 
