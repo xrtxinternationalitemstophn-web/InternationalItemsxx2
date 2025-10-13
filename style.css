@@ -951,6 +951,98 @@ body.modal-open {
 /* Asegurar capas sobre el resto (modales, etc.) */
 .toast-msg{ z-index: 99999 !important; }
 
+/* === BUSCADOR FLOTANTE === */
+.floating-search {
+  position: fixed;
+  bottom: 100px;   /* a la izquierda del carrito, ajusta si quieres */
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  z-index: 10050;
+  cursor: pointer;
+  transition: transform .2s ease, opacity .3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floating-search.hidden { opacity: 0; pointer-events: none; }
+
+.fs-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 10060;
+}
+
+.fs-panel {
+  position: fixed;
+  left: 50%; transform: translateX(-50%);
+  bottom: 20px;
+  width: min(680px, 92%);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  z-index: 10070;
+  padding: 14px;
+}
+
+.fs-panel.hidden, .fs-overlay.hidden { display: none !important; }
+
+.fs-input-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+}
+
+#fs-input {
+  padding: .8rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.fs-search-btn {
+  padding: .8rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--secondary);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fs-close {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 2px solid #eee;
+  background: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.fs-help {
+  margin: 8px 2px 0;
+  color: #666; font-size: .9rem;
+}
+
+.fs-noresults { margin: 10px 2px 0; color: #888; }
+.hidden { display: none !important; }
+
+/* Asegurar toques fiables en Android */
+#floating-search, #fs-submit, #fs-close, #fs-input {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
 
 
 
