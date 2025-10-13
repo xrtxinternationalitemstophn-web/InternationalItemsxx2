@@ -1142,14 +1142,15 @@ function updateCart() {
   let total = 0;
 
   cart.forEach((item, i) => {
-    total += item.price * item.qty;
+    const subtotal = item.price * item.qty;
+    total += subtotal;
 
     const div = document.createElement("div");
     div.classList.add("cart-item");
     div.innerHTML = `
       <div class="cart-item-info">
         <p><strong>${item.name}</strong></p>
-        <p class="price">${formatLempiras(item.price)} x ${item.qty}</p>
+        <p class="price">${formatLempiras(item.price)} × ${item.qty}</p>
       </div>
       <div class="cart-item-actions">
         <button onclick="changeQty(${i}, -1)">−</button>
@@ -1162,7 +1163,10 @@ function updateCart() {
   });
 
   animateCartTotal(total);
-  cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+
+  // 🔹 Actualizar contadores
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalQty;
   updateFloatingCartCount();
 }
 
@@ -1368,6 +1372,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
