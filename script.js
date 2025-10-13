@@ -1674,9 +1674,97 @@ searchInput.addEventListener("input", e => {
     renderSearchResults(matches);
   }, 120);
 });
+/* ========== 🔎 BÚSQUEDA -> FILTRAR EN LA PÁGINA ========== */
+const productListEl = document.getElementById("product-list");
+const bannerEl = document.getElementById("search-banner");
+const doSearchBtn = document.getElementById("do-search");
+
+// Asegura que cada tarjeta conozca su índice original en "products"
+function tagProductCards() {
+  if (!productListEl) return;
+  const cards = Array.from(productListEl.children);
+  cards.forEach((el, i) => { el.dataset.idx = i; });
+}
+
+// Filtra las tarjetas del grid principal usando índices del array original
+function applySearchToMain(query) {
+  const q = (query || "").trim();
+  // Cierra el modal si está abierto
+  if (typeof closeSearchModal === "function") closeSearchModal();
+
+  // Si no hay consulta, limpia
+  if (!q) { clearMainSearch(); scrollToProducts(); return; }
+
+  // Usamos tu mismo filtro
+  const matches = filterProducts(q).map(m => String(m.idx)); // índices en "products"
+
+  // Asegura que las tarjetas existen
+  if (!productListEl || productListEl.children.length === 0) {
+    if (typeof renderProducts === "function") renderProducts();
+  }
+  tagProductCards(); // garantiza data-idx
+
+  // Muestra/oculta en función de si el índice está en "matches"
+  const cards = Array.from(productListEl.children);
+  let visible = 0;
+  for (const card of cards) {
+    const shouldShow = matches.includes(card.dataset.idx);
+    card.classList.toggle("_hidden", !shouldShow);
+    if (shouldShow) visible++;
+  }
+
+  // Banner de estado + botón limpiar
+  updateSearchBanner(q, visible);
+  scrollToProducts();
+}
+
+function updateSearchBanner(q, count) {
+  if (!bannerEl) return;
+  const safeQ = escapeHtml(q);
+  bannerEl.innerHTML = `
+    Resultados para "<b>${safeQ}</b>": ${count}
+    <button class="clear-search" type="button" id="clear-search">Limpiar</button>
+  `;
+  bannerEl.classList.remove("hidden");
+  document.getElementById("clear-search").onclick = clearMainSearch;
+}
+
+function clearMainSearch() {
+  if (!productListEl) return;
+  Array.from(productListEl.children).forEach(el => el.classList.remove("_hidden"));
+  if (bannerEl) bannerEl.classList.add("hidden");
+}
+
+function scrollToProducts() {
+  const sec = document.getElementById("productos") || productListEl;
+  if (!sec) return;
+  const top = sec.getBoundingClientRect().top + window.scrollY - 60;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
+// Escapar HTML básico para el banner
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, s => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+  }[s]));
+}
+
+// Eventos: botón “Buscar” y Enter dentro del input del modal
+if (doSearchBtn) {
+  doSearchBtn.addEventListener("click", () => applySearchToMain(searchInput.value));
+}
+if (searchInput) {
+  searchInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      applySearchToMain(searchInput.value);
+    }
+  });
+}
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
