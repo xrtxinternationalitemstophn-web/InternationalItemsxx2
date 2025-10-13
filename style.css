@@ -929,7 +929,7 @@ body.modal-open {
   font-size: 1.5rem;
   box-shadow: 0 5px 15px rgba(0,0,0,0.25);
   cursor: pointer;
-  z-index: 10000;
+  z-index: 11000; /* ⬆️ elevado para estar sobre todo */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -961,7 +961,7 @@ body.modal-open {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  z-index: 11000;
+  z-index: 12000; /* ⬆️ más alto que cualquier modal */
   transform: translateY(-100%);
   transition: transform 0.3s ease;
 }
@@ -989,19 +989,24 @@ body.modal-open {
   height: 40px;
   font-size: 1.3rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .close-search:hover {
   background: #e02e64;
 }
 
-/* Resultado de búsqueda vacío */
 .no-results {
   text-align: center;
   color: #666;
   font-size: 1.1rem;
   margin-top: 1rem;
 }
+
+.hidden {
+  display: none !important;
+}
+
 
 
 
