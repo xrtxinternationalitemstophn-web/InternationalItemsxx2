@@ -805,6 +805,17 @@ body.modal-open {
   100% { color: var(--text); transform: scale(1); }
 }
 
+/* 🔹 Rebote visual del contador del carrito */
+@keyframes bounceScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.floating-cart span.bounce {
+  animation: bounceScale 0.3s ease;
+}
+
+
 
 
 
