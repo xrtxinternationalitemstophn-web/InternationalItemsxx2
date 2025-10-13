@@ -1399,18 +1399,36 @@ document.addEventListener("keydown", e => {
 
 
 /* === TOAST === */
-function showToast(msg) {
+function showToast(message) {
+  // Si ya existe un toast anterior, lo eliminamos
+  const oldToast = document.querySelector(".toast-msg");
+  if (oldToast) oldToast.remove();
+
+  // Crear nuevo toast
   const toast = document.createElement("div");
   toast.className = "toast-msg";
-  toast.textContent = msg;
+  toast.textContent = message;
+
+  // ✅ Se agrega directamente al <body> (no dentro del modal)
   document.body.appendChild(toast);
-  setTimeout(() => toast.classList.add("show"), 100);
-  setTimeout(() => toast.classList.remove("show"), 2500);
-  setTimeout(() => toast.remove(), 3000);
+
+  // Mostrar con animación
+  setTimeout(() => toast.classList.add("show"), 10);
+
+  // Ocultar y eliminar tras 3 segundos
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
 }
 
 /* === INICIO === */
 renderProducts();
+
+
+/* === INICIO === */
+renderProducts();
+
 
 
 
