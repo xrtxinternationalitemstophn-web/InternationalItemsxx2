@@ -1031,10 +1031,18 @@ window.addEventListener("scroll", () => {
 
 // Sincronizar cantidad del carrito
 function updateFloatingCartCount() {
-  // 🔹 Suma todas las cantidades, no solo los productos únicos
+  // 🔹 Contador exacto: suma las cantidades de todos los productos
   const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
+  // 🔹 Actualiza el numerito rojo
   floatingCartCount.textContent = totalQty;
+
+  // 🔹 Animación pequeña al cambiar
+  floatingCartCount.classList.add("bounce");
+  setTimeout(() => floatingCartCount.classList.remove("bounce"), 300);
 }
+
+
 
 
 
@@ -1383,6 +1391,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
