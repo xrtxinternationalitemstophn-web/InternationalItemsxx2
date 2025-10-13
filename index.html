@@ -36,6 +36,8 @@
   <!-- 💎 PRODUCTOS -->
   <section class="products" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
+    <!-- 🔎 Banner de resultados -->
+<div id="search-banner" class="search-banner hidden"></div>
     <div class="product-grid" id="product-list"></div>
   </section>
 
@@ -141,8 +143,25 @@
   </div>
 </div>
 
+<!-- 🔎 MODAL BUSCADOR -->
+<div id="search-modal" class="cart-modal hidden">
+  <div class="cart-content">
+    <button id="close-search" class="close-cart">&times;</button>
+    <h3>🔎 Buscar producto</h3>
+
+    <input id="search-input" type="search" placeholder="Nombre, descripción o precio..." autocomplete="off" />
+
+    <div class="search-actions">
+      <button id="do-search" class="btn-primary" type="button">Buscar</button>
+    </div>
+
+    <div id="search-results"></div>
+  </div>
+</div>
+
 <!-- 🔎 Botón flotante de búsqueda (opuesto al carrito) -->
 <button id="floating-search" class="floating-search hidden" aria-label="Buscar productos">🔎</button>
+
 
 <!-- 🛒 Botón flotante del carrito -->
 <button id="floating-cart" class="floating-cart hidden">
@@ -151,6 +170,7 @@
 
 </body>
 </html>
+
 
 
 
