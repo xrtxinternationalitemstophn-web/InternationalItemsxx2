@@ -873,7 +873,10 @@ const products = [
   description: [
     "Conexión inalámbrica estable, sin cables molestos y con respuesta rápida ideal para trabajo o estudio.",
     "Bajo consumo de energía, compatible con baterías AAA (opciones con o sin incluidas).",
-    "Diseño ergonómico y silencioso, se adapta a tu mano con un desplazamiento suave y sin ruido. L.140 – Solo mouse (sin baterías) / L.170 – Mouse + 2 baterías AAA / L.190 – Mouse + 4 baterías AAA"
+    "Diseño ergonómico y silencioso, se adapta a tu mano con un desplazamiento suave y sin ruido.",
+    "L.140 – Solo mouse (sin baterías)",
+    "L.170 – Mouse + 2 baterías AAA", 
+    "L.190 – Mouse + 4 baterías AAA"
   ],
   images: [
     "images/mousee1.jpg",
@@ -1365,6 +1368,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
