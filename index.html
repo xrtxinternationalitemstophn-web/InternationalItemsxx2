@@ -36,7 +36,19 @@
   <!-- 💎 PRODUCTOS -->
   <section class="products" id="productos">
     <h2 class="section-title">Nuestros Productos</h2>
-    <div class="product-grid" id="product-list"></div>
+
+<!-- 🔍 BUSCADOR DE PRODUCTOS -->
+<div class="search-container">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="🔍 Buscar producto por nombre..."
+  />
+</div>
+
+<div class="product-grid" id="product-list"></div>
+<p id="no-results" class="no-results hidden">No se encontraron productos 😔</p>
+
   </section>
 
   <!-- 🛒 MODAL CARRITO -->
@@ -136,6 +148,7 @@
 
 </body>
 </html>
+
 
 
 
