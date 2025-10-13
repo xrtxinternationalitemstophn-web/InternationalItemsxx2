@@ -272,6 +272,55 @@ body {
   font-weight: 600;
 }
 
+/* === DISEÑO DE LOS ITEMS EN EL CARRITO === */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.cart-item-info p {
+  margin: 0;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-item-actions button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cart-item-actions button:hover {
+  background: var(--secondary);
+}
+
+.cart-item-actions button.remove {
+  background: var(--secondary);
+}
+
+.cart-item-actions input {
+  width: 45px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.2rem;
+}
+
+
 /* === CONTACTO === */
 .contact {
   background: #fff;
@@ -746,6 +795,7 @@ body.modal-open {
     opacity: 1;
   }
 }
+
 
 
 
