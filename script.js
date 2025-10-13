@@ -68,7 +68,236 @@ const products = [
       "images/cam1.jpg",
       "images/cam2.jpg"
     ]
-  }
+  },
+  {
+    name: "Pecheras para Cámaras o Go Pro",
+    price: 300.00,
+    description: [
+    "Captura tus aventuras con perspectiva real desde el pecho, ideal para ciclismo, motos, senderismo, deportes extremos y más.",
+    "Arnés elástico, ajustable y ligero, se adapta perfectamente a cualquier tamaño y garantiza libertad de movimiento.",
+    "Compatible con GoPro, cámaras deportivas, SJCam, Insta360 y similares. Incluye soporte y tornillo de montaje."
+  ],
+    images: [
+      "images/pech1.jpg"
+    ]
+  },
+  {
+    name: "Cargador iPhone 20W Tipo C Carga Rápida",
+    price: 140.00,
+    description: [
+    "Carga tu iPhone del 0% al 50% en solo 30 minutos gracias a la tecnología Power Delivery (PD).",
+    "Fabricado con materiales de alta calidad, resistente al calor y compatible con todos los modelos de iPhone con entrada Lightning.",
+    "Todo en un solo paquete, listo para usar en casa, la oficina o viajes."
+  ],
+    images: [
+      "images/carg1.jpg",
+      "images/carg2.jpg"
+    ]
+  },
+  {
+    name: "Mochila Ojos LED Multifuncional con Powerbank Incluida",
+    price: 4000.00,
+    description: [
+    "Ojos LED controlables desde tu celular por app — ¡personaliza colores, efectos y animaciones únicas!",
+    "Versión grande,para laptop u otros objetos personales. Ideal para motociclistas o viajes.",
+    "Mantén tus luces LED y dispositivos siempre cargados donde vayas."
+  ],
+    images: [
+      "images/mochi1.jpg",
+      "images/mochi2.jpg",
+      "images/mochi3.jpg",
+      "images/mochi4.jpg",
+      "images/mochi5.jpg"
+    ]
+  },
+  {
+    name: "Repetidor WiFi 300 Mbps",
+    price: 300.00,
+    description: [
+    "Elimina las zonas sin señal y mejora la conexión en dormitorios, terrazas u oficinas.",
+    "Transmite hasta 300 Mbps en 2.4 GHz, ideal para streaming, videollamadas y juegos online.",
+    "Solo conéctalo y configúralo en minutos. Compatible con cualquier móvil, módem o router WiFi."
+  ],
+    images: [
+      "images/rept1.jpg",
+      "images/rept2.jpg",
+      "images/rept3.jpg"
+    ]
+  },
+  {
+  name: "GPS Premium Magnetico Localizador Tiempo Real",
+  price: 350.00,
+  description: [
+    "Rastrea vehículos, personas o mascotas desde tu celular con precisión en tiempo real.",
+    "Se adhiere fácilmente a cualquier superficie metálica, ideal para autos, motos o equipaje.",
+    "Alertas de movimiento, grabación de voz y batería de larga duración. Compatible con tarjeta SIM y app de seguimiento."
+  ],
+  images: [
+    "images/gpsp1.jpg",
+    "images/gpsp2.jpg",
+    "images/gpsp3.jpg"
+  ]
+  },
+  {
+  name: "GPS Premium Guarda rutas, horas, Velocidad, Tiempo Real",
+  price: 750.00,
+  description: [
+    "Localiza tu vehículo o persona en tiempo real y revisa historial de rutas, velocidad, hora y distancia recorrida.",
+    "Rastreo estable y continuo con batería de larga duración y carga rápida por USB.",
+    "Se adhiere fácilmente a cualquier superficie. Ideal para autos, motos, camiones o uso personal."
+  ],
+  images: [
+    "images/gpsc1.jpg",
+    "images/gpsc2.jpg",
+    "images/gpsc3.jpg",
+    "images/gpsc4.jpg"
+  ]
+},
+  {
+  name: "M90 Pro Auriculares con Pantalla de carga de cada auricular",
+  price: 240.00,
+  description: [
+    "Muestra el nivel de batería de cada auricular y del estuche en tiempo real.",
+    "Tecnología Bluetooth 5.3 con audio nítido, graves profundos y conexión sin cortes.",
+    "Hasta 5 horas de uso continuo y más de 140 horas en modo standby con su estuche cargador."
+  ],
+  images: [
+    "images/m901.jpg",
+    "images/m902.jpg",
+    "images/m903.jpg",
+    "images/m904.jpg"
+  ]
+},
+  {
+  name: "Vidrio Templado para Nintendo Switch",
+  price: 100.00,
+  description: [
+    "Vidrio templado ultra duro que protege tu pantalla contra golpes, caídas y rayones.",
+    "Mantiene la calidad original de la imagen y el brillo de tu consola sin afectar la sensibilidad táctil.",
+    "Sin burbujas, se ajusta perfectamente y es compatible con fundas y docks."
+  ],
+  images: [
+    "images/nwv1.jpg"
+  ]
+},
+  {
+  name: "Hub Adaptador para 7 Puertos USB con Luz Led Corta Corriente",
+  price: 220.00,
+  description: [
+    "Expande tu laptop o PC con 7 puertos USB para conectar mouse, teclado, memorias, impresoras y más.",
+    "Cada puerto tiene su propio botón con luz LED — enciende o apaga sin desconectar tus dispositivos.",
+    "Protección contra sobrecarga y cortocircuito. Disponible en color negro o blanco."
+  ],
+  images: [
+    "images/hub1.jpg",
+    "images/hub2.jpg",
+    "images/hub3.jpg",
+    "images/hub4.jpg",
+    "images/hub5.jpg",
+    "images/hub6.jpg"
+  ]
+},
+  {
+  name: "OFERTA ‼️Set Destornilladores Profesional para Celulares 115",
+  price: 220.00,
+  description: [
+    "Incluye 115 piezas con puntas magnéticas y herramientas especiales para reparar celulares, consolas, laptops, relojes y más.",
+    "Mango ergonómico, antideslizante y extensible para trabajos precisos y cómodos.",
+    "Viene en estuche resistente, ideal para técnicos, aficionados o uso en casa."
+  ],
+  images: [
+    "images/dest1.jpg",
+    "images/dest2.jpg",
+    "images/dest3.jpg"
+  ]
+},
+{
+  name: "Kit Go Pro 9/10/11/12 Funda Silicona y Vidrios Templados",
+  price: 500.00,
+  description: [
+    "Protege tu cámara al máximo: Funda de silicona resistente a golpes, rayones y polvo.",
+    "Vidrios templados incluidos: Pantalla y lente siempre seguros con protección anti-rayaduras y claridad total.",
+    "Todo en un solo kit: Incluye tapa de lente, correa de mano, limpiadores y adhesivos antipolvo. Ideal para aventuras y uso diario"
+  ],
+  images: [
+    "images/goa1.jpg",
+    "images/goa2.jpg"
+  ]
+},
+{
+  name: "Carcasa Go Pro 8 Impermeable Contra el Agua",
+  price: 400.00,
+  description: [
+    "Resiste hasta 45 metros de profundidad, ideal para buceo, surf, natación o lluvia intensa.",
+    "Evita daños por agua, polvo o golpes sin afectar la calidad de video ni el audio.",
+    "Ajuste perfecto para GoPro Hero 8 con cierre hermético y lente ultra transparente para capturas nítidas."
+  ],
+  images: [
+    "images/cob1.jpg"
+  ]
+},
+{
+  name: "Carcasa Go Pro 9/10/11/12 Impermeable Contra el Agua",
+  price: 550.00,
+  description: [
+    "Resistente hasta 45 m de profundidad, perfecta para buceo, surf, snorkel o lluvia intensa.",
+    "Evita daños por agua, polvo y golpes sin afectar la claridad de imagen ni el rendimiento de tu cámara.",
+    "Ajuste perfecto para modelos GoPro 9, 10, 11 y 12. Fabricada en material resistente con cierre hermético y lente transparente HD."
+  ],
+  images: [
+    "images/carr1.jpg",
+    "images/carr2.jpg",
+    "images/carr3.jpg"
+  ]
+},
+{
+  name: "Intercomunicador Y20 para Casco PREMIUM Musica Llamadas",
+  price: 700.00,
+  description: [
+    "Versión 2024 con Bluetooth 5.3: Conexión más estable, sonido estéreo HD y micrófono con cancelación de ruido.",
+    "Escucha música, responde llamadas y comunícate con otros pilotos fácilmente mientras conduces.",
+    "luces RGB: Hasta 16 modos de iluminación y batería de larga duración (hasta 25 h de uso y 300 h en espera)."
+  ],
+  images: [
+    "images/y201.jpg",
+    "images/y202.jpg",
+    "images/y203.jpg"
+  ]
+},
+{
+  name: "Cargador de Bateria para Carro 12V",
+  price: 360.00,
+  description: [
+    "Carga inteligente: Detecta el nivel de batería y ajusta la corriente automáticamente para una carga rápida y segura.",
+    "Ideal para autos, motos, camionetas o baterías de 12V tipo plomo-ácido, AGM o gel.",
+    "Diseño práctico: Indicadores LED de carga, Solo conéctalo y listo."
+  ],
+  images: [
+    "images/cargg1.jpg",
+    "images/cargg2.jpg",
+    "images/cargg3.jpg",
+    "images/cargg4.jpg",
+    "images/cargg5.jpg"
+  ]
+},
+{
+  name: "Memoria USB 128GB con Musica",
+  price: 250.00,
+  description: [
+    "Gran capacidad: 128GB de espacio para guardar miles de canciones, archivos, fotos o videos.",
+    "Plug & Play: Solo conéctala a tu carro, bocina o computadora y disfruta de tu música favorita al instante",
+    "Diseño giratorio y resistente: Cuerpo metálico con rotación 360°, compacta y duradera para uso diario."
+  ],
+  images: [
+    "images/usbb1.jpg"
+  ]
+},
+
+
+
+
+
+  
 ];
 
 // === CONFIGURACIÓN ===
@@ -476,6 +705,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
