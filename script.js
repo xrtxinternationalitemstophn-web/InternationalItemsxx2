@@ -911,174 +911,94 @@ const products = [
     "images/pulseraduo2.jpg"
   ]
 },
-
-
-
-
-
-
-  
 ];
 
-// === CONFIGURACIÓN ===
+/******************************************
+ * 🔹 CONFIGURACIÓN Y UTILIDADES
+ ******************************************/
 const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
 
-// === FORMATEADOR DE MONEDA ===
 const formatLempiras = amount =>
   new Intl.NumberFormat("es-HN", { style: "currency", currency: "HNL" }).format(amount);
 
-const productList = document.getElementById("product-list");
-const cartBtn = document.getElementById("cart-btn");
-const cartModal = document.getElementById("cart-modal");
+/******************************************
+ * 🔹 REFERENCIAS DEL DOM
+ ******************************************/
+const productList   = document.getElementById("product-list");
+const cartBtn       = document.getElementById("cart-btn");
+const cartModal     = document.getElementById("cart-modal");
 const checkoutModal = document.getElementById("checkout-modal");
-const closeCart = document.getElementById("close-cart");
+const closeCart     = document.getElementById("close-cart");
 const closeCheckout = document.getElementById("close-checkout");
-const cartItems = document.getElementById("cart-items");
-const cartTotal = document.getElementById("cart-total");
-const cartCount = document.getElementById("cart-count");
-const checkoutForm = document.getElementById("checkout-form");
-const checkoutBtn = document.getElementById("checkout-btn");
+const cartItems     = document.getElementById("cart-items");
+const cartTotal     = document.getElementById("cart-total");
+const cartCount     = document.getElementById("cart-count");
+const checkoutForm  = document.getElementById("checkout-form");
+const checkoutBtn   = document.getElementById("checkout-btn");
 
-/* === BUSCADOR FLOTANTE === */
-const fsBtn = document.getElementById("floating-search");
-const fsOverlay = document.getElementById("fs-overlay");
-const fsPanel = document.getElementById("fs-panel");
-const fsClose = document.getElementById("fs-close");
-const fsInput = document.getElementById("fs-input");
+/* === Buscador flotante (ids requeridos en el HTML) ===
+   #floating-search  (botón 🔍)
+   #fs-overlay       (overlay click=cerrar)
+   #fs-panel         (contenedor del buscador)
+   #fs-close         (botón X)
+   #fs-input         (input de búsqueda)
+   #fs-submit        (botón Buscar) → opcional, pero recomendado
+   #fs-noresults     (mensaje “no hay resultados”)
+*/
+const fsBtn       = document.getElementById("floating-search");
+const fsOverlay   = document.getElementById("fs-overlay");
+const fsPanel     = document.getElementById("fs-panel");
+const fsClose     = document.getElementById("fs-close");
+const fsInput     = document.getElementById("fs-input");
+const fsSubmitBtn = document.getElementById("fs-submit");
 const fsNoResults = document.getElementById("fs-noresults");
 
-// Abrir/cerrar
-function openSearch(){
-  fsOverlay.classList.remove("hidden");
-  fsPanel.classList.remove("hidden");
-  setTimeout(() => fsInput.focus(), 50);
-}
-function closeSearch(){
-  fsOverlay.classList.add("hidden");
-  fsPanel.classList.add("hidden");
-  fsInput.value = "";
-  fsNoResults.classList.add("hidden");
-  renderProducts();          // restaura todos
-}
-
-// Eventos
-fsBtn.addEventListener("click", openSearch);
-fsClose.addEventListener("click", closeSearch);
-fsOverlay.addEventListener("click", closeSearch);
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !fsPanel.classList.contains("hidden")) closeSearch();
-});
-
-// Filtrar en vivo (nombre o descripción)
-fsInput.addEventListener("input", () => {
-  const q = fsInput.value.toLowerCase().trim();
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    (p.description || []).some(d => d.toLowerCase().includes(q))
-  );
-
-  renderSearchResults(filtered);
-  if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
-  else fsNoResults.classList.add("hidden");
-});
-
-// Render de resultados sin tocar tu render principal
-function renderSearchResults(list){
-  productList.innerHTML = "";
-  list.forEach((p, i) => {
-    const card = document.createElement("div");
-    card.classList.add("product");
-    card.innerHTML = `
-      <div class="slider" id="slider-s-${i}">
-        <div class="slides-container">
-          ${p.images.map((img, idx) => `
-            <img src="${img}" class="slide ${idx === 0 ? "active" : ""}" alt="${p.name}">
-          `).join("")}
-        </div>
-        <button class="prev" data-index="s-${i}">❮</button>
-        <button class="next" data-index="s-${i}">❯</button>
-      </div>
-      <h3>${p.name}</h3>
-      <p class="price">${formatLempiras(p.price)}</p>
-      <ul class="description">
-        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
-      </ul>
-      <button class="add-btn">Agregar al carrito</button>
-    `;
-    // addToCart con índice real del catálogo
-    card.querySelector(".add-btn").addEventListener("click", () => {
-      const realIndex = products.findIndex(x => x.name === p.name);
-      addToCart(realIndex);
-    });
-    productList.appendChild(card);
-  });
-  // Re-enganchar sliders para resultados
-  rebindSearchSliders();
-}
-
-function rebindSearchSliders(){
-  // botones prev/next dentro de resultados
-  document.querySelectorAll(".slider .prev").forEach(btn => {
-    btn.onclick = () => {
-      const id = btn.getAttribute("data-index");
-      changeSearchSlide(id, -1);
-    };
-  });
-  document.querySelectorAll(".slider .next").forEach(btn => {
-    btn.onclick = () => {
-      const id = btn.getAttribute("data-index");
-      changeSearchSlide(id, 1);
-    };
-  });
-}
-const searchSlideIndex = {};
-function changeSearchSlide(id, dir){
-  const slides = document.querySelectorAll(`#slider-${id} .slide`);
-  if (!slides.length) return;
-  if (!(id in searchSlideIndex)) searchSlideIndex[id] = 0;
-  slides[searchSlideIndex[id]].classList.remove("active");
-  searchSlideIndex[id] = (searchSlideIndex[id] + dir + slides.length) % slides.length;
-  slides[searchSlideIndex[id]].classList.add("active");
-}
-
-
-// === BOTÓN FLOTANTE (DRAG + TAP FIABLE EN TODOS LOS DISPOSITIVOS) ===
+/******************************************
+ * 🔹 BOTÓN CARRITO FLOTANTE (drag + tap)
+ ******************************************/
 const floatingCart = document.getElementById("floating-cart");
+const floatingCartCount = document.getElementById("floating-cart-count");
+
 let isDragging = false;
 let dragStart = { x: 0, y: 0 };
 let offset = { x: 0, y: 0 };
 
-// Iniciar movimiento o detectar toque
-floatingCart.addEventListener("pointerdown", e => {
-  floatingCart.setPointerCapture(e.pointerId);
-  isDragging = false;
-  dragStart = { x: e.clientX, y: e.clientY };
-  const rect = floatingCart.getBoundingClientRect();
-  offset.x = e.clientX - rect.left;
-  offset.y = e.clientY - rect.top;
-});
-
-// Detectar movimiento real
-floatingCart.addEventListener("pointermove", e => {
-  if (e.pressure === 0) return; // dedo levantado
-  const dx = Math.abs(e.clientX - dragStart.x);
-  const dy = Math.abs(e.clientY - dragStart.y);
-  if (dx > 5 || dy > 5) {
-    isDragging = true;
-    moveFloatingCart(e.clientX, e.clientY);
-  }
-});
-
-// Finalizar movimiento o toque
-floatingCart.addEventListener("pointerup", e => {
-  floatingCart.releasePointerCapture(e.pointerId);
-  if (!isDragging) {
-    e.preventDefault();
-    openCartModal(); // 👉 tap corto = abrir carrito
-  } else {
+if (floatingCart) {
+  floatingCart.addEventListener("pointerdown", e => {
+    floatingCart.setPointerCapture(e.pointerId);
     isDragging = false;
-  }
-});
+    dragStart = { x: e.clientX, y: e.clientY };
+    const rect = floatingCart.getBoundingClientRect();
+    offset.x = e.clientX - rect.left;
+    offset.y = e.clientY - rect.top;
+  });
+
+  floatingCart.addEventListener("pointermove", e => {
+    if (e.pressure === 0) return; // dedo levantado
+    const dx = Math.abs(e.clientX - dragStart.x);
+    const dy = Math.abs(e.clientY - dragStart.y);
+    if (dx > 5 || dy > 5) {
+      isDragging = true;
+      moveFloatingCart(e.clientX, e.clientY);
+    }
+  });
+
+  floatingCart.addEventListener("pointerup", e => {
+    floatingCart.releasePointerCapture(e.pointerId);
+    if (!isDragging) {
+      e.preventDefault();
+      openCartModal();
+    } else {
+      isDragging = false;
+    }
+  });
+
+  // Mostrar/ocultar según scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) floatingCart.classList.remove("hidden");
+    else floatingCart.classList.add("hidden");
+  });
+}
 
 function moveFloatingCart(x, y) {
   const buttonWidth = floatingCart.offsetWidth;
@@ -1086,165 +1006,60 @@ function moveFloatingCart(x, y) {
   let newX = x - offset.x;
   let newY = y - offset.y;
 
-  // Limitar a bordes de pantalla
   const maxX = window.innerWidth - buttonWidth - 5;
   const maxY = window.innerHeight - buttonHeight - 5;
   newX = Math.min(Math.max(newX, 5), maxX);
   newY = Math.min(Math.max(newY, 5), maxY);
 
   floatingCart.style.left = `${newX}px`;
-  floatingCart.style.top = `${newY}px`;
+  floatingCart.style.top  = `${newY}px`;
   floatingCart.style.right = "auto";
   floatingCart.style.bottom = "auto";
 }
 
 function openCartModal() {
+  if (!cartModal) return;
   cartModal.classList.remove("hidden");
   document.body.classList.add("modal-open");
 }
 
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
-});
-
-
-
-const floatingCartCount = document.getElementById("floating-cart-count");
-
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
-});
-
-
-
-
-
-// Sincronizar cantidad del carrito
-function updateFloatingCartCount() {
-  // 🔹 Contador exacto: suma las cantidades de todos los productos
-  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
-
-  // 🔹 Actualiza el numerito rojo
-  floatingCartCount.textContent = totalQty;
-
-  // 🔹 Animación pequeña al cambiar
-  floatingCartCount.classList.add("bounce");
-  setTimeout(() => floatingCartCount.classList.remove("bounce"), 300);
-}
-
-
-
-
-
+/******************************************
+ * 🔹 CARRITO (datos y lógica)
+ ******************************************/
 let cart = [];
 
-/* === RENDERIZAR PRODUCTOS CON SLIDER === */
-function renderProducts() {
-  productList.innerHTML = "";
-  products.forEach((p, i) => {
-    const card = document.createElement("div");
-    card.classList.add("product");
-
-    card.innerHTML = `
-      <div class="slider" id="slider-${i}">
-        <div class="slides-container">
-          ${p.images.map((img, index) => `
-            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
-          `).join("")}
-        </div>
-        <button class="prev" data-index="${i}">❮</button>
-        <button class="next" data-index="${i}">❯</button>
-      </div>
-      <h3>${p.name}</h3>
-      <p class="price">${formatLempiras(p.price)}</p>
-
-      <ul class="description">
-        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
-      </ul>
-
-      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
-    `;
-
-    productList.appendChild(card);
-  });
-
-  initSliders();
-}
-
-
-/* === SLIDERS AUTOMÁTICOS Y MANUALES === */
-let slideIndices = [];
-let slideIntervals = [];
-
-function initSliders() {
-  products.forEach((_, i) => {
-    slideIndices[i] = 0;
-    const slides = document.querySelectorAll(`#slider-${i} .slide`);
-    const prevBtn = document.querySelector(`#slider-${i} .prev`);
-    const nextBtn = document.querySelector(`#slider-${i} .next`);
-
-    // Mostrar flechas
-    prevBtn.style.display = "block";
-    nextBtn.style.display = "block";
-
-    // Botones manuales
-    prevBtn.addEventListener("click", () => changeSlide(i, -1));
-    nextBtn.addEventListener("click", () => changeSlide(i, 1));
-
-    // Auto cambio cada 3 segundos
-    clearInterval(slideIntervals[i]);
-    slideIntervals[i] = setInterval(() => changeSlide(i, 1), 3000);
-  });
-}
-
-function changeSlide(productIndex, direction) {
-  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
-  if (!slides.length) return;
-  slides[slideIndices[productIndex]].classList.remove("active");
-  slideIndices[productIndex] =
-    (slideIndices[productIndex] + direction + slides.length) % slides.length;
-  slides[slideIndices[productIndex]].classList.add("active");
-}
-
-/* === CARRITO === */
-
-// 🔹 Animación de rebote cuando se agrega un producto
 function bounceFloatingCart() {
+  if (!floatingCart) return;
   floatingCart.animate(
-    [
-      { transform: "scale(1)" },
-      { transform: "scale(1.25)" },
-      { transform: "scale(1)" }
-    ],
+    [{ transform: "scale(1)" }, { transform: "scale(1.25)" }, { transform: "scale(1)" }],
     { duration: 400, easing: "ease-out" }
   );
+}
+
+function updateFloatingCartCount() {
+  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  if (floatingCartCount) {
+    floatingCartCount.textContent = totalQty;
+    floatingCartCount.classList.add("bounce");
+    setTimeout(() => floatingCartCount.classList.remove("bounce"), 300);
+  }
+  if (cartCount) cartCount.textContent = totalQty; // contador del header
 }
 
 function addToCart(i) {
   const product = products[i];
   const existing = cart.find(item => item.name === product.name);
 
-  if (existing) {
-    existing.qty += 1; // 🔹 Incrementa cantidad
-  } else {
-    cart.push({ ...product, qty: 1 }); // 🔹 Nuevo producto con cantidad 1
-  }
+  if (existing) existing.qty += 1;
+  else cart.push({ ...product, qty: 1 });
 
   updateCart();
   showToast("Producto agregado 🛒");
   bounceFloatingCart();
-  updateFloatingCartCount(); // 🔹 fuerza actualización inmediata del contador flotante
-
 }
 
-
-
-
 function updateCart() {
+  if (!cartItems) return;
   cartItems.innerHTML = "";
   let total = 0;
 
@@ -1269,20 +1084,14 @@ function updateCart() {
     cartItems.appendChild(div);
   });
 
-  // ✅ Actualiza total con formato hondureño
-  cartTotal.textContent = formatLempiras(total);
+  if (cartTotal) {
+    cartTotal.textContent = formatLempiras(total);
+    cartTotal.classList.add("highlight");
+    setTimeout(() => cartTotal.classList.remove("highlight"), 400);
+  }
 
-  // 💫 Pequeño efecto visual
-  cartTotal.classList.add("highlight");
-  setTimeout(() => cartTotal.classList.remove("highlight"), 400);
-
-  // 🔹 Actualizar contadores
-  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-  cartCount.textContent = totalQty;
   updateFloatingCartCount();
 }
-
-
 
 function changeQty(index, delta) {
   cart[index].qty += delta;
@@ -1298,171 +1107,200 @@ function setQty(index, value) {
   }
 }
 
-
-
 function removeFromCart(i) {
   cart.splice(i, 1);
   updateCart();
 }
 
-cartBtn.addEventListener("click", () => {
-  cartModal.classList.toggle("hidden");
-  document.body.classList.toggle("modal-open");
-});
-
-closeCart.addEventListener("click", () => {
-  cartModal.classList.add("hidden");
-  document.body.classList.remove("modal-open");
-});
-
-// 🔹 Cerrar carrito al hacer clic fuera del contenido
-cartModal.addEventListener("click", e => {
-  if (e.target === cartModal) {
-    cartModal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  }
-});
-
-
-closeCheckout.addEventListener("click", () => {
-  checkoutModal.classList.add("hidden");
-  document.body.classList.remove("modal-open");
-});
-
-// 🔹 Cerrar checkout tocando fuera del modal
-checkoutModal.addEventListener("click", e => {
-  if (e.target === checkoutModal) {
-    checkoutModal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  }
-});
-
-checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) {
-    showToast("Tu carrito está vacío 🛒");
-  } else {
-    cartModal.classList.add("hidden");
-    checkoutModal.classList.remove("hidden");
-    document.body.classList.add("modal-open"); // 🔹 agrega esto
-  }
-});
-
-// === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES) ===
-// === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES, SIN BUGS) ===
-let touchStartTime = 0;
-
-floatingCart.addEventListener("touchstart", () => {
-  touchStartTime = Date.now();
-});
-
-floatingCart.addEventListener("touchend", e => {
-  const touchDuration = Date.now() - touchStartTime;
-  // Evitar activar si fue arrastre o toque muy largo
-  if (isDragging || touchDuration > 250) return;
-  e.preventDefault();
-  openCartModal();
-});
-
-floatingCart.addEventListener("click", e => {
-  if (isDragging) return;
-  e.preventDefault();
-  openCartModal();
-});
-
-function openCartModal() {
-  if (navigator.vibrate) navigator.vibrate(40);
-  cartModal.classList.remove("hidden");
-  document.body.classList.add("modal-open");
+/******************************************
+ * 🔹 MODALES (carrito / checkout)
+ ******************************************/
+if (cartBtn) {
+  cartBtn.addEventListener("click", () => {
+    cartModal.classList.toggle("hidden");
+    document.body.classList.toggle("modal-open");
+  });
 }
 
+if (closeCart) {
+  closeCart.addEventListener("click", () => {
+    cartModal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  });
+}
 
-
-
-/* === ENVÍO A FORMSPREE === */
-checkoutForm.addEventListener("submit", async e => {
-  e.preventDefault();
-
-  // ✅ Validar manualmente todos los campos requeridos
-  const requiredFields = checkoutForm.querySelectorAll("[required]");
-  let allFilled = true;
-
-  requiredFields.forEach(field => {
-    const value = field.value.trim();
-    if (!value) {
-      field.style.border = "2px solid red";
-      allFilled = false;
-    } else {
-      field.style.border = "1px solid #ccc";
+if (cartModal) {
+  cartModal.addEventListener("click", e => {
+    if (e.target === cartModal) {
+      cartModal.classList.add("hidden");
+      document.body.classList.remove("modal-open");
     }
   });
+}
 
-  if (!allFilled) {
-    showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
-    return;
-  }
+if (closeCheckout) {
+  closeCheckout.addEventListener("click", () => {
+    checkoutModal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  });
+}
 
-  // ✅ Calcular total con cantidades
-  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-  let pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
-
-  // ✅ Preparar datos para Formspree
-  const formData = new FormData(checkoutForm);
-  formData.append("pedido", pedido);
-  formData.append("total", formatLempiras(total));
-  formData.append("metodo_pago", checkoutForm.metodo_pago.value);
-
-  try {
-    const res = await fetch(FORMSPREE_URL, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" },
-    });
-
-    if (res.ok) {
-      showToast(`✅ Pedido enviado correctamente  
-      ¡Gracias por tu compra!  
-      📞 Pendiente de tu celular, te contactaremos pronto 😉`);
-      checkoutForm.reset();
-      cart = [];
-      updateCart();
+if (checkoutModal) {
+  checkoutModal.addEventListener("click", e => {
+    if (e.target === checkoutModal) {
       checkoutModal.classList.add("hidden");
       document.body.classList.remove("modal-open");
-    } else {
-      showToast("❌ Error al enviar el pedido.");
     }
-  } catch {
-    showToast("⚠️ Conexión fallida.");
-  }
-});
+  });
+}
 
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) showToast("Tu carrito está vacío 🛒");
+    else {
+      cartModal.classList.add("hidden");
+      checkoutModal.classList.remove("hidden");
+      document.body.classList.add("modal-open");
+    }
+  });
+}
 
+/******************************************
+ * 🔹 CHECKOUT → Formspree + validación
+ ******************************************/
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", async e => {
+    e.preventDefault();
 
+    // Validación manual de todos los required
+    const requiredFields = checkoutForm.querySelectorAll("[required]");
+    let allFilled = true;
+    requiredFields.forEach(field => {
+      const value = field.value.trim();
+      if (!value) {
+        field.style.border = "2px solid red";
+        allFilled = false;
+      } else {
+        field.style.border = "1px solid #ccc";
+      }
+    });
 
-/* === LIGHTBOX PARA AMPLIAR IMAGEN === */
+    if (!allFilled) {
+      showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
+      return;
+    }
+
+    // Total con cantidades + detalle
+    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const pedido = cart
+      .map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`)
+      .join("\n");
+
+    // Preparar datos
+    const formData = new FormData(checkoutForm);
+    formData.append("pedido", pedido);
+    formData.append("total", formatLempiras(total));
+    if (checkoutForm.metodo_pago) {
+      formData.append("metodo_pago", checkoutForm.metodo_pago.value);
+    }
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        showToast(
+          `✅ Pedido enviado correctamente<br>¡Gracias por tu compra!<br>📞 Pendiente de tu celular, te contactaremos pronto 😉`
+        );
+        checkoutForm.reset();
+        cart = [];
+        updateCart();
+        checkoutModal.classList.add("hidden");
+        document.body.classList.remove("modal-open");
+      } else {
+        showToast("❌ Error al enviar el pedido.");
+      }
+    } catch {
+      showToast("⚠️ Conexión fallida.");
+    }
+  });
+}
+
+/******************************************
+ * 🔹 SLIDERS de productos
+ ******************************************/
+let slideIndices = [];
+let slideIntervals = [];
+
+function renderProducts() {
+  if (!productList) return;
+  productList.innerHTML = "";
+  products.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.classList.add("product");
+    card.innerHTML = `
+      <div class="slider" id="slider-${i}">
+        <div class="slides-container">
+          ${p.images.map((img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="${i}">❮</button>
+        <button class="next" data-index="${i}">❯</button>
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${formatLempiras(p.price)}</p>
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
+    `;
+    productList.appendChild(card);
+  });
+  initSliders();
+}
+
+function initSliders() {
+  products.forEach((_, i) => {
+    slideIndices[i] = 0;
+    const prevBtn = document.querySelector(`#slider-${i} .prev`);
+    const nextBtn = document.querySelector(`#slider-${i} .next`);
+
+    prevBtn.style.display = "block";
+    nextBtn.style.display = "block";
+
+    prevBtn.addEventListener("click", () => changeSlide(i, -1));
+    nextBtn.addEventListener("click", () => changeSlide(i, 1));
+
+    clearInterval(slideIntervals[i]);
+    slideIntervals[i] = setInterval(() => changeSlide(i, 1), 3000);
+  });
+}
+
+function changeSlide(productIndex, direction) {
+  const slides = document.querySelectorAll(`#slider-${productIndex} .slide`);
+  if (!slides.length) return;
+  slides[slideIndices[productIndex]].classList.remove("active");
+  slideIndices[productIndex] =
+    (slideIndices[productIndex] + direction + slides.length) % slides.length;
+  slides[slideIndices[productIndex]].classList.add("active");
+}
+
+/******************************************
+ * 🔹 LIGHTBOX (visor de imagen)
+ ******************************************/
 const imageViewer = document.getElementById("image-viewer");
-const viewerImg = document.getElementById("viewer-img");
+const viewerImg   = document.getElementById("viewer-img");
 const closeViewer = document.getElementById("close-viewer");
-
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("slide")) {
-    viewerImg.src = e.target.src;
-    imageViewer.classList.remove("hidden");
-  }
-});
-
-closeViewer.addEventListener("click", () => imageViewer.classList.add("hidden"));
-imageViewer.addEventListener("click", e => {
-  if (e.target === imageViewer) imageViewer.classList.add("hidden");
-});
-
-/* === NAVEGACIÓN DENTRO DEL VISOR === */
-const viewerPrev = document.getElementById("viewer-prev");
-const viewerNext = document.getElementById("viewer-next");
+const viewerPrev  = document.getElementById("viewer-prev");
+const viewerNext  = document.getElementById("viewer-next");
 
 let currentProductIndex = null;
-let currentSlideIndex = 0;
+let currentSlideIndex   = 0;
 
-// Detectar qué producto y foto se amplía
 document.addEventListener("click", e => {
   if (e.target.classList.contains("slide")) {
     const parentSlider = e.target.closest(".slider");
@@ -1476,98 +1314,160 @@ document.addEventListener("click", e => {
   }
 });
 
-// Cambiar imagen en el visor
+if (closeViewer) {
+  closeViewer.addEventListener("click", () => imageViewer.classList.add("hidden"));
+  imageViewer.addEventListener("click", e => {
+    if (e.target === imageViewer) imageViewer.classList.add("hidden");
+  });
+}
 function changeViewerImage(direction) {
   if (currentProductIndex === null) return;
   const slides = document.querySelectorAll(`#slider-${currentProductIndex} .slide`);
   currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
   viewerImg.src = slides[currentSlideIndex].src;
 }
+if (viewerPrev) viewerPrev.addEventListener("click", e => { e.stopPropagation(); changeViewerImage(-1); });
+if (viewerNext) viewerNext.addEventListener("click", e => { e.stopPropagation(); changeViewerImage(1); });
 
-viewerPrev.addEventListener("click", e => {
-  e.stopPropagation();
-  changeViewerImage(-1);
-});
-
-viewerNext.addEventListener("click", e => {
-  e.stopPropagation();
-  changeViewerImage(1);
-});
-
-// Teclado (izquierda/derecha)
 document.addEventListener("keydown", e => {
-  if (imageViewer.classList.contains("hidden")) return;
-  if (e.key === "ArrowLeft") changeViewerImage(-1);
+  if (!imageViewer || imageViewer.classList.contains("hidden")) return;
+  if (e.key === "ArrowLeft")  changeViewerImage(-1);
   if (e.key === "ArrowRight") changeViewerImage(1);
-  if (e.key === "Escape") imageViewer.classList.add("hidden");
+  if (e.key === "Escape")     imageViewer.classList.add("hidden");
 });
 
-
-/* === TOAST (VERSIÓN MEJORADA CON TEXTO LARGO Y EMOJIS) === */
+/******************************************
+ * 🔹 TOAST (centrado, siempre encima)
+ ******************************************/
 function showToast(message) {
-  // Eliminar toast anterior si existe
   const oldToast = document.querySelector(".toast-msg");
   if (oldToast) oldToast.remove();
 
-  // Crear nuevo contenedor
   const toast = document.createElement("div");
   toast.className = "toast-msg";
-
-  // ✅ Usa innerHTML para soportar saltos de línea y emojis correctamente
-  toast.innerHTML = message.replace(/\n/g, "<br>");
-
-  // Agregar al body directamente
+  toast.innerHTML = String(message).replace(/\n/g, "<br>");
   document.body.appendChild(toast);
 
-  // Animación de aparición
   setTimeout(() => toast.classList.add("show"), 10);
 
-  // Desaparecer después de 3 segundos
   setTimeout(() => {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
 
+/******************************************
+ * 🔹 BUSCADOR FLOTANTE (🔍)
+ ******************************************/
+function openSearch(){
+  if (!fsOverlay || !fsPanel) return;
+  fsOverlay.classList.remove("hidden");
+  fsPanel.classList.remove("hidden");
+  setTimeout(() => fsInput && fsInput.focus(), 50);
+}
+function closeSearch(){
+  if (!fsOverlay || !fsPanel) return;
+  fsOverlay.classList.add("hidden");
+  fsPanel.classList.add("hidden");
+  if (fsInput) fsInput.value = "";
+  if (fsNoResults) fsNoResults.classList.add("hidden");
+  renderProducts(); // restaurar todos
+}
 
-/* === INICIO === */
+if (fsBtn)     fsBtn.addEventListener("click", openSearch);
+if (fsClose)   fsClose.addEventListener("click", closeSearch);
+if (fsOverlay) fsOverlay.addEventListener("click", closeSearch);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && fsPanel && !fsPanel.classList.contains("hidden")) closeSearch();
+});
+
+// Buscar en vivo (nombre/desc/precio)
+if (fsInput) {
+  fsInput.addEventListener("input", () => {
+    const q = fsInput.value.toLowerCase().trim();
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      (p.description || []).some(d => d.toLowerCase().includes(q)) ||
+      String(p.price).includes(q)
+    );
+    renderSearchResults(filtered);
+    if (fsNoResults) {
+      if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
+      else fsNoResults.classList.add("hidden");
+    }
+  });
+}
+
+// Botón Buscar (útil en Android)
+if (fsSubmitBtn) {
+  fsSubmitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const q = (fsInput?.value || "").toLowerCase().trim();
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      (p.description || []).some(d => d.toLowerCase().includes(q)) ||
+      String(p.price).includes(q)
+    );
+    renderSearchResults(filtered);
+    if (fsNoResults) {
+      if (q && filtered.length === 0) fsNoResults.classList.remove("hidden");
+      else fsNoResults.classList.add("hidden");
+    }
+  });
+}
+
+function renderSearchResults(list){
+  if (!productList) return;
+  productList.innerHTML = "";
+  list.forEach((p, i) => {
+    const card = document.createElement("div");
+    card.classList.add("product");
+    const sliderId = `slider-s-${i}`;
+    card.innerHTML = `
+      <div class="slider" id="${sliderId}">
+        <div class="slides-container">
+          ${p.images.map((img, idx) => `
+            <img src="${img}" class="slide ${idx === 0 ? "active" : ""}" alt="${p.name}">
+          `).join("")}
+        </div>
+        <button class="prev" data-index="${sliderId}">❮</button>
+        <button class="next" data-index="${sliderId}">❯</button>
+      </div>
+      <h3>${p.name}</h3>
+      <p class="price">${formatLempiras(p.price)}</p>
+      <ul class="description">
+        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
+      </ul>
+      <button class="add-btn">Agregar al carrito</button>
+    `;
+    card.querySelector(".add-btn").addEventListener("click", () => {
+      const realIndex = products.findIndex(x => x.name === p.name);
+      addToCart(realIndex);
+    });
+    productList.appendChild(card);
+  });
+
+  // Re-enganchar flechas de sliders en resultados
+  document.querySelectorAll(".slider .prev").forEach(btn => {
+    btn.onclick = () => changeSearchSlide(btn.getAttribute("data-index"), -1);
+  });
+  document.querySelectorAll(".slider .next").forEach(btn => {
+    btn.onclick = () => changeSearchSlide(btn.getAttribute("data-index"), 1);
+  });
+}
+
+const searchSlideIndex = {};
+function changeSearchSlide(id, dir){
+  const slides = document.querySelectorAll(`#${id} .slide`);
+  if (!slides.length) return;
+  if (!(id in searchSlideIndex)) searchSlideIndex[id] = 0;
+  slides[searchSlideIndex[id]].classList.remove("active");
+  searchSlideIndex[id] = (searchSlideIndex[id] + dir + slides.length) % slides.length;
+  slides[searchSlideIndex[id]].classList.add("active");
+}
+
+/******************************************
+ * 🔹 INICIO
+ ******************************************/
 renderProducts();
-
-
-/* === INICIO === */
-renderProducts();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+updateCart(); // asegura contadores correctos al cargar
