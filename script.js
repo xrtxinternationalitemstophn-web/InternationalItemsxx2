@@ -1274,8 +1274,8 @@ function openCartModal() {
 /* === ENVÍO A FORMSPREE === */
 checkoutForm.addEventListener("submit", async e => {
   e.preventDefault();
-  let total = cart.reduce((sum, i) => sum + i.price, 0);
-  let pedido = cart.map(i => `- ${i.name}: $${i.price.toFixed(2)}`).join("\n");
+  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0); // 🔹 suma con cantidades
+  let pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
   const formData = new FormData(checkoutForm);
   formData.append("pedido", pedido);
@@ -1294,11 +1294,13 @@ checkoutForm.addEventListener("submit", async e => {
       cart = [];
       updateCart();
       checkoutModal.classList.add("hidden");
+      document.body.classList.remove("modal-open"); // 🔹 CORRECCIÓN: quita el fondo borroso
     } else showToast("❌ Error al enviar el pedido.");
   } catch {
     showToast("⚠️ Conexión fallida.");
   }
 });
+
 
 /* === LIGHTBOX PARA AMPLIAR IMAGEN === */
 const imageViewer = document.getElementById("image-viewer");
@@ -1378,6 +1380,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
