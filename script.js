@@ -1162,13 +1162,19 @@ function updateCart() {
     cartItems.appendChild(div);
   });
 
-  animateCartTotal(total);
+  // ✅ Actualiza total con formato hondureño
+  cartTotal.textContent = formatLempiras(total);
+
+  // 💫 Pequeño efecto visual
+  cartTotal.classList.add("highlight");
+  setTimeout(() => cartTotal.classList.remove("highlight"), 400);
 
   // 🔹 Actualizar contadores
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.textContent = totalQty;
   updateFloatingCartCount();
 }
+
 
 
 function changeQty(index, delta) {
@@ -1372,6 +1378,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
