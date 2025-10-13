@@ -815,6 +815,55 @@ body.modal-open {
   animation: bounceScale 0.3s ease;
 }
 
+/* === CAMPOS DEL CHECKOUT (validación + método de pago) === */
+#checkout-form select,
+#checkout-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background: #fff;
+  transition: border 0.2s ease;
+}
+
+#checkout-form select:focus,
+#checkout-form input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+#checkout-form select[required]:invalid,
+#checkout-form input[required]:invalid {
+  border: 2px solid #ff3c78; /* rojo suave */
+  background: #fff5f7;
+}
+
+#checkout-form select[required]:valid,
+#checkout-form input[required]:valid {
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+#checkout-form select {
+  cursor: pointer;
+}
+
+#checkout-form option[value=""] {
+  color: #aaa;
+}
+
+/* Pequeña animación si intenta enviar vacío */
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+#checkout-form.shake {
+  animation: shake 0.4s;
+}
+
 
 
 
