@@ -1279,11 +1279,13 @@ function openCartModal() {
 checkoutForm.addEventListener("submit", async e => {
   e.preventDefault();
 
-  // ✅ Verificar que todos los campos obligatorios estén llenos
+  // ✅ Validar manualmente todos los campos requeridos
   const requiredFields = checkoutForm.querySelectorAll("[required]");
   let allFilled = true;
+
   requiredFields.forEach(field => {
-    if (!field.value.trim()) {
+    const value = field.value.trim();
+    if (!value) {
       field.style.border = "2px solid red";
       allFilled = false;
     } else {
@@ -1292,7 +1294,7 @@ checkoutForm.addEventListener("submit", async e => {
   });
 
   if (!allFilled) {
-    showToast("⚠️ Completa todos los campos obligatorios antes de enviar.");
+    showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
     return;
   }
 
@@ -1300,11 +1302,11 @@ checkoutForm.addEventListener("submit", async e => {
   let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   let pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
-  // ✅ Capturar todos los datos del formulario
+  // ✅ Preparar datos para Formspree
   const formData = new FormData(checkoutForm);
   formData.append("pedido", pedido);
   formData.append("total", formatLempiras(total));
-  formData.append("metodo_pago", checkoutForm.metodo_pago ? checkoutForm.metodo_pago.value : "No especificado");
+  formData.append("metodo_pago", checkoutForm.metodo_pago.value);
 
   try {
     const res = await fetch(FORMSPREE_URL, {
@@ -1319,7 +1321,7 @@ checkoutForm.addEventListener("submit", async e => {
       cart = [];
       updateCart();
       checkoutModal.classList.add("hidden");
-      document.body.classList.remove("modal-open"); // 🔹 Quita el fondo borroso
+      document.body.classList.remove("modal-open");
     } else {
       showToast("❌ Error al enviar el pedido.");
     }
@@ -1327,6 +1329,7 @@ checkoutForm.addEventListener("submit", async e => {
     showToast("⚠️ Conexión fallida.");
   }
 });
+
 
 
 
@@ -1408,6 +1411,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
