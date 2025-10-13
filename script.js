@@ -431,7 +431,7 @@ function renderProducts() {
         <button class="next" data-index="${i}">❯</button>
       </div>
       <h3>${p.name}</h3>
-      <p class="price">$${p.price.toFixed(2)}</p>
+      <p class="price">LPS ${p.price.toFixed(2)}</p>
 
       <ul class="description">
         ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
@@ -705,6 +705,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
