@@ -1316,7 +1316,9 @@ checkoutForm.addEventListener("submit", async e => {
     });
 
     if (res.ok) {
-      showToast("✅ Pedido enviado correctamente ¡Gracias por tu compra! Pendiente de tu celular te estaremos contactando 😉");
+      showToast(`✅ Pedido enviado correctamente  
+      ¡Gracias por tu compra!  
+      📞 Pendiente de tu celular, te contactaremos pronto 😉`);
       checkoutForm.reset();
       cart = [];
       updateCart();
@@ -1428,6 +1430,7 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
