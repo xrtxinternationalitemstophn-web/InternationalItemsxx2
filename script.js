@@ -1031,8 +1031,11 @@ window.addEventListener("scroll", () => {
 
 // Sincronizar cantidad del carrito
 function updateFloatingCartCount() {
-  floatingCartCount.textContent = cart.length;
+  // 🔹 Suma todas las cantidades, no solo los productos únicos
+  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+  floatingCartCount.textContent = totalQty;
 }
+
 
 
 let cart = [];
@@ -1380,6 +1383,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
