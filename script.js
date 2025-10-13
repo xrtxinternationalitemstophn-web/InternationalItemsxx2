@@ -1278,12 +1278,33 @@ function openCartModal() {
 /* === ENVÍO A FORMSPREE === */
 checkoutForm.addEventListener("submit", async e => {
   e.preventDefault();
-  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0); // 🔹 suma con cantidades
+
+  // ✅ Verificar que todos los campos obligatorios estén llenos
+  const requiredFields = checkoutForm.querySelectorAll("[required]");
+  let allFilled = true;
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      field.style.border = "2px solid red";
+      allFilled = false;
+    } else {
+      field.style.border = "1px solid #ccc";
+    }
+  });
+
+  if (!allFilled) {
+    showToast("⚠️ Completa todos los campos obligatorios antes de enviar.");
+    return;
+  }
+
+  // ✅ Calcular total con cantidades
+  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   let pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
+  // ✅ Capturar todos los datos del formulario
   const formData = new FormData(checkoutForm);
   formData.append("pedido", pedido);
   formData.append("total", formatLempiras(total));
+  formData.append("metodo_pago", checkoutForm.metodo_pago ? checkoutForm.metodo_pago.value : "No especificado");
 
   try {
     const res = await fetch(FORMSPREE_URL, {
@@ -1298,12 +1319,15 @@ checkoutForm.addEventListener("submit", async e => {
       cart = [];
       updateCart();
       checkoutModal.classList.add("hidden");
-      document.body.classList.remove("modal-open"); // 🔹 CORRECCIÓN: quita el fondo borroso
-    } else showToast("❌ Error al enviar el pedido.");
+      document.body.classList.remove("modal-open"); // 🔹 Quita el fondo borroso
+    } else {
+      showToast("❌ Error al enviar el pedido.");
+    }
   } catch {
     showToast("⚠️ Conexión fallida.");
   }
 });
+
 
 
 /* === LIGHTBOX PARA AMPLIAR IMAGEN === */
@@ -1384,6 +1408,7 @@ function showToast(msg) {
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
