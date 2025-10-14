@@ -978,9 +978,587 @@ const products = [
     "images/pulseraduo2.jpg"
   ]
 },
+{
+  name: "Vitaminas Capsulas para Cabello Vitaminas A-C-E Restaura y Sana SELLADAS",
+  price: 280.00,
+  description: [
+    "Fórmula enriquecida con Aceites Naturales (Argán, Macadamia y Aguacate) que hidratan profundamente y reducen el frizz.",
+    "Contiene Vitaminas A, C, E y Pro-Vitamina B5, esenciales para fortalecer el cabello y estimular su crecimiento.",
+    "Repara el daño desde la raíz hasta las puntas, dejando tu cabello suave, saludable y con brillo natural."
+  ],
+  images: [
+    "images/vit1.jpg",
+    "images/vit2.jpg",
+    "images/vit3.jpg",
+    "images/vit4.jpg",
+    "images/vit5.jpg",
+    "images/vit6.jpg",
+    "images/vit7.jpg"
+  ]
+},
+{
+  name: "Memoria Micro SD 2TB V30",
+  price: 800.00,
+  description: [
+    "Ideal para guardar miles de fotos, videos 4K, música y aplicaciones sin preocuparte por el espacio.",
+    "Velocidad de lectura V30 / U3 / A1, perfecta para grabación fluida en cámaras, drones, celulares y consolas.",
+    "Alta durabilidad y resistencia, diseñada con tecnología High Endurance para un rendimiento estable y prolongado."
+  ],
+  images: [
+    "images/tb1.jpg",
+    "images/tb2.jpg"
+  ]
+},
+{
+  name: "Carteras para Dama Variedad",
+  price: 235.00,
+  description: [
+    "Diseños modernos y versátiles, ideales para combinar con cualquier outfit, desde casual hasta elegante.",
+    "Materiales de calidad, con acabados suaves, cierres seguros y detalles metálicos o bordados según el modelo.",
+    "Tamaño práctico y cómodo, perfecto para llevar celular, billetera, maquillaje y más con estilo.",
+    "235 Lps cada una."
+  ],
+  images: [
+    "images/cartt1.jpg",
+    "images/cartt2.jpg",
+    "images/cartt3.jpg",
+    "images/cartt4.jpg",
+    "images/cartt5.jpg",
+    "images/cartt6.jpg",
+    "images/cartt7.jpg",
+    "images/cartt8.jpg",
+    "images/cartt9.jpg"
+  ]
+},
+{
+  name: "Cartera Grande para Mujer Incluye Lazo",
+  price: 450.00,
+  description: [
+    "Diseño sofisticado y femenino, con detalle de lazo desmontable que agrega un toque chic a cualquier look.",
+    "Amplio espacio interior, ideal para guardar celular, billetera, maquillaje y accesorios personales.",
+    "Material resistente y liviano, con acabado acolchado y costuras de alta calidad para uso diario."
+  ],
+  images: [
+    "images/carrt1.jpg",
+    "images/carrt2.jpg",
+    "images/carrt3.jpg"
+  ]
+},
+{
+  name: "Esferas Navideñas Set de 50 Piezas Surtido",
+  price: 300.00,
+  description: [
+    "Decoración completa para tu árbol, con una hermosa combinación de colores clásicos: rojo, verde, dorado y azul.",
+    "Acabados variados (brillantes, mate y con glitter) para darle un toque elegante y festivo a cualquier espacio.",
+    "Ligero y resistente, ideales para árboles grandes o pequeños, fáciles de colgar y reutilizables año tras año."
+  ],
+  images: [
+    "images/pelot1.jpg"
+  ]
+},
+{
+  name: "Flores Pascuas Navideñas Decoraciones Navidad",
+  price: 120.00,
+  description: [
+    "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
+    "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
+    "Material resistente y duradero, con acabado suave tipo terciopelo y hojas doradas brillantes."
+  ],
+  images: [
+    "images/pasc1.jpg",
+    "images/pasc2.jpg",
+    "images/pasc3.jpg",
+    "images/pasc4.jpg",
+    "images/pasc5.jpg"
+  ]
+},
+{
+  name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
+  price: 600.00,
+  description: [
+    "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
+    "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
+    "Variedad de acabados: mate, brillantes y con glitter. Resistentes, ligeras y fáciles de colocar."
+  ],
+  images: [
+    "images/esf1.jpg",
+    "images/esf2.jpg",
+    "images/esf3.jpg",
+    "images/esf4.jpg",
+    "images/esf5.jpg"
+  ]
+},
+{
+  name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
+  price: 440.00,
+  description: [
+    "Conecta y juega sin cables — Compatible con PS3, PS4 y PC, con respuesta rápida y sin retrasos.",
+    "Diseño ergonómico y preciso — Joysticks suaves, botones sensibles y vibración realista para una experiencia pro.",
+    "Recargable y duradero — Batería de larga vida, panel táctil y luces LED integradas."
+  ],
+  images: [
+    "images/contrr1.jpg",
+    "images/contrr2.jpg",
+    "images/contrr3.jpg",
+    "images/contrr4.jpg"
+  ]
+},
+{
+  name: "Kit Accesorios Go Pro 4/5/6/7/8/9/10/11/12 27 en 1",
+  price: 1300.00,
+  description: [
+    "Todo en uno para cualquier aventura — Soportes de pecho, cabeza, muñeca, bicicleta, trípode, flotador y más.",
+    "Compatibilidad total — Funciona con todas las cámaras GoPro y deportivas (Hero 4/5/6/7/8/9/10/11/12).",
+    "Listo para acción extrema — Material resistente, cómodo y fácil de transportar con su bolsa de viaje incluida."
+  ],
+  images: [
+    "images/kittgg1.jpg"
+  ]
+},
+{
+  name: "Lapiz 2da Generacion para iPad Rechazo de Palma Carga Magnetica",
+  price: 1000.00,
+  description: [
+    "Conexión instantánea y carga magnética — Se adhiere al iPad y se carga sin cables en solo 2 h para hasta 9 h de uso continuo.",
+    "Escritura natural y precisa — Dibuja o escribe sin retrasos ni marcas por contacto de la mano (rechazo de palma).",
+    "Compatible con iPad Pro, Air y Mini recientes — Ideal para clases, notas, diseño o dibujo digital."
+  ],
+  images: [
+    "images/lapizz1.jpg",
+    "images/lapizz2.jpg",
+    "images/lapizz3.jpg",
+    "images/lapizz4.jpg",
+    "images/lapizz5.jpg"
+  ]
+},
+{
+  name: "Forro para Casco Conejo Tipo Peluche CALIDAD",
+  price: 500.00,
+  description: [
+    "Diseño único y llamativo — Convierte tu casco en el centro de atención con su estilo divertido y suave al tacto.",
+    "Material de alta calidad — Peluche grueso, resistente y cómodo, no se deforma ni se pela con el uso.",
+    "Fácil de colocar y quitar — Se adapta a la mayoría de cascos sin afectar la visibilidad ni la ventilación."
+  ],
+  images: [
+    "images/forror1.jpg",
+    "images/forror2.jpg",
+    "images/forror3.jpg"
+  ]
+},
+{
+  name: "Accesorios Go Pro Hero 9/10/11/12 63 en 1 INCLUYE VIDRIOS TEMPLADOS",
+  price: 1800.00,
+  description: [
+    "Todo lo que necesitas en un solo kit — Incluye correas, soportes, trípodes, flotador, ventosa, filtros y más para cualquier tipo de grabación.",
+    "Protección total — Incluye vidrios templados para cuidar la lente y pantalla de tu cámara en todo momento.",
+    "Ideal para acción extrema — Perfecto para deportes, viajes, buceo, ciclismo o grabaciones profesionales."
+  ],
+  images: [
+    "images/kitggp1.jpg"
+  ]
+},
+{
+  name: "ENVIO GRATIS MicroSD 512GB 200MB/s SanDisk Extreme Pro 4K UHD",
+  price: 2500.00,
+  description: [
+    "Velocidad extrema de hasta 200MB/s — Ideal para grabar y transferir videos en 4K UHD sin interrupciones.",
+    "Diseño resistente — Soporta agua, golpes, rayos X y temperaturas extremas.",
+    "Perfecta para cámaras, drones y celulares — Incluye adaptador SD para mayor compatibilidad."
+  ],
+  images: [
+    "images/sandddk1.jpg",
+    "images/sandddk2.jpg"
+  ]
+},
+{
+  name: "Dron Premium K3 E99Pro 4K Doble Camara Luz Led con Estuche",
+  price: 800.00,
+  description: [
+    "Imágenes Ultra HD — Cámara doble de alta definición para capturar fotos y videos con máxima claridad.",
+    "Luz LED integrada — Ideal para vuelos nocturnos o en baja luz, con un diseño moderno y plegable.",
+    "Listo para llevar — Incluye estuche de transporte, batería recargable y accesorios completos para volar desde el primer día."
+  ],
+  images: [
+    "images/dronnn1.jpg",
+    "images/dronnn2.jpg",
+    "images/dronnn3.jpg",
+    "images/dronnn4.jpg",
+    "images/dronnn5.jpg"
+  ]
+},
+{
+  name: "Ganchos para Maquillaje Sujeta Cabello SET 6 Piezas",
+  price: 150.00,
+  description: [
+    "No deja marcas — Ideal para sujetar el cabello mientras te maquillas o haces skincare sin arruinar el peinado.",
+    "Suaves y resistentes — Pinzas con acabado liso que evitan tirones y cuidan tu cabello.",
+    "Práctico set de 6 piezas — Colores elegantes (negro, crema y rosa) perfectos para uso diario o profesional."
+  ],
+  images: [
+    "images/gancc1.jpg",
+    "images/gancc2.jpg",
+    "images/gancc3.jpg"
+  ]
+},
+{
+  name: "Borlas/Puff para Maquillaje Suaves y Calidad",
+  price: 25.00,
+  description: [
+    "Acabado profesional — Borlas ultra suaves ideales para aplicar polvos sueltos o compactos con un acabado aterciopelado.",
+    "Diseño en forma de gota — Perfectas para zonas difíciles como nariz y ojos, logrando una aplicación uniforme.",
+    "Set de 6 piezas (3 negras + 3 beige) — Reutilizables, lavables y con cinta elástica para mejor agarre y control.",
+    "25 LPS Unidad / 200 LPS 10 unidades."
+  ],
+  images: [
+    "images/borlas1.jpg",
+    "images/borlas2.jpg"
+  ]
+},
+{
+  name: "Cubre Pezon Adhesivo Silicona 2 Figuras",
+  price: 120.00,
+  description: [
+    "Comodidad y discreción total — Hechos de silicona suave, se adaptan perfectamente al cuerpo y no se marcan bajo la ropa.",
+    "Autoadhesivos y reutilizables — Fáciles de colocar, no se deslizan y pueden usarse varias veces sin perder adherencia.",
+    "Diseños elegantes — Incluye 2 figuras (redondo y flor) ideales para cualquier tipo de prenda o evento especial."
+  ],
+  images: [
+    "images/pezz1.jpg",
+    "images/pezz2.jpg",
+    "images/pezz3.jpg",
+    "images/pezz4.jpg"
+  ]
+},
+{
+  name: "Set Aretes Collar 3 piezas Delicados Joyeria Europea",
+  price: 190.00,
+  description: [
+    "Diseños elegantes y modernos — Cada set combina brillo y estilo europeo, perfectos para lucir con cualquier outfit.",
+    "Alta calidad y acabado fino — Elaborados con materiales resistentes y detalles brillantes que no se opacan con el uso.",
+    "Ideal para regalo o uso diario — Incluye collar y aretes con medidas perfectas para realzar tu look con un toque sofisticado."
+  ],
+  images: [
+    "images/setr1.jpg",
+    "images/setr2.jpg",
+    "images/setr3.jpg",
+    "images/setr4.jpg",
+    "images/setr5.jpg"
+  ]
+},
+{
+  name: "Camara Web con Microfono 1080HD",
+  price: 400.00,
+  description: [
+    "Imagen nítida y clara — Resolución Full HD ideal para videollamadas, clases en línea, streaming o reuniones profesionales.",
+    "Micrófono con reducción de ruido — Capta tu voz con excelente calidad, eliminando ruidos de fondo para una comunicación más natural.",
+    "Fácil instalación Plug & Play — Conéctala por USB y úsala al instante sin necesidad de drivers; rotación 360° y ángulo ajustable."
+  ],
+  images: [
+    "images/webc1.jpg",
+    "images/webc2.jpg",
+    "images/webc3.jpg"
+  ]
+},
+{
+  name: "Llave Yamaha en Blanco para Ybr/Genesis/Fz/Yzf/R1/R6/R6S/Xjr 1300",
+  price: 200.00,
+  description: [
+    "Repuesto ideal y resistente — Llave en blanco lista para cortar según tu modelo Yamaha, fabricada en metal duradero.",
+    "Compatibilidad amplia — Perfecta para YBR, FZ, Genesis, YZF-R1, R6, R6S, XJR1300 y más.",
+    "Diseño original y elegante — Con mango ergonómico y acabado de calidad que mantiene el estilo Yamaha.",
+    "1 llave x 200 lps / 2 llaves x 360 lps / 3 llaves x 450 lps"
+  ],
+  images: [
+    "images/yamh1.jpg",
+    "images/yamh2.jpg",
+    "images/yamh3.jpg"
+  ]
+},
+{
+  name: "Llave Yamaha en Blanco R25/R3/Xmax/R125/200/250/MT01/SR400/FZ6R/FZ6N/MT03/R15",
+  price: 200.00,
+  description: [
+    "Alta compatibilidad y precisión — Diseñada para adaptarse perfectamente a varios modelos Yamaha, lista para cortar según tu llave original.",
+    "Material resistente y duradero — Fabricada en acero de alta calidad con mango firme para mayor seguridad y vida útil.",
+    "Estilo original Yamaha — Diseño elegante con acabado metálico y el emblema distintivo, manteniendo el look profesional de tu moto.",
+    "1 llave x 200 lps / 2 llaves x 360 lps / 3 llaves x 450 lps"
+  ],
+  images: [
+    "images/yamhhh1.jpg",
+    "images/yamhhh2.jpg",
+    "images/yamhhh3.jpg"
+  ]
+},
+{
+  name: "Funda para Volante Set 3 Piezas Timon Carro 37-38cm",
+  price: 300.00,
+  description: [
+    "Comodidad y agarre total — Material antideslizante que brinda control firme al conducir, incluso en trayectos largos.",
+    "Protege y renueva tu interior — Mantiene el volante fresco en calor y cálido en frío, evitando desgaste y mejorando la estética del auto.",
+    "Ajuste universal (37-38 cm) — Fácil de instalar, se adapta a la mayoría de los autos y viene con cubre palanca y freno a juego."
+  ],
+  images: [
+    "images/fundd1.jpg",
+    "images/fundd2.jpg",
+    "images/fundd3.jpg"
+  ]
+},
+{
+  name: "Esponja Mágica Limpia de TODO",
+  price: 10.00,
+  description: [
+    "Elimina manchas al instante — Ideal para paredes, cocina, baño, zapatos, autos y más. Solo añade agua, ¡sin químicos!",
+    "Material duradero y reutilizable — Su textura de melamina borra grasa, tinta, rayones y suciedad sin esfuerzo.",
+    "Segura y ecológica — No daña las superficies y se puede usar varias veces. ¡Resultados visibles en segundos!"
+  ],
+  images: [
+    "images/espp1.jpg",
+    "images/espp2.jpg",
+    "images/espp3.jpg",
+    "images/espp4.jpg",
+    "images/espp5.jpg",
+    "images/espp6.jpg",
+    "images/espp7.jpg"
+  ]
+},
+{
+  name: "GANGA‼️Cobertor TPU Nintendo Switch V1/V2 CONTRA RAYONES",
+  price: 150.00,
+  description: [
+    "Protección total — A prueba de rayones, salpicaduras y suciedad. Ideal para mantener tu consola como nueva.",
+    "Diseño inteligente — Permite cargar sin quitar la funda y mantiene todos los puertos accesibles.",
+    "Material premium TPU — Flexible, resistente a impactos y con acabado brillante que realza el color original de tu Switch."
+  ],
+  images: [
+    "images/tpuu1.jpg",
+    "images/tpuu2.jpg",
+    "images/tpuu3.jpg",
+    "images/tpuu4.jpg"
+  ]
+},
+{
+  name: "Dedales Gamer Por Mayor y Al Detalle",
+  price: 30.00,
+  description: [
+    "Reacción ultra rápida — Mejora tu precisión y evita resbalones gracias a su tejido conductivo sensible al tacto.",
+    "Comodidad total — Suaves, elásticos y transpirables, ideales para largas sesiones de juego.",
+    "Aumenta tu rendimiento — Perfectos para Free Fire, PUBG, COD Mobile y más."
+  ],
+  images: [
+    "images/dedall1.jpg",
+    "images/dedall2.jpg",
+    "images/dedall3.jpg",
+    "images/dedall4.jpg"
+  ]
+},
+{
+  name: "Gorros Suavecitos Calentitos para Bebé 1-2 años Set 3 piezas",
+  price: 300.00,
+  description: [
+    "Diseño tierno — Bordado con un adorable dinosaurio, ideal para bebés de 1 a 2 años.",
+    "Material suave y cálido — Tejido delicado que protege la cabecita del frío sin irritar la piel.",
+    "Colores encantadores — Rosado, gris y negro para combinar con cualquier atuendo."
+  ],
+  images: [
+    "images/gorrrrr1.jpg"
+  ]
+},
+{
+  name: "Organizadores de Maleta para Viajes Set 6 Piezas VARIEDAD COLORES",
+  price: 300.00,
+  description: [
+    "Ahorra espacio y mantén todo en orden — Separa tu ropa, calzado y accesorios fácilmente para viajes sin estrés.",
+    "Material resistente y ligero — Fabricados con tela impermeable, ideales para proteger tus prendas.",
+    "Variedad de colores elegantes — Perfectos para identificar tus pertenencias y viajar con estilo."
+  ],
+  images: [
+    "images/organnn1.jpg",
+    "images/organnn2.jpg"
+  ]
+},
+{
+  name: "Bolso Mensajero para Viajes",
+  price: 360.00,
+  description: [
+    "Ideal para viajeros — Tamaño compacto pero espacioso (26×21×9 cm) con múltiples compartimentos y cierres de alta calidad.",
+    "Diseño funcional y resistente — Perfecto para guardar pasaporte, celular, cartera, llaves y documentos.",
+    "Uso versátil — Puedes llevarlo como bolso cruzado o al hombro, cómodo para viajes, trabajo o uso diario."
+  ],
+  images: [
+    "images/bolmm1.jpg",
+    "images/bolmm2.jpg"
+  ]
+},
+{
+  name: "Peluche Perrito San Valentin para Niño Rígido",
+  price: 150.00,
+  description: [
+    "Perfecto para regalar — Ideal para expresar cariño en San Valentín o cualquier ocasión especial.",
+    "Textura suave y resistente — Su cuerpo rígido mantiene la forma, mientras el peluche es agradable al tacto.",
+    "Detalles encantadores — Con corazones bordados y frases como “Love” y “I Love You”, que lo hacen aún más tierno."
+  ],
+  images: [
+    "images/pecl1.jpg",
+    "images/pecl2.jpg"
+  ]
+},
+{
+  name: "Linterna Foco Recargable 4 modos 6 Leds",
+  price: 200.00,
+  description: [
+    "Potente y versátil — Con 6 focos LED y 4 modos de luz (alta, media, estroboscópica y lateral COB), ilumina cualquier espacio con gran intensidad.",
+    "Recargable por USB — Incluye indicador de batería para monitorear el nivel de carga en tiempo real.",
+    "Diseño resistente y ergonómico — Fabricada en material ABS de alta calidad, con agarre cómodo y tamaño ideal para camping, trabajo o emergencias."
+  ],
+  images: [
+    "images/focoo1.jpg",
+    "images/focoo2.jpg",
+    "images/focoo3.jpg"
+  ]
+},
+{
+  name: "Camión con 10 carros de Cuerda",
+  price: 500.00,
+  description: [
+    "Set completo — Incluye 1 camión de transporte de 3 niveles y 10 carros plasticos de colores diseño deportivo y de cuerda veloces.",
+    "Diseño plegable y resistente — El camión mide 28 cm, fabricado en plástico duradero, ideal para niños curiosos y activos.",
+    "Regalo perfecto — Ideal para esta Navidad o cumpleaños, promueve la imaginación y el juego creativo."
+  ],
+  images: [
+    "images/camcar1.jpg",
+    "images/camcar2.jpg"
+  ]
+},
+{
+  name: "Avión Pistola Lanzadora Dinámica",
+  price: 250.00,
+  description: [
+    "Lanzamiento potente y preciso — Solo apunta, aprieta el gatillo y mira cómo el avión despega volando alto con fuerza.",
+    "Material liviano y seguro — Fabricado en espuma resistente, ideal para niños, sin riesgo de golpes ni daños.",
+    "Entretenimiento activo — Perfecto para jugar al aire libre, desarrollar coordinación y disfrutar en familia."
+  ],
+  images: [
+    "images/pistolvu1.jpg",
+    "images/pistolvu2.jpg",
+    "images/pistolvu3.jpg",
+    "images/pistolvu4.jpg"
+  ]
+},
+{
+  name: "Forro de Casco Peluche Santa Claus",
+  price: 500.00,
+  description: [
+    "Diseño festivo y divertido — Transforma tu casco en un casco navideño con gorro de Santa y nariz de reno.",
+    "Material de peluche suave — Cálido, cómodo y fácil de colocar, no daña la pintura del casco.",
+    "Ideal para motorizados navideños — Perfecto para desfiles, regalos o simplemente llevar el espíritu de Navidad en cada recorrido."
+  ],
+  images: [
+    "images/clausc1.jpg",
+    "images/clausc2.jpg"
+  ]
+},
+{
+  name: "RTX 3060 12GB GDDR6 ZOTAC GAMING",
+  price: 9500.00,
+  description: [
+    "Memoria: 12GB GDDR6 ultra rápida / Arquitectura NVIDIA Ampere: con núcleos RT y Tensor de última generación.",
+    "Tecnología IceStorm 2.0: refrigeración avanzada y silenciosa / Freeze Tech: apaga los ventiladores cuando no hay carga.",
+    "FireStorm Utility: personaliza rendimiento, velocidad y RGB. / Soporte Ray Tracing y DLSS: gráficos realistas y mejor rendimiento.",
+    "Ideal para gamers y creadores que buscan potencia, estabilidad, alto rendimiento gráfico y edición profesional."
+  ],
+  images: [
+    "images/zotac1.jpg",
+    "images/zotac2.jpg",
+    "images/zotac3.jpg"
+  ]
+},
+{
+  name: "Teclado y Mouse RGB Gaming Combo PROMO",
+  price: 450.00,
+  description: [
+    "Iluminación arcoíris profesional: luces LED personalizables con efecto brillante para sesiones de juego épicas.",
+    "Teclado QWERTY de 104 teclas: diseño ergonómico, respuesta rápida y silenciosa, ideal para gamers o trabajo.",
+    "Mouse de precisión: sensor óptico fluido con retroiluminación RGB para movimientos exactos y cómodos."
+  ],
+  images: [
+    "images/combb1.jpg",
+    "images/combb2.jpg",
+    "images/combb3.jpg",
+    "images/combb4.jpg",
+    "images/combb5.jpg"
+  ]
+},
+{
+  name: "Memoria USB 2TB 3.0 Xiaomi + Adaptador Tipo C Incluido",
+  price: 550.00,
+  description: [
+    "Velocidad extrema USB 3.0: transfiere archivos grandes en segundos con conexión estable y rápida.",
+    "Compatible con todo: úsala en computadoras, celulares, tablets o Smart TV gracias al adaptador Tipo C incluido.",
+    "Diseño elegante y resistente: cuerpo metálico premium con anillo llavero, ideal para llevar tus datos con estilo y seguridad."
+  ],
+  images: [
+    "images/usbx1.jpg"
+  ]
+},
+{
+  name: "Mesa Gaming Tipo L con Luz Led Facil Armado",
+  price: 3800.00,
+  description: [
+    "Iluminación LED ambiental: transforma tu setup con luces RGB que realzan el ambiente gamer.",
+    "Diseño en forma de L: aprovecha al máximo tu espacio para dos monitores, PC y accesorios.",
+    "Armado rápido y estructura firme: materiales resistentes y superficie amplia tipo fibra de carbono."
+  ],
+  images: [
+    "images/escrit1.jpg",
+    "images/escrit2.jpg",
+    "images/escrit3.jpg"
+  ]
+},
+{
+  name: "Bolso Grande Bandolera Calidad",
+  price: 420.00,
+  description: [
+    "Amplio y funcional: espacio ideal para tablet, documentos, billetera y más, perfecto para uso diario o viajes.",
+    "Material premium: fabricado con lona reforzada y cremalleras metálicas duraderas.",
+    "Estilo moderno y cómodo: correa ajustable, diseño elegante y bolsillos organizadores que te mantienen siempre preparado."
+  ],
+  images: [
+    "images/bolpp1.jpg",
+    "images/bolpp2.jpg"
+  ]
+},
+{
+  name: "Soporte Celular para Carro Retrovisor",
+  price: 190.00,
+  description: [
+    "Vista perfecta en todo momento: su rotación de 360° te permite ajustar el ángulo ideal sin bloquear tu visión al conducir.",
+    "Agarre firme y seguro: sistema de sujeción estable para mantener tu celular fijo incluso en caminos irregulares.",
+    "Instalación fácil y adaptable: se ajusta a la mayoría de retrovisores, ideal para GPS, videollamadas o grabaciones."
+  ],
+  images: [
+    "images/carra1.jpg",
+    "images/carra2.jpg",
+    "images/carra3.jpg"
+  ]
+},
+{
+  name: "Cosmetiquera de Viaje Plegable Práctica y Elegante",
+  price: 280.00,
+  description: [
+    "Organización total: múltiples compartimentos con cierre y malla transparente para tener todo a la vista y al alcance.",
+    "Protege tus cosméticos y artículos personales de la manera mas ordenada y limpia.",
+    "Diseño colgante y portátil: ideal para viajes, gimnasio o uso diario; se cuelga fácilmente y ocupa poco espacio."
+  ],
+  images: [
+    "images/bolss1.jpg",
+    "images/bolss2.jpg",
+    "images/bolss3.jpg"
+  ]
+}
 
 
 
+//ULTIMO PRODUCTO
 
 
 
