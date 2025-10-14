@@ -978,6 +978,7 @@ const products = [
     "images/pulseraduo2.jpg"
   ]
 },
+//INICIO FALTANTES CATEGORIAS
 {
   name: "Vitaminas Capsulas para Cabello Vitaminas A-C-E Restaura y Sana SELLADAS",
   price: 280.00,
@@ -999,6 +1000,7 @@ const products = [
 {
   name: "Memoria Micro SD 2TB V30",
   price: 800.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Ideal para guardar miles de fotos, videos 4K, música y aplicaciones sin preocuparte por el espacio.",
     "Velocidad de lectura V30 / U3 / A1, perfecta para grabación fluida en cámaras, drones, celulares y consolas.",
@@ -1012,6 +1014,7 @@ const products = [
 {
   name: "Carteras para Dama Variedad",
   price: 235.00,
+  categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Diseños modernos y versátiles, ideales para combinar con cualquier outfit, desde casual hasta elegante.",
     "Materiales de calidad, con acabados suaves, cierres seguros y detalles metálicos o bordados según el modelo.",
@@ -1033,6 +1036,7 @@ const products = [
 {
   name: "Cartera Grande para Mujer Incluye Lazo",
   price: 450.00,
+  categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Diseño sofisticado y femenino, con detalle de lazo desmontable que agrega un toque chic a cualquier look.",
     "Amplio espacio interior, ideal para guardar celular, billetera, maquillaje y accesorios personales.",
@@ -1047,6 +1051,7 @@ const products = [
 {
   name: "Esferas Navideñas Set de 50 Piezas Surtido",
   price: 300.00,
+  category: "Accesorios Varios",
   description: [
     "Decoración completa para tu árbol, con una hermosa combinación de colores clásicos: rojo, verde, dorado y azul.",
     "Acabados variados (brillantes, mate y con glitter) para darle un toque elegante y festivo a cualquier espacio.",
@@ -1059,6 +1064,7 @@ const products = [
 {
   name: "Flores Pascuas Navideñas Decoraciones Navidad",
   price: 120.00,
+  category: "Accesorios Varios",
   description: [
     "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
     "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
@@ -1075,6 +1081,7 @@ const products = [
 {
   name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
   price: 600.00,
+  category: "Accesorios Varios",
   description: [
     "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
     "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
@@ -1091,6 +1098,7 @@ const products = [
 {
   name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
   price: 440.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tables"],
   description: [
     "Conecta y juega sin cables — Compatible con PS3, PS4 y PC, con respuesta rápida y sin retrasos.",
     "Diseño ergonómico y preciso — Joysticks suaves, botones sensibles y vibración realista para una experiencia pro.",
@@ -1106,6 +1114,7 @@ const products = [
 {
   name: "Kit Accesorios Go Pro 4/5/6/7/8/9/10/11/12 27 en 1",
   price: 1300.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Todo en uno para cualquier aventura — Soportes de pecho, cabeza, muñeca, bicicleta, trípode, flotador y más.",
     "Compatibilidad total — Funciona con todas las cámaras GoPro y deportivas (Hero 4/5/6/7/8/9/10/11/12).",
@@ -1118,6 +1127,7 @@ const products = [
 {
   name: "Lapiz 2da Generacion para iPad Rechazo de Palma Carga Magnetica",
   price: 1000.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Conexión instantánea y carga magnética — Se adhiere al iPad y se carga sin cables en solo 2 h para hasta 9 h de uso continuo.",
     "Escritura natural y precisa — Dibuja o escribe sin retrasos ni marcas por contacto de la mano (rechazo de palma).",
@@ -1134,6 +1144,7 @@ const products = [
 {
   name: "Forro para Casco Conejo Tipo Peluche CALIDAD",
   price: 500.00,
+  categories: ["Accesorios Varios", "Auto y Moto"],
   description: [
     "Diseño único y llamativo — Convierte tu casco en el centro de atención con su estilo divertido y suave al tacto.",
     "Material de alta calidad — Peluche grueso, resistente y cómodo, no se deforma ni se pela con el uso.",
@@ -1148,6 +1159,7 @@ const products = [
 {
   name: "Accesorios Go Pro Hero 9/10/11/12 63 en 1 INCLUYE VIDRIOS TEMPLADOS",
   price: 1800.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Todo lo que necesitas en un solo kit — Incluye correas, soportes, trípodes, flotador, ventosa, filtros y más para cualquier tipo de grabación.",
     "Protección total — Incluye vidrios templados para cuidar la lente y pantalla de tu cámara en todo momento.",
@@ -1160,6 +1172,7 @@ const products = [
 {
   name: "ENVIO GRATIS MicroSD 512GB 200MB/s SanDisk Extreme Pro 4K UHD",
   price: 2500.00,
+  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Velocidad extrema de hasta 200MB/s — Ideal para grabar y transferir videos en 4K UHD sin interrupciones.",
     "Diseño resistente — Soporta agua, golpes, rayos X y temperaturas extremas.",
@@ -1173,6 +1186,7 @@ const products = [
 {
   name: "Dron Premium K3 E99Pro 4K Doble Camara Luz Led con Estuche",
   price: 800.00,
+  categories: ["Juguetes", "Tecnologia y Juegos"],
   description: [
     "Imágenes Ultra HD — Cámara doble de alta definición para capturar fotos y videos con máxima claridad.",
     "Luz LED integrada — Ideal para vuelos nocturnos o en baja luz, con un diseño moderno y plegable.",
@@ -1189,6 +1203,7 @@ const products = [
 {
   name: "Ganchos para Maquillaje Sujeta Cabello SET 6 Piezas",
   price: 150.00,
+  categories: ["Damas", "Accesorios Varios"],
   description: [
     "No deja marcas — Ideal para sujetar el cabello mientras te maquillas o haces skincare sin arruinar el peinado.",
     "Suaves y resistentes — Pinzas con acabado liso que evitan tirones y cuidan tu cabello.",
@@ -1203,6 +1218,7 @@ const products = [
 {
   name: "Borlas/Puff para Maquillaje Suaves y Calidad",
   price: 25.00,
+  categories: ["Damas", "Accesorios Varios"],
   description: [
     "Acabado profesional — Borlas ultra suaves ideales para aplicar polvos sueltos o compactos con un acabado aterciopelado.",
     "Diseño en forma de gota — Perfectas para zonas difíciles como nariz y ojos, logrando una aplicación uniforme.",
@@ -1217,6 +1233,7 @@ const products = [
 {
   name: "Cubre Pezon Adhesivo Silicona 2 Figuras",
   price: 120.00,
+  categories: ["Damas", "Accesorios Varios"],
   description: [
     "Comodidad y discreción total — Hechos de silicona suave, se adaptan perfectamente al cuerpo y no se marcan bajo la ropa.",
     "Autoadhesivos y reutilizables — Fáciles de colocar, no se deslizan y pueden usarse varias veces sin perder adherencia.",
@@ -1232,6 +1249,7 @@ const products = [
 {
   name: "Set Aretes Collar 3 piezas Delicados Joyeria Europea",
   price: 190.00,
+  categories: ["Damas", "Joyeria"],
   description: [
     "Diseños elegantes y modernos — Cada set combina brillo y estilo europeo, perfectos para lucir con cualquier outfit.",
     "Alta calidad y acabado fino — Elaborados con materiales resistentes y detalles brillantes que no se opacan con el uso.",
@@ -1248,6 +1266,7 @@ const products = [
 {
   name: "Camara Web con Microfono 1080HD",
   price: 400.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Imagen nítida y clara — Resolución Full HD ideal para videollamadas, clases en línea, streaming o reuniones profesionales.",
     "Micrófono con reducción de ruido — Capta tu voz con excelente calidad, eliminando ruidos de fondo para una comunicación más natural.",
@@ -1262,6 +1281,7 @@ const products = [
 {
   name: "Llave Yamaha en Blanco para Ybr/Genesis/Fz/Yzf/R1/R6/R6S/Xjr 1300",
   price: 200.00,
+  categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Repuesto ideal y resistente — Llave en blanco lista para cortar según tu modelo Yamaha, fabricada en metal duradero.",
     "Compatibilidad amplia — Perfecta para YBR, FZ, Genesis, YZF-R1, R6, R6S, XJR1300 y más.",
@@ -1277,6 +1297,7 @@ const products = [
 {
   name: "Llave Yamaha en Blanco R25/R3/Xmax/R125/200/250/MT01/SR400/FZ6R/FZ6N/MT03/R15",
   price: 200.00,
+  categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Alta compatibilidad y precisión — Diseñada para adaptarse perfectamente a varios modelos Yamaha, lista para cortar según tu llave original.",
     "Material resistente y duradero — Fabricada en acero de alta calidad con mango firme para mayor seguridad y vida útil.",
@@ -1292,6 +1313,7 @@ const products = [
 {
   name: "Funda para Volante Set 3 Piezas Timon Carro 37-38cm",
   price: 300.00,
+  categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Comodidad y agarre total — Material antideslizante que brinda control firme al conducir, incluso en trayectos largos.",
     "Protege y renueva tu interior — Mantiene el volante fresco en calor y cálido en frío, evitando desgaste y mejorando la estética del auto.",
@@ -1306,6 +1328,7 @@ const products = [
 {
   name: "Esponja Mágica Limpia de TODO",
   price: 10.00,
+  categories: ["Seguridad Hogar", "Accesorios Varios"],
   description: [
     "Elimina manchas al instante — Ideal para paredes, cocina, baño, zapatos, autos y más. Solo añade agua, ¡sin químicos!",
     "Material duradero y reutilizable — Su textura de melamina borra grasa, tinta, rayones y suciedad sin esfuerzo.",
@@ -1324,6 +1347,7 @@ const products = [
 {
   name: "GANGA‼️Cobertor TPU Nintendo Switch V1/V2 CONTRA RAYONES",
   price: 150.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Protección total — A prueba de rayones, salpicaduras y suciedad. Ideal para mantener tu consola como nueva.",
     "Diseño inteligente — Permite cargar sin quitar la funda y mantiene todos los puertos accesibles.",
@@ -1339,6 +1363,7 @@ const products = [
 {
   name: "Dedales Gamer Por Mayor y Al Detalle",
   price: 30.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Reacción ultra rápida — Mejora tu precisión y evita resbalones gracias a su tejido conductivo sensible al tacto.",
     "Comodidad total — Suaves, elásticos y transpirables, ideales para largas sesiones de juego.",
@@ -1354,6 +1379,7 @@ const products = [
 {
   name: "Gorros Suavecitos Calentitos para Bebé 1-2 años Set 3 piezas",
   price: 300.00,
+  categories: ["Ropa y Calzado", "Juguetes"],
   description: [
     "Diseño tierno — Bordado con un adorable dinosaurio, ideal para bebés de 1 a 2 años.",
     "Material suave y cálido — Tejido delicado que protege la cabecita del frío sin irritar la piel.",
@@ -1366,6 +1392,7 @@ const products = [
 {
   name: "Organizadores de Maleta para Viajes Set 6 Piezas VARIEDAD COLORES",
   price: 300.00,
+  categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ahorra espacio y mantén todo en orden — Separa tu ropa, calzado y accesorios fácilmente para viajes sin estrés.",
     "Material resistente y ligero — Fabricados con tela impermeable, ideales para proteger tus prendas.",
@@ -1379,6 +1406,7 @@ const products = [
 {
   name: "Bolso Mensajero para Viajes",
   price: 360.00,
+  categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ideal para viajeros — Tamaño compacto pero espacioso (26×21×9 cm) con múltiples compartimentos y cierres de alta calidad.",
     "Diseño funcional y resistente — Perfecto para guardar pasaporte, celular, cartera, llaves y documentos.",
@@ -1392,6 +1420,7 @@ const products = [
 {
   name: "Peluche Perrito San Valentin para Niño Rígido",
   price: 150.00,
+  categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Perfecto para regalar — Ideal para expresar cariño en San Valentín o cualquier ocasión especial.",
     "Textura suave y resistente — Su cuerpo rígido mantiene la forma, mientras el peluche es agradable al tacto.",
@@ -1405,6 +1434,7 @@ const products = [
 {
   name: "Linterna Foco Recargable 4 modos 6 Leds",
   price: 200.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Potente y versátil — Con 6 focos LED y 4 modos de luz (alta, media, estroboscópica y lateral COB), ilumina cualquier espacio con gran intensidad.",
     "Recargable por USB — Incluye indicador de batería para monitorear el nivel de carga en tiempo real.",
@@ -1419,6 +1449,7 @@ const products = [
 {
   name: "Camión con 10 carros de Cuerda",
   price: 500.00,
+  categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Set completo — Incluye 1 camión de transporte de 3 niveles y 10 carros plasticos de colores diseño deportivo y de cuerda veloces.",
     "Diseño plegable y resistente — El camión mide 28 cm, fabricado en plástico duradero, ideal para niños curiosos y activos.",
@@ -1432,6 +1463,7 @@ const products = [
 {
   name: "Avión Pistola Lanzadora Dinámica",
   price: 250.00,
+  categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Lanzamiento potente y preciso — Solo apunta, aprieta el gatillo y mira cómo el avión despega volando alto con fuerza.",
     "Material liviano y seguro — Fabricado en espuma resistente, ideal para niños, sin riesgo de golpes ni daños.",
@@ -1447,6 +1479,7 @@ const products = [
 {
   name: "Forro de Casco Peluche Santa Claus",
   price: 500.00,
+  categories: ["Juguetes", "Auto y Moto"],
   description: [
     "Diseño festivo y divertido — Transforma tu casco en un casco navideño con gorro de Santa y nariz de reno.",
     "Material de peluche suave — Cálido, cómodo y fácil de colocar, no daña la pintura del casco.",
@@ -1460,6 +1493,7 @@ const products = [
 {
   name: "RTX 3060 12GB GDDR6 ZOTAC GAMING",
   price: 9500.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablet"],
   description: [
     "Memoria: 12GB GDDR6 ultra rápida / Arquitectura NVIDIA Ampere: con núcleos RT y Tensor de última generación.",
     "Tecnología IceStorm 2.0: refrigeración avanzada y silenciosa / Freeze Tech: apaga los ventiladores cuando no hay carga.",
@@ -1475,6 +1509,7 @@ const products = [
 {
   name: "Teclado y Mouse RGB Gaming Combo PROMO",
   price: 450.00,
+  categories: ["Tecnologia y Juegos", "Juguetes"],
   description: [
     "Iluminación arcoíris profesional: luces LED personalizables con efecto brillante para sesiones de juego épicas.",
     "Teclado QWERTY de 104 teclas: diseño ergonómico, respuesta rápida y silenciosa, ideal para gamers o trabajo.",
@@ -1491,6 +1526,7 @@ const products = [
 {
   name: "Memoria USB 2TB 3.0 Xiaomi + Adaptador Tipo C Incluido",
   price: 550.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidad extrema USB 3.0: transfiere archivos grandes en segundos con conexión estable y rápida.",
     "Compatible con todo: úsala en computadoras, celulares, tablets o Smart TV gracias al adaptador Tipo C incluido.",
@@ -1503,6 +1539,7 @@ const products = [
 {
   name: "Mesa Gaming Tipo L con Luz Led Facil Armado",
   price: 3800.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Iluminación LED ambiental: transforma tu setup con luces RGB que realzan el ambiente gamer.",
     "Diseño en forma de L: aprovecha al máximo tu espacio para dos monitores, PC y accesorios.",
@@ -1517,6 +1554,7 @@ const products = [
 {
   name: "Bolso Grande Bandolera Calidad",
   price: 420.00,
+  categories: ["Bolsos y Carteras", "Accesorios Varios"],
   description: [
     "Amplio y funcional: espacio ideal para tablet, documentos, billetera y más, perfecto para uso diario o viajes.",
     "Material premium: fabricado con lona reforzada y cremalleras metálicas duraderas.",
@@ -1530,6 +1568,7 @@ const products = [
 {
   name: "Soporte Celular para Carro Retrovisor",
   price: 190.00,
+  categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Vista perfecta en todo momento: su rotación de 360° te permite ajustar el ángulo ideal sin bloquear tu visión al conducir.",
     "Agarre firme y seguro: sistema de sujeción estable para mantener tu celular fijo incluso en caminos irregulares.",
@@ -1544,6 +1583,7 @@ const products = [
 {
   name: "Cosmetiquera de Viaje Plegable Práctica y Elegante",
   price: 280.00,
+  categories: ["Bolsos y Carteras", "Accesorios Varios"],
   description: [
     "Organización total: múltiples compartimentos con cierre y malla transparente para tener todo a la vista y al alcance.",
     "Protege tus cosméticos y artículos personales de la manera mas ordenada y limpia.",
