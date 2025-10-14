@@ -528,8 +528,7 @@ const products = [
     "images/p102x3.jpg",
     "images/p102x4.jpg",
     "images/p102x5.jpg",
-    "images/p102x6.jpg",
-    "images/p102x7.jpg"
+    "images/p102x6.jpg"
   ]
 },
 {
@@ -945,8 +944,7 @@ const products = [
   ],
   images: [
     "images/mousee1.jpg",
-    "images/mousee2.jpg",
-    "images/mousee3.jpg"
+    "images/mousee2.jpg"
   ]
 },
 {
@@ -1340,8 +1338,7 @@ const products = [
     "images/espp3.jpg",
     "images/espp4.jpg",
     "images/espp5.jpg",
-    "images/espp6.jpg",
-    "images/espp7.jpg"
+    "images/espp6.jpg"
   ]
 },
 {
