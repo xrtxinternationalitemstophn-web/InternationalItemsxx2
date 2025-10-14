@@ -2432,6 +2432,23 @@ function renderCategoryBar() {
 
 renderCategoryBar();
 
+//VENDEDOR OTRO
+// === Mostrar campo "Otro" si el usuario selecciona esa opción ===
+const vendedorSelect = document.getElementById("vendedor_aten");
+const vendedorOtroInput = document.getElementById("vendedor_otro");
+
+vendedorSelect.addEventListener("change", () => {
+  if (vendedorSelect.value === "Otro") {
+    vendedorOtroInput.style.display = "block";
+    vendedorOtroInput.setAttribute("required", "required"); // vuelve obligatorio
+  } else {
+    vendedorOtroInput.style.display = "none";
+    vendedorOtroInput.removeAttribute("required");
+    vendedorOtroInput.value = ""; // limpia si cambia de opción
+  }
+});
+
+
 /* === INICIO === */
 renderProducts();
 
