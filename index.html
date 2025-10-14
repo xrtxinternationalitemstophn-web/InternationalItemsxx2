@@ -102,13 +102,24 @@
     <option value="Otro departamento">Otro departamento</option>
   </select>
 
-  <label>Vendedor Que te Atendió*</label>
-  <select name="vendedor_aten" required>
-    <option value="">Selecciona un Vendedor</option>
-    <option value="Mayra">Mayra</option>
-    <option value="Edith">Edith</option>
-    <option value="Rigo">Rigo</option>
-  </select>
+ <label>Vendedor Que te Atendió*</label>
+<select name="vendedor_aten" id="vendedor_aten" required>
+  <option value="">Selecciona un Vendedor</option>
+  <option value="Mayra">Mayra</option>
+  <option value="Edith">Edith</option>
+  <option value="Rigo">Rigo</option>
+  <option value="Otro">Otro</option>
+</select>
+
+<!-- 🆕 Campo oculto que se muestra solo si elige “Otro” -->
+<input
+  type="text"
+  name="vendedor_otro"
+  id="vendedor_otro"
+  placeholder="Escriba el nombre del vendedor"
+  style="display: none; margin-top: 8px;"
+/>
+
   
   <label>Método de pago*</label>
   <select name="metodo_pago" required>
