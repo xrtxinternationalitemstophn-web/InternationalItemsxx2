@@ -1603,7 +1603,25 @@ const products = [
 ];
 
 // === CONFIGURACIÓN ===
-const FORMSPREE_URL = "https://formspree.io/f/xovkkovk";
+// === EMAILJS CONFIG ===
+// === EMAILJS CONFIG ===
+const EMAILJS_PUBLIC_KEY = "XwKAz-6miwjRCNBcd";
+const EMAILJS_SERVICE_ID = "service_internathntop";
+
+// Usa el template que ya te funcionó en tu página de prueba (pedidos):
+const EMAILJS_PEDIDOS_TEMPLATE = "template_sx8s0c5";
+
+// Crea uno en EmailJS para “Contacto” con variables: nombre, correo, mensaje
+// y reemplaza este ID por el real que te dé EmailJS:
+const EMAILJS_CONTACTO_TEMPLATE = "template_contacto";
+
+
+if (window.emailjs) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+} else {
+  console.error("Email no se cargó");
+}
+
 
 // === FORMATEADOR DE MONEDA ===
 const formatLempiras = amount =>
@@ -1958,61 +1976,63 @@ function openCartModal() {
 
 
 /* === ENVÍO A FORMSPREE === */
-checkoutForm.addEventListener("submit", async e => {
+/* === ENVÍO CON EMAILJS (CHECKOUT) === */
+checkoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // ✅ Validar manualmente todos los campos requeridos
+  // Validación de requeridos (igual que antes)
   const requiredFields = checkoutForm.querySelectorAll("[required]");
   let allFilled = true;
-
   requiredFields.forEach(field => {
     const value = field.value.trim();
-    if (!value) {
-      field.style.border = "2px solid red";
-      allFilled = false;
-    } else {
-      field.style.border = "1px solid #ccc";
-    }
+    field.style.border = value ? "1px solid #ccc" : "2px solid red";
+    if (!value) allFilled = false;
   });
-
   if (!allFilled) {
     showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
     return;
   }
 
-  // ✅ Calcular total con cantidades
-  let total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-  let pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
+  // Total y detalle de carrito
+  const total  = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  const pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
-  // ✅ Preparar datos para Formspree
-  const formData = new FormData(checkoutForm);
-  formData.append("pedido", pedido);
-  formData.append("total", formatLempiras(total));
-  formData.append("metodo_pago", checkoutForm.metodo_pago.value);
+  // Datos del form
+  const fd = new FormData(checkoutForm);
+  const vendedor = fd.get("vendedor_aten") === "Otro" && (fd.get("vendedor_otro") || "").trim()
+    ? fd.get("vendedor_otro")
+    : fd.get("vendedor_aten");
+
+  // Payload para tu template de EmailJS (template_sx8s0c5)
+  const payload = {
+    nombre:     fd.get("nombre") || "",
+    telefono:   fd.get("telefono1") || fd.get("telefono2") || "",
+    direccion:  fd.get("direccion") || "",
+    comentario:
+      `Referencia: ${fd.get("referencia") || "-"} | ` +
+      `Día: ${fd.get("dia") === "Otro" ? (fd.get("dia_otro") || "-") : (fd.get("dia") || "-")} | ` +
+      `Ubicación: ${fd.get("ubicacion") || "-"} | ` +
+      `Vendedor: ${vendedor || "-"} | ` +
+      `Método de pago: ${fd.get("metodo_pago") || "-"} | ` +
+      `Total: ${formatLempiras(total)}`,
+    pedido
+  };
 
   try {
-    const res = await fetch(FORMSPREE_URL, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" },
-    });
-
-    if (res.ok) {
-      showToast(`✅ Pedido enviado correctamente  
-      ¡Gracias por tu compra!  
-      📞 Pendiente de tu celular, te contactaremos pronto 😉`);
-      checkoutForm.reset();
-      cart = [];
-      updateCart();
-      checkoutModal.classList.add("hidden");
-      document.body.classList.remove("modal-open");
-    } else {
-      showToast("❌ Error al enviar el pedido.");
-    }
-  } catch {
-    showToast("⚠️ Conexión fallida.");
+    showToast("Enviando pedido…");
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PEDIDOS_TEMPLATE, payload);
+    showToast("✅ Pedido enviado correctamente. ¡Gracias por tu compra!");
+    checkoutForm.reset();
+    cart = [];
+    updateCart();
+    checkoutModal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    showToast("❌ Error al enviar el pedido. Intenta nuevamente.");
   }
 });
+
 
 
 
