@@ -2006,7 +2006,9 @@ checkoutForm.addEventListener("submit", async (e) => {
   // Payload para tu template de EmailJS (template_sx8s0c5)
   const payload = {
     nombre:     fd.get("nombre") || "",
-    telefono:   fd.get("telefono1") || fd.get("telefono2") || "",
+    telefono: [fd.get("telefono1"), fd.get("telefono2")]
+  .filter(Boolean)
+  .join(" / "),
     direccion:  fd.get("direccion") || "",
     comentario:
       `Referencia: ${fd.get("referencia") || "-"} | ` +
@@ -2481,6 +2483,7 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
+
 
 
 
