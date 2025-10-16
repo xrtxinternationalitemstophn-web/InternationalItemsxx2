@@ -1977,23 +1977,24 @@ function openCartModal() {
 
 /* === ENVÍO A FORMSPREE === */
 /* === ENVÍO CON EMAILJS (CHECKOUT) === */
+/* === ENVÍO CON EMAILJS (CHECKOUT) — ÚNICO LISTENER === */
 checkoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Validación de requeridos (igual que antes)
+  // Validación de requeridos
   const requiredFields = checkoutForm.querySelectorAll("[required]");
   let allFilled = true;
   requiredFields.forEach(field => {
-    const value = field.value.trim();
-    field.style.border = value ? "1px solid #ccc" : "2px solid red";
-    if (!value) allFilled = false;
+    const v = (field.value || "").trim();
+    field.style.border = v ? "1px solid #ccc" : "2px solid red";
+    if (!v) allFilled = false;
   });
   if (!allFilled) {
     showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
     return;
   }
 
-  // Total y detalle de carrito
+  // Total y detalle del carrito
   const total  = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
@@ -2003,12 +2004,15 @@ checkoutForm.addEventListener("submit", async (e) => {
     ? fd.get("vendedor_otro")
     : fd.get("vendedor_aten");
 
-  // Payload para tu template de EmailJS (template_sx8s0c5)
+  // ✅ Teléfono 1 + Teléfono 2 combinados
+  const telefono1 = (fd.get("telefono1") || "").trim();
+  const telefono2 = (fd.get("telefono2") || "").trim();
+  const telefono  = [telefono1, telefono2].filter(Boolean).join(" / ");
+
+  // Payload que espera tu template template_sx8s0c5
   const payload = {
     nombre:     fd.get("nombre") || "",
-    telefono: [fd.get("telefono1"), fd.get("telefono2")]
-  .filter(Boolean)
-  .join(" / "),
+    telefono,   // 👈 ahora lleva “tel1 / tel2” cuando hay ambos
     direccion:  fd.get("direccion") || "",
     comentario:
       `Referencia: ${fd.get("referencia") || "-"} | ` +
@@ -2016,6 +2020,8 @@ checkoutForm.addEventListener("submit", async (e) => {
       `Ubicación: ${fd.get("ubicacion") || "-"} | ` +
       `Vendedor: ${vendedor || "-"} | ` +
       `Método de pago: ${fd.get("metodo_pago") || "-"} | ` +
+      // 👇 redundancia: si tu template no imprime {{telefono}}, igual verás Tel 2 aquí
+      `Teléfono 2: ${telefono2 || "-"} | ` +
       `Total: ${formatLempiras(total)}`,
     pedido
   };
@@ -2034,6 +2040,7 @@ checkoutForm.addEventListener("submit", async (e) => {
     showToast("❌ Error al enviar el pedido. Intenta nuevamente.");
   }
 });
+
 
 
 
@@ -2483,7 +2490,6 @@ renderProducts();
 
 /* === INICIO === */
 renderProducts();
-
 
 
 
