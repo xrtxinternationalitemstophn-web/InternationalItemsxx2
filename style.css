@@ -1031,6 +1031,13 @@ body.modal-open {
   border-color: var(--primary);
 }
 
+.shipping-box{
+  margin:12px 0 8px; padding:12px; border:1px solid #e5e7eb; border-radius:12px;
+  background:#fafafa;
+}
+.shipping-box .row{display:flex; justify-content:space-between; margin:6px 0; font-size:14px;}
+.shipping-box .row.total{font-weight:700; font-size:16px; margin-top:8px;}
+.shipping-box .hint{display:block; margin-top:6px; color:#6b7280; font-size:12px;}
 
 
 

@@ -75,8 +75,7 @@
   <label>Nombre del cliente*</label>
   <input type="text" name="nombre" required>
 
-  <label>Dirección de envío*</label>
-  <input type="text" name="direccion" required>
+
 
   <label>Referencia (ej. frente a hotel Clarion)*</label>
   <input type="text" name="referencia" required>
@@ -103,6 +102,7 @@
     <option value="Otro departamento">Otro departamento</option>
   </select>
 
+
  <label>Vendedor Que te Atendió*</label>
 <select name="vendedor_aten" id="vendedor_aten" required>
   <option value="">Selecciona un Vendedor</option>
@@ -122,6 +122,19 @@
 />
 
   
+  <label>Dirección de envío*</label>
+<select name="direccion_envio" id="direccion_envio" required>
+  <option value="">Selecciona tu colonia/sector</option>
+</select>
+
+<!-- 📦 Recuadro de costos -->
+<div class="shipping-box" id="shipping-box">
+  <div class="row"><span>Subtotal productos</span><span id="subtotal-checkout">—</span></div>
+  <div class="row"><span>Costo de envío</span><span id="envio-valor">—</span></div>
+  <div class="row total"><span>Total a pagar</span><span id="total-checkout">—</span></div>
+  <small class="hint">Envío GRATIS a partir de L 2,500.</small>
+</div>
+
   <label>Método de pago*</label>
   <select name="metodo_pago" required>
     <option value="">Selecciona un método</option>

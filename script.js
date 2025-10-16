@@ -1877,7 +1877,17 @@ function updateCart() {
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.textContent = totalQty;
   updateFloatingCartCount();
+
+  // 🔄 Mantener sincronizado el recuadro de envío (subtotal/envío/total)
+  if (typeof updateCheckoutTotals === "function") updateCheckoutTotals();
+
+  // 💾 Guardar carrito persistente
+  try {
+    if (typeof saveCart === 'function') saveCart();
+    else localStorage.setItem('cart', JSON.stringify(cart));
+  } catch (e) {}
 }
+
 
 
 
@@ -1941,8 +1951,18 @@ checkoutBtn.addEventListener("click", () => {
     cartModal.classList.add("hidden");
     checkoutModal.classList.remove("hidden");
     document.body.classList.add("modal-open"); // 🔹 agrega esto
+    try { updateCheckoutTotals(); } catch {}
   }
 });
+
+// Enlazar select de envío y preparar totales al abrir el checkout
+const direccionSelect = document.getElementById("direccion_envio");
+if (direccionSelect) {
+  direccionSelect.addEventListener("change", updateCheckoutTotals);
+}
+// Refrescar totales cuando se abra el checkout
+try { updateCheckoutTotals(); } catch {}
+
 
 // === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES) ===
 // === ABRIR CARRITO DESDE EL BOTÓN FLOTANTE (PC + MÓVILES, SIN BUGS) ===
@@ -1973,73 +1993,364 @@ function openCartModal() {
 }
 
 
+// === ENVÍO (shipping) ===
+const FREE_SHIPPING_THRESHOLD = 2500;
+
+function getCartSubtotal(){
+  try { return cart.reduce((s,i)=> s + (i.price * i.qty), 0) } catch { return 0; }
+}
+
+function getSelectedShipping(){
+  const sel = document.getElementById('direccion_envio');
+  if (!sel) return { area: "", cost: 0 };
+  const opt = sel.options[sel.selectedIndex];
+  const area = opt?.value || "";
+  const cost = Number(opt?.dataset?.cost || 0);
+  return { area, cost };
+}
+
+function computeShippingCost(subtotal, baseCost){
+  if (subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
+  return baseCost;
+}
+
+function updateCheckoutTotals(){
+  const subtotal = getCartSubtotal();
+  const { area, cost } = getSelectedShipping();
+  const shipping = computeShippingCost(subtotal, cost);
+  const total = subtotal + (area ? shipping : 0);
+
+  const $ = s => document.querySelector(s);
+  const put = (sel, val) => { const el = $(sel); if (el) el.textContent = val; };
+
+  put("#subtotal-checkout", typeof formatLempiras === "function" ? formatLempiras(subtotal) : subtotal);
+  put("#envio-valor", area ? (typeof formatLempiras === "function" ? formatLempiras(shipping) : shipping) : "—");
+  put("#total-checkout", typeof formatLempiras === "function" ? formatLempiras(total) : total);
+
+  // Snapshot para otras páginas
+  try {
+    localStorage.setItem("shipping_snapshot", JSON.stringify({
+      area, baseCost: cost, shipping, subtotal, total
+    }));
+  } catch {}
+}
+
+/* === ENVÍO: LISTAS POR VENDEDOR Y TOTALES === */
+// Referencias del formulario (existen en index)
+const vendedorSel = document.getElementById('vendedor_aten');
+const dirSel      = document.getElementById('direccion_envio');
+
+// 🧭 Listas
+const DIRECCIONES_MAYRA_OTRO = [
+  { text: "15 DE SEPTIEMBRE", cost: 80 },
+  { text: "ALTOS DE LOARQUE (MIRADOR)", cost: 90 },
+  { text: "ALTOS DE TONCONTIN", cost: 80 },
+  { text: "AMERICA", cost: 80 },
+  { text: "CASCADAS CITY", cost: 80 },
+  { text: "CIUDAD NUEVA", cost: 80 },
+  { text: "COLONIA LOARQUE", cost: 90 },
+  { text: "COLONIA SATELITE", cost: 90 },
+  { text: "EL SAUCE", cost: 90 },
+  { text: "LA ARBOLEDA", cost: 100 },
+  { text: "LA CATOLICA", cost: 90 },
+  { text: "LA CONCEPCION", cost: 100 },
+  { text: "LA GODOY", cost: 80 },
+  { text: "LA MIRAFLores", cost: 80 },
+  { text: "LAS CASITAS", cost: 100 },
+  { text: "LAS COLINAS", cost: 80 },
+  { text: "LAS HADAS", cost: 80 },
+  { text: "LAS LOMAS", cost: 80 },
+  { text: "LAS MINITAS", cost: 80 },
+  { text: "LAS UVAS", cost: 90 },
+  { text: "LOMA LINDA", cost: 80 },
+  { text: "LOMA VERDE", cost: 80 },
+  { text: "LOMAS DE TILOARQUE", cost: 80 },
+  { text: "LOMAS DEL TONCONTIN", cost: 80 },
+  { text: "MIRADOR DE LOS ANGELES", cost: 100 },
+  { text: "MIRAMONTES", cost: 80 },
+  { text: "PALMA REAL", cost: 90 },
+  { text: "PERIODISTA", cost: 80 },
+  { text: "PRADOS UNIVERSITARIOS", cost: 90 },
+  { text: "RESIDENCIA PLAZA", cost: 80 },
+  { text: "RESIDENCIAL CENTROAMERICA", cost: 80 },
+  { text: "RESIDENCIAL EUCALIPTO", cost: 90 },
+  { text: "RESIDENCIAL LAS CASITAS", cost: 120 },
+  { text: "RESIDENCIAL LOS HIDALGOS", cost: 100 },
+  { text: "RESIDENCIAL LOS ROBLES", cost: 90 },
+  { text: "RESIDENCIAL VENECIA", cost: 80 },
+  { text: "ROBLE OESTE", cost: 90 },
+  { text: "SAN IGNACIO", cost: 80 },
+  { text: "SAN SEBASTIAN", cost: 130 },
+  { text: "VICTOR F. ARDON", cost: 80 },
+  { text: "ALTOS DE LA GRANJA", cost: 80 },
+  { text: "ALTOS DE LA JOYA", cost: 80 },
+  { text: "BELLA ORIENTE", cost: 90 },
+  { text: "BLV JUAN PABLO SEGUNDO", cost: 80 },
+  { text: "BO EL CENTRO", cost: 80 },
+  { text: "BO LA BOLSA", cost: 80 },
+  { text: "BO MORAZAN", cost: 80 },
+  { text: "BOULERVAR KUWAIT", cost: 80 },
+  { text: "COL 3 CAMINOS", cost: 80 },
+  { text: "COL 15 DE SEPTIEMBRE", cost: 80 },
+  { text: "COL BERNARDO DACI", cost: 80 },
+  { text: "COL KENNEDY", cost: 80 },
+  { text: "COL LUIS LANDA", cost: 80 },
+  { text: "COL MAYANGLE", cost: 80 },
+  { text: "COL SAN ANGEL", cost: 80 },
+  { text: "COL TEPEYAC", cost: 80 },
+  { text: "COL SATELITE", cost: 90 },
+  { text: "COLONIA LA VEGA", cost: 80 },
+  { text: "ECOVIVIENDA", cost: 90 },
+  { text: "EL ALAMO", cost: 80 },
+  { text: "EL HOGAR", cost: 80 },
+  { text: "EL PRADO", cost: 80 },
+  { text: "LA ALAMEDA", cost: 80 },
+  { text: "LA FLORENCIA", cost: 80 },
+  { text: "LA GRANJA", cost: 80 },
+  { text: "LA HUMUYA", cost: 80 },
+  { text: "LA MARADIAGA", cost: 80 },
+  { text: "VENECIA", cost: 90 },
+ { text: "EL LADO DE LA QUESADA", cost: 100 },
+{ text: "LA ULLOA", cost: 100 },
+{ text: "ORILLA DEL ANILLO EL DIVINO PARAISO", cost: 100 },
+{ text: "LA SAN MIGUEL", cost: 100 },
+{ text: "LA TRAVESÍA (CALLE PRINCIPAL, NO SE PASA DEL PALO)", cost: 100 },
+{ text: "CERRO GRANDE ZONA 1/2/3", cost: 90 },
+{ text: "CERRO GRANDE ZONA 4", cost: 100 },
+{ text: "CERRO GRANDE ZONA 8", cost: 120 },
+{ text: "LA RONDA", cost: 90 },
+{ text: "EL BOSQUE", cost: 100 },
+{ text: "BUENOS AIRES (CALLE PRINCIPAL)", cost: 100 },
+{ text: "EL MANCHEN", cost: 90 },
+{ text: "21 DE OCTUBRE", cost: 100 }
+];
+
+const DIRECCIONES_EDITH_RIGO = [
+  { text: "15 DE SEPTIEMBRE", cost: 80 },
+  { text: "ALTOS DE TONCONTIN", cost: 80 },
+  { text: "CASCADAS CITY", cost: 80 },
+  { text: "COLONIA LOARQUE", cost: 100 },
+  { text: "EL SAUCE", cost: 100 },
+  { text: "LA CATOLICA", cost: 80 },
+  { text: "LA GODOY", cost: 80 },
+  { text: "LAS CASITAS", cost: 100 },
+  { text: "LAS HADAS", cost: 100 },
+  { text: "LAS MINITAS", cost: 80 },
+  { text: "LOMA LINDA", cost: 80 },
+  { text: "LOMAS DE TILOARQUE", cost: 80 },
+  { text: "MIRADOR DE LOS ANGELES", cost: 100 },
+  { text: "MONTELIMAR", cost: 80 },
+  { text: "PERIODISTA", cost: 80 },
+  { text: "RESIDENCIA PLAZA", cost: 80 },
+  { text: "RESIDENCIAL EUCALIPTO", cost: 100 },
+  { text: "RESIDENCIAL LOS HIDALGOS", cost: 100 },
+  { text: "RESIDENCIAL VENECIA", cost: 100 },
+  { text: "SAN IGNACIO", cost: 80 },
+  { text: "VICTOR F. ARDON", cost: 80 },
+  { text: "ALTOS DE LOARQUE (MIRADOR)", cost: 100 },
+  { text: "AMERICA", cost: 80 },
+  { text: "CIUDAD NUEVA", cost: 80 },
+  { text: "COLONIA SATELITE", cost: 100 },
+  { text: "LA ARBOLEDA", cost: 100 },
+  { text: "LA CONCEPCION", cost: 80 },
+  { text: "LA MIRAFLores", cost: 80 },
+  { text: "LAS COLINAS", cost: 80 },
+  { text: "LAS LOMAS", cost: 80 },
+  { text: "LAS UVAS", cost: 100 },
+  { text: "LOMA VERDE", cost: 100 },
+  { text: "LOMAS DEL TONCONTIN", cost: 80 },
+  { text: "MIRAMONTES", cost: 80 },
+  { text: "PALMA REAL", cost: 100 },
+  { text: "PRADOS UNIVERSITARIOS", cost: 100 },
+  { text: "RESIDENCIAL CENTROAMERICA", cost: 100 },
+  { text: "RESIDENCIAL LAS CASITAS", cost: 100 },
+  { text: "RESIDENCIAL LOS ROBLES", cost: 100 },
+  { text: "ROBLE OESTE", cost: 100 },
+  { text: "SAN SEBASTIAN", cost: 120 },
+  { text: "ALTOS DE LA GRANJA", cost: 80 },
+  { text: "ALTOS DE LA JOYA", cost: 80 },
+  { text: "BELLA ORIENTE", cost: 80 },
+  { text: "BLV JUAN PABLO SEGUNDO", cost: 80 },
+  { text: "BO EL CENTRO", cost: 80 },
+  { text: "BO LA BOLSA", cost: 80 },
+  { text: "BO MORAZAN", cost: 80 },
+  { text: "BOULERVAR KUWAIT", cost: 80 },
+  { text: "COL 3 CAMINOS", cost: 80 },
+  { text: "COL 15 DE SEPTIEMBRE", cost: 80 },
+  { text: "COL BERNARDO DACI", cost: 80 },
+  { text: "COL KENNEDY", cost: 80 },
+  { text: "COL LUIS LANDA", cost: 80 },
+  { text: "COL MAYANGLE", cost: 80 },
+  { text: "COL SAN ANGEL", cost: 80 },
+  { text: "COL TEPEYAC", cost: 80 },
+  { text: "COLONIA LA VEGA", cost: 80 },
+  { text: "ECOVIVIENDA", cost: 100 },
+  { text: "EL ALAMO", cost: 80 },
+  { text: "EL PRADO", cost: 80 },
+  { text: "LA ALAMEDA", cost: 80 },
+  { text: "LA FLORENCIA", cost: 80 },
+  { text: "LA GRANJA", cost: 80 },
+  { text: "LA HUMUYA", cost: 80 },
+  { text: "LA MARADIAGA", cost: 80 },
+  { text: "VENECIA", cost: 100 },
+  { text: "GERMANIA", cost: 120 }
+];
+
+// Helpers
+function HNL(v){ return (v||0).toLocaleString('es-HN',{style:'currency',currency:'HNL'}); }
+function cartSubtotal(){
+  try { return cart.reduce((s,i)=> s + (Number(i.price)||0)*(Number(i.qty)||1), 0); }
+  catch { return 0; }
+}
+function buildOptions(list){
+  if (!dirSel) return;
+  dirSel.innerHTML = '<option value="">Selecciona tu colonia/sector</option>';
+  list.forEach(({ text, cost }) => {
+    const opt = document.createElement('option');
+    opt.value = text;
+    opt.dataset.cost = String(cost);
+    opt.textContent = `${text} — L ${cost}`;
+    dirSel.appendChild(opt);
+  });
+}
+function refreshDireccionesPorVendedor(){
+  if (!vendedorSel || !dirSel) return;
+  const v = vendedorSel.value;
+  if (v === 'Edith' || v === 'Rigo') buildOptions(DIRECCIONES_EDITH_RIGO);
+  else buildOptions(DIRECCIONES_MAYRA_OTRO);
+}
+function envioSeleccionado(subtotal){
+  if (!dirSel || !dirSel.value) return 0;
+  const base = Number(dirSel.options[dirSel.selectedIndex].dataset.cost || 0);
+  return subtotal >= 2500 ? 0 : base;
+}
+function updateCheckoutTotals(){
+  const sub = cartSubtotal();
+  const env = envioSeleccionado(sub);
+  const subEl = document.getElementById('subtotal-checkout');
+  const envEl = document.getElementById('envio-valor');
+  const totEl = document.getElementById('total-checkout');
+  if (subEl) subEl.textContent = HNL(sub);
+  if (envEl) envEl.textContent = env === 0 ? 'GRATIS' : HNL(env);
+  if (totEl) totEl.textContent = HNL(sub + env);
+}
+
+// Eventos iniciales
+document.addEventListener('DOMContentLoaded', () => {
+  // Mostrar/ocultar campo "vendedor_otro" (ya lo tienes configurado) :contentReference[oaicite:5]{index=5}
+  if (vendedorSel && dirSel) {
+    refreshDireccionesPorVendedor();
+    updateCheckoutTotals();
+    vendedorSel.addEventListener('change', () => {
+      refreshDireccionesPorVendedor();
+      updateCheckoutTotals();
+    });
+    dirSel.addEventListener('change', updateCheckoutTotals);
+  }
+});
 
 
-/* === ENVÍO A FORMSPREE === */
-/* === ENVÍO CON EMAILJS (CHECKOUT) === */
-/* === ENVÍO CON EMAILJS (CHECKOUT) — ÚNICO LISTENER === */
+/* === ENVÍO A FORMSPREE (con envío y redirección tarjeta) === */
 checkoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Validación de requeridos
+  // Validar requeridos
   const requiredFields = checkoutForm.querySelectorAll("[required]");
   let allFilled = true;
-  requiredFields.forEach(field => {
-    const v = (field.value || "").trim();
-    field.style.border = v ? "1px solid #ccc" : "2px solid red";
-    if (!v) allFilled = false;
+  requiredFields.forEach(f => {
+    const v = (f.value || "").trim();
+    if (!v) { f.style.border = "2px solid red"; allFilled = false; }
+    else { f.style.border = "1px solid #ccc"; }
   });
   if (!allFilled) {
-    showToast("⚠️ Por favor completa todos los campos obligatorios antes de enviar.");
+    showToast("⚠️ Completa los campos obligatorios.");
     return;
   }
 
-  // Total y detalle del carrito
-  const total  = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  if (!cart.length) {
+    showToast("Tu carrito está vacío 🛒");
+    return;
+  }
+
+  // Subtotal y envío
+  const subtotal = cart.reduce((s,i)=> s + (i.price * i.qty), 0);
+  const { area, cost } = getSelectedShipping();
+  if (!area) {
+    showToast("Selecciona la dirección de envío.");
+    return;
+  }
+  const shipping = computeShippingCost(subtotal, cost);
+  const total = subtotal + shipping;
+
+  // Texto del pedido
   const pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
-  // Datos del form
-  const fd = new FormData(checkoutForm);
-  const vendedor = fd.get("vendedor_aten") === "Otro" && (fd.get("vendedor_otro") || "").trim()
-    ? fd.get("vendedor_otro")
-    : fd.get("vendedor_aten");
+  // Método de pago
+  const metodo = (checkoutForm.metodo_pago?.value || "").toLowerCase();
 
-  // ✅ Teléfono 1 + Teléfono 2 combinados
-  const telefono1 = (fd.get("telefono1") || "").trim();
-  const telefono2 = (fd.get("telefono2") || "").trim();
-  const telefono  = [telefono1, telefono2].filter(Boolean).join(" / ");
+  // Si es TARJETA: pre-notifica y redirige con snapshot en 2s
+  if (metodo === "tarjeta") {
+    const fd = new FormData(checkoutForm);
+    fd.append("pedido", pedido);
+    fd.append("subtotal", formatLempiras(subtotal));
+    fd.append("direccion_envio", area);
+    fd.append("costo_envio", shipping ? formatLempiras(shipping) : "L 0 (gratis)");
+    fd.append("total", formatLempiras(total));
+    fd.append("metodo_pago", "Tarjeta");
+    fd.append("estado_pago", "Pendiente pago con tarjeta");
 
-  // Payload que espera tu template template_sx8s0c5
-  const payload = {
-    nombre:     fd.get("nombre") || "",
-    telefono,   // 👈 ahora lleva “tel1 / tel2” cuando hay ambos
-    direccion:  fd.get("direccion") || "",
-    comentario:
-      `Referencia: ${fd.get("referencia") || "-"} | ` +
-      `Día: ${fd.get("dia") === "Otro" ? (fd.get("dia_otro") || "-") : (fd.get("dia") || "-")} | ` +
-      `Ubicación: ${fd.get("ubicacion") || "-"} | ` +
-      `Vendedor: ${vendedor || "-"} | ` +
-      `Método de pago: ${fd.get("metodo_pago") || "-"} | ` +
-      // 👇 redundancia: si tu template no imprime {{telefono}}, igual verás Tel 2 aquí
-      `Teléfono 2: ${telefono2 || "-"} | ` +
-      `Total: ${formatLempiras(total)}`,
-    pedido
-  };
+    try {
+      await fetch(FORMSPREE_URL, { method:"POST", body: fd, headers:{Accept:"application/json"} });
+    } catch (e) {
+      console.warn("Pre-notificación Formspree falló (tarjeta)", e);
+    }
+
+    // Guardar snapshots (carrito + envío) para pago_integrado
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart_snapshot", JSON.stringify(cart));
+      localStorage.setItem("cart_last_total", String(subtotal));
+      localStorage.setItem("shipping_snapshot", JSON.stringify({ area, baseCost: cost, shipping, subtotal, total }));
+    } catch {}
+
+    showToast("Procesando pago con tarjeta…");
+
+    // Redirigir pasando también el carrito en la URL (?c=)
+    setTimeout(() => {
+      const payload = encodeURIComponent(JSON.stringify(cart));
+      window.location.href = "pago_integrado.html?c=" + payload;
+    }, 2000);
+
+    return; // no seguir flujo normal
+  }
+
+  // Flujo normal (Efectivo / Transferencia)
+  const formData = new FormData(checkoutForm);
+  formData.append("pedido", pedido);
+  formData.append("subtotal", formatLempiras(subtotal));
+  formData.append("direccion_envio", area);
+  formData.append("costo_envio", shipping ? formatLempiras(shipping) : "L 0 (gratis)");
+  formData.append("total", formatLempiras(total));
+  formData.append("metodo_pago", checkoutForm.metodo_pago.value);
 
   try {
-    showToast("Enviando pedido…");
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PEDIDOS_TEMPLATE, payload);
-    showToast("✅ Pedido enviado correctamente. ¡Gracias por tu compra!");
-    checkoutForm.reset();
-    cart = [];
-    updateCart();
-    checkoutModal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-  } catch (err) {
-    console.error("EmailJS error:", err);
-    showToast("❌ Error al enviar el pedido. Intenta nuevamente.");
+    const res = await fetch(FORMSPREE_URL, { method: "POST", body: formData, headers: { Accept: "application/json" } });
+    if (res.ok) {
+      showToast("✅ Pedido enviado. ¡Gracias!");
+      checkoutForm.reset();
+      cart = [];
+      updateCart();
+      try { updateCheckoutTotals(); } catch {}
+      checkoutModal.classList.add("hidden");
+      document.body.classList.remove("modal-open");
+    } else {
+      showToast("❌ Error al enviar el pedido.");
+    }
+  } catch {
+    showToast("⚠️ Conexión fallida.");
   }
 });
+
 
 
 
