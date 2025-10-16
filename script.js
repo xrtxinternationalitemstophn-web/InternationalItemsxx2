@@ -2250,105 +2250,91 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* === ENVÍO A FORMSPREE (con envío y redirección tarjeta) === */
+
+/* === ENVÍO CON EMAILJS (incluye envío y redirección si es “Tarjeta”) === */
 checkoutForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Validar requeridos
-  const requiredFields = checkoutForm.querySelectorAll("[required]");
-  let allFilled = true;
-  requiredFields.forEach(f => {
+  // 1) Validación rápida de obligatorios
+  const required = checkoutForm.querySelectorAll("[required]");
+  let ok = true;
+  required.forEach(f => {
     const v = (f.value || "").trim();
-    if (!v) { f.style.border = "2px solid red"; allFilled = false; }
+    if (!v) { f.style.border = "2px solid red"; ok = false; }
     else { f.style.border = "1px solid #ccc"; }
   });
-  if (!allFilled) {
-    showToast("⚠️ Completa los campos obligatorios.");
-    return;
-  }
+  if (!ok) { showToast("⚠️ Completa los campos obligatorios."); return; }
+  if (!cart.length) { showToast("Tu carrito está vacío 🛒"); return; }
 
-  if (!cart.length) {
-    showToast("Tu carrito está vacío 🛒");
-    return;
-  }
-
-  // Subtotal y envío
+  // 2) Totales + envío según dirección
   const subtotal = cart.reduce((s,i)=> s + (i.price * i.qty), 0);
-  const { area, cost } = getSelectedShipping();
-  if (!area) {
-    showToast("Selecciona la dirección de envío.");
-    return;
-  }
-  const shipping = computeShippingCost(subtotal, cost);
+
+  const sel = document.getElementById("direccion_envio");
+  if (!sel || !sel.value) { showToast("Selecciona la dirección de envío."); return; }
+  const area = sel.value;
+  const base = Number(sel.options[sel.selectedIndex].dataset.cost || 0);
+  const shipping = subtotal >= 2500 ? 0 : base;
   const total = subtotal + shipping;
 
-  // Texto del pedido
-  const pedido = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
+  // 3) Items del pedido como texto
+  const itemsTxt = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
-  // Método de pago
+  // 4) Parámetros para EmailJS (ajusta a tu template)
+  const params = {
+    nombre:          checkoutForm.nombre?.value || "",
+    referencia:      checkoutForm.referencia?.value || "",
+    telefono1:       checkoutForm.telefono1?.value || "",
+    telefono2:       checkoutForm.telefono2?.value || "",
+    dia:             checkoutForm.dia?.value || "",
+    dia_otro:        checkoutForm.dia_otro?.value || "",
+    ubicacion:       checkoutForm.ubicacion?.value || "",
+    vendedor:        checkoutForm.vendedor_aten?.value || "",
+    vendedor_otro:   checkoutForm.vendedor_otro?.value || "",
+    direccion_envio: area,
+    costo_envio:     shipping === 0 ? "GRATIS" : formatLempiras(shipping),
+    subtotal:        formatLempiras(subtotal),
+    total:           formatLempiras(total),
+    metodo_pago:     checkoutForm.metodo_pago?.value || "",
+    items:           itemsTxt,
+  };
+
+  // 5) Enviar con EmailJS
+  try {
+    if (!window.emailjs) throw new Error("EmailJS no disponible");
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_PEDIDOS_TEMPLATE, params);
+  } catch (err) {
+    console.warn("EmailJS error:", err);
+    showToast("⚠️ No se pudo enviar el pedido. Revisa tu conexión.");
+    return;
+  }
+
+  // 6) Flujo según método de pago
   const metodo = (checkoutForm.metodo_pago?.value || "").toLowerCase();
 
-  // Si es TARJETA: pre-notifica y redirige con snapshot en 2s
+  // Si luego agregas “Tarjeta” en el select, redirigimos a pago_integrado
   if (metodo === "tarjeta") {
-    const fd = new FormData(checkoutForm);
-    fd.append("pedido", pedido);
-    fd.append("subtotal", formatLempiras(subtotal));
-    fd.append("direccion_envio", area);
-    fd.append("costo_envio", shipping ? formatLempiras(shipping) : "L 0 (gratis)");
-    fd.append("total", formatLempiras(total));
-    fd.append("metodo_pago", "Tarjeta");
-    fd.append("estado_pago", "Pendiente pago con tarjeta");
-
-    try {
-      await fetch(FORMSPREE_URL, { method:"POST", body: fd, headers:{Accept:"application/json"} });
-    } catch (e) {
-      console.warn("Pre-notificación Formspree falló (tarjeta)", e);
-    }
-
-    // Guardar snapshots (carrito + envío) para pago_integrado
     try {
       localStorage.setItem("cart", JSON.stringify(cart));
       localStorage.setItem("cart_snapshot", JSON.stringify(cart));
       localStorage.setItem("cart_last_total", String(subtotal));
-      localStorage.setItem("shipping_snapshot", JSON.stringify({ area, baseCost: cost, shipping, subtotal, total }));
+      localStorage.setItem("shipping_snapshot", JSON.stringify({ area, baseCost: base, shipping, subtotal, total }));
     } catch {}
-
     showToast("Procesando pago con tarjeta…");
-
-    // Redirigir pasando también el carrito en la URL (?c=)
     setTimeout(() => {
       const payload = encodeURIComponent(JSON.stringify(cart));
       window.location.href = "pago_integrado.html?c=" + payload;
-    }, 2000);
-
-    return; // no seguir flujo normal
+    }, 1500);
+    return;
   }
 
-  // Flujo normal (Efectivo / Transferencia)
-  const formData = new FormData(checkoutForm);
-  formData.append("pedido", pedido);
-  formData.append("subtotal", formatLempiras(subtotal));
-  formData.append("direccion_envio", area);
-  formData.append("costo_envio", shipping ? formatLempiras(shipping) : "L 0 (gratis)");
-  formData.append("total", formatLempiras(total));
-  formData.append("metodo_pago", checkoutForm.metodo_pago.value);
-
-  try {
-    const res = await fetch(FORMSPREE_URL, { method: "POST", body: formData, headers: { Accept: "application/json" } });
-    if (res.ok) {
-      showToast("✅ Pedido enviado. ¡Gracias!");
-      checkoutForm.reset();
-      cart = [];
-      updateCart();
-      try { updateCheckoutTotals(); } catch {}
-      checkoutModal.classList.add("hidden");
-      document.body.classList.remove("modal-open");
-    } else {
-      showToast("❌ Error al enviar el pedido.");
-    }
-  } catch {
-    showToast("⚠️ Conexión fallida.");
-  }
+  // Efectivo / Transferencia
+  showToast("✅ Pedido enviado. ¡Gracias!");
+  checkoutForm.reset();
+  cart = [];
+  updateCart();
+  try { updateCheckoutTotals(); } catch {}
+  checkoutModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
 });
 
 
@@ -2800,7 +2786,7 @@ renderProducts();
 
 
 /* === INICIO === */
-renderProducts();
+/*renderProducts();*/
 
 
 
