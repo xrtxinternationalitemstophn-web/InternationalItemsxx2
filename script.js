@@ -2040,6 +2040,19 @@ function updateCheckoutTotals(){
 const vendedorSel = document.getElementById('vendedor_aten');
 const dirSel      = document.getElementById('direccion_envio');
 
+const vendedorOtro = document.getElementById('vendedor_otro');
+
+function getVendedor() {
+  const sel = vendedorSel?.value || "";
+  if (sel === "Otro") {
+    const nom = (vendedorOtro?.value || "").trim();
+    return nom || "";
+  }
+  return sel;
+}
+
+
+
 // 🧭 Listas
 const DIRECCIONES_MAYRA_OTRO = [
   { text: "15 DE SEPTIEMBRE", cost: 80 },
@@ -2249,6 +2262,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Helper: lee el vendedor seleccionado, y si es "Otro" usa el texto del input
+function getVendedor() {
+  const sel = document.getElementById('vendedor_aten');
+  const otro = document.getElementById('vendedor_otro');
+  if (!sel) return '';
+  const v = (sel.value || '').trim();
+  if (v === 'Otro') return (otro?.value || '').trim() || 'Otro';
+  return v;
+}
+
+
 
 
 /* === ENVÍO CON EMAILJS (incluye envío y redirección si es “Tarjeta”) === */
@@ -2279,24 +2303,51 @@ checkoutForm.addEventListener("submit", async (e) => {
   // 3) Items del pedido como texto
   const itemsTxt = cart.map(i => `- ${i.name}: ${formatLempiras(i.price)} × ${i.qty}`).join("\n");
 
-  // 4) Parámetros para EmailJS (ajusta a tu template)
-  const params = {
-    nombre:          checkoutForm.nombre?.value || "",
-    referencia:      checkoutForm.referencia?.value || "",
-    telefono1:       checkoutForm.telefono1?.value || "",
-    telefono2:       checkoutForm.telefono2?.value || "",
-    dia:             checkoutForm.dia?.value || "",
-    dia_otro:        checkoutForm.dia_otro?.value || "",
-    ubicacion:       checkoutForm.ubicacion?.value || "",
-    vendedor:        checkoutForm.vendedor_aten?.value || "",
-    vendedor_otro:   checkoutForm.vendedor_otro?.value || "",
-    direccion_envio: area,
-    costo_envio:     shipping === 0 ? "GRATIS" : formatLempiras(shipping),
-    subtotal:        formatLempiras(subtotal),
-    total:           formatLempiras(total),
-    metodo_pago:     checkoutForm.metodo_pago?.value || "",
-    items:           itemsTxt,
-  };
+// 4) Parámetros para EmailJS (ajustado a tu nueva plantilla)
+const vendedor = (() => {
+  const vsel = checkoutForm.vendedor_aten?.value || "";
+  if (vsel === "Otro") {
+    const nom = (checkoutForm.vendedor_otro?.value || "").trim();
+    return nom; // si está vacío, validamos abajo
+  }
+  return vsel;
+})();
+
+if (!vendedor) {
+  showToast("⚠️ Escribe el nombre del vendedor (elegiste ‘Otro’).");
+  return;
+}
+
+const telefono = [checkoutForm.telefono1?.value, checkoutForm.telefono2?.value]
+  .map(v => (v || "").trim())
+  .filter(Boolean)
+  .join(" / ");
+
+const direccion = area + (checkoutForm.referencia?.value
+  ? " — " + checkoutForm.referencia.value.trim()
+  : "");
+
+const comentario = (checkoutForm.dia?.value === "Otro"
+  ? (checkoutForm.dia_otro?.value || "Otro")
+  : (checkoutForm.dia?.value || ""));
+
+// Lo que tu plantilla espera: {{nombre}}, {{telefono}}, {{direccion}}, {{comentario}}, {{pedido}}, {{vendedor}}
+const pedido = itemsTxt;
+
+const params = {
+  nombre:       checkoutForm.nombre?.value || "",
+  telefono,     // 👈 combinado 1 y 2
+  direccion,    // 👈 colonia/sector + referencia
+  comentario,   // 👈 día solicitado
+  vendedor,     // 👈 unificado (Mayra/Edith/Rigo u “Otro” escrito)
+  metodo_pago:  checkoutForm.metodo_pago?.value || "",
+  pedido,       // 👈 productos (antes era "items")
+  subtotal:     formatLempiras(subtotal),
+  costo_envio:  shipping === 0 ? "GRATIS" : formatLempiras(shipping),
+  total:        formatLempiras(total)
+};
+
+
 
   // 5) Enviar con EmailJS
   try {
