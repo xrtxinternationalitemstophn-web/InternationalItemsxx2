@@ -4,7 +4,6 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
-  const products = [
 {
   name: "Auriculares Gaming X15 con LEDS y Pantalla PAGA AL RECIBIR TODO HONDURAS",
   price: 290,
@@ -166,7 +165,6 @@ const products = [
   name: "Mini Camara Vigilancia 1080HD ‼️",
   price: 250.0,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
-  ],
   description: [
     "Mini Cámara WiFi 1080P 🔥 Económica, práctica y recargable 💪 ¡Envíos a todo Honduras! 🇭🇳",
     "Vigila todo desde tu celular 📱 Cámara HD WiFi con detección de movimiento 🔋 ¡Protege tu hijo ya!",
@@ -207,7 +205,7 @@ const products = [
   {
     name: "Proyector HD Portatil",
     price: 620.00,
-    category: "Tecnologia y Juegos",
+    categories: ["Tecnologia y Juegos", "Accesorios Varios"],
     description: [
     "Disfruta tus películas, series o juegos con calidad HD y colores vivos, incluso en espacios con poca luz.",
     "Conecta tu PS4/PS5, Nintendo Switch, laptop, celular, USB o TV Stick fácilmente gracias a sus múltiples entradas (USB, AV, audio y más).",
@@ -262,7 +260,7 @@ const products = [
   {
     name: "Cargador iPhone 20W Tipo C Carga Rápida",
     price: 140.00,
-    category: "Tecnologia y Juegos",
+    categories: ["Tecnologia y Juegos", "Accesorios Varios"],
     description: [
     "Carga tu iPhone del 0% al 50% en solo 30 minutos gracias a la tecnología Power Delivery (PD).",
     "Fabricado con materiales de alta calidad, resistente al calor y compatible con todos los modelos de iPhone con entrada Lightning.",
@@ -444,7 +442,7 @@ const products = [
   name: "Intercomunicador Y20 para Casco PREMIUM Musica Llamadas",
   price: 700.00,
   categories: ["Auto y Moto", "Tecnologia y Juegos"],
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Versión 2024 con Bluetooth 5.3: Conexión más estable, sonido estéreo HD y micrófono con cancelación de ruido.",
     "Escucha música, responde llamadas y comunícate con otros pilotos fácilmente mientras conduces.",
@@ -490,7 +488,7 @@ const products = [
   name: "SanDisk Ultra Micro SD 128 GB con Adaptador y Lector USB",
   price: 650.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidades de lectura de hasta 100 MB/s para grabar, transferir o reproducir sin interrupciones.",
     "Ideal para celulares, cámaras, tablets, drones o consolas. Incluye adaptador SD y lector USB.",
@@ -504,7 +502,7 @@ const products = [
 {
   name: "Mouse Logitech G502 Hero",
   price: 1400.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Precisión extrema con hasta 25,600 DPI y respuesta inmediata, ideal para gamers exigentes.",
     "11 botones programables: Personaliza tus comandos, macros y sensibilidad para cada juego o tarea.",
@@ -557,11 +555,10 @@ const products = [
 {
   name: "Cargador Doble Controles PlayStation 5",
   price: 250.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Carga dos mandos a la vez: Diseñada para controles DualSense, permite recargar ambos al mismo tiempo en solo 3.5 a 4 horas.",
-    "Conexión tipo C y LED indicador: Conector magnético preciso y luces que muestran el estado de carga de cada control.",
-    ""
+    "Conexión tipo C y LED indicador: Conector magnético preciso y luces que muestran el estado de carga de cada control."
   ],
   images: [
     "images/ps51.jpg",
@@ -651,7 +648,7 @@ const products = [
 {
   name: "Disco SSD 960GB NUEVO SELLADO",
   price: 1800.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Hasta 10x más rápido que un disco duro tradicional: arranque, carga y transferencia en segundos.",
     "960GB para tus juegos, programas, archivos o sistema operativo.",
@@ -706,7 +703,7 @@ const products = [
 {
   name: "Mouse Gaming Razer Deathadder Essential",
   price: 850.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Sensor óptico de 6400 DPI reales: precisión milimétrica para juegos de alto rendimiento.",
     "Diseño ergonómico clásico Razer, ideal para largas sesiones de juego sin fatiga.",
@@ -736,7 +733,7 @@ const products = [
 {
   name: "Monitor Gaming 240hz KTC Certificado 32”",
   price: 11000.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Pantalla curva FHD (1920×1080) con tecnología Fast HVA para colores más vivos y realismo total.",
     "Frecuencia ultra rápida de 240 Hz y 1 ms de respuesta, ideal para shooters y eSports.",
@@ -867,7 +864,6 @@ const products = [
   name: "Mousepad RGB XXL Gaming",
   price: 450.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
-  category: "Tecnologia y Juegos",
   description: [
     "Tamaño gigante 80x30 cm, espacio perfecto para teclado y ratón, ideal para setups gaming o trabajo.",
     "Luces RGB multicolor, con varios modos de iluminación que puedes cambiar con un solo toque.",
@@ -884,7 +880,6 @@ const products = [
   name: "Camara Deportiva 4K Full Accesorios",
   price: 550.00,
   categories: ["Tecnologia y Juegos", "Auto y Moto"],
-  category: "Tecnologia y Juegos",
   description: [
     "Ideal para capturar tus aventuras con una nitidez impresionante en cualquier entorno.",
     "Resistente al agua y a impactos, perfecta para moto, bicicleta, buceo o deportes extremos.",
@@ -1105,7 +1100,7 @@ const products = [
 {
   name: "Mouse Inalambrico Económico",
   price: 140.00,
-  category: "Tecnologia y Juegos",
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Conexión inalámbrica estable, sin cables molestos y con respuesta rápida ideal para trabajo o estudio.",
     "Bajo consumo de energía, compatible con baterías AAA (opciones con o sin incluidas).",
@@ -1268,7 +1263,7 @@ const products = [
 {
   name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
   price: 440.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tables"],
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Conecta y juega sin cables — Compatible con PS3, PS4 y PC, con respuesta rápida y sin retrasos.",
     "Diseño ergonómico y preciso — Joysticks suaves, botones sensibles y vibración realista para una experiencia pro.",
@@ -3010,6 +3005,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
