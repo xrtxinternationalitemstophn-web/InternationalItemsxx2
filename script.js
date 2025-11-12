@@ -1736,7 +1736,7 @@ const products = [
   ]
 },
 {
-  name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS",
+  name: "INFLABLE SANTA CLAUS NAVIDAD 1.8 METROS",
   price: 1300.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
@@ -3005,6 +3005,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
