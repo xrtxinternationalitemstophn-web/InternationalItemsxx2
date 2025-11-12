@@ -272,7 +272,6 @@ const products = [
   name: "Intercomunicador Y20 para Casco PREMIUM Musica Llamadas",
   price: 700.00,
   categories: ["Auto y Moto", "Tecnologia y Juegos"],
-  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Versión 2024 con Bluetooth 5.3: Conexión más estable, sonido estéreo HD y micrófono con cancelación de ruido.",
     "Escucha música, responde llamadas y comunícate con otros pilotos fácilmente mientras conduces.",
@@ -317,7 +316,6 @@ const products = [
 {
   name: "SanDisk Ultra Micro SD 128 GB con Adaptador y Lector USB",
   price: 650.00,
-  categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidades de lectura de hasta 100 MB/s para grabar, transferir o reproducir sin interrupciones.",
@@ -1046,7 +1044,7 @@ const products = [
 {
   name: "Esferas Navideñas Set de 50 Piezas Surtido",
   price: 300.00,
-  category: "Accesorios Varios",
+  categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Decoración completa para tu árbol, con una hermosa combinación de colores clásicos: rojo, verde, dorado y azul.",
     "Acabados variados (brillantes, mate y con glitter) para darle un toque elegante y festivo a cualquier espacio.",
@@ -1059,7 +1057,7 @@ const products = [
 {
   name: "Flores Pascuas Navideñas Decoraciones Navidad",
   price: 120.00,
-  category: "Accesorios Varios",
+  categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
     "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
@@ -1076,7 +1074,7 @@ const products = [
 {
   name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
   price: 600.00,
-  category: "Accesorios Varios",
+  categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
     "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
@@ -3007,6 +3005,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
