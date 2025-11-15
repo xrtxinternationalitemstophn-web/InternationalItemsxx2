@@ -4,6 +4,80 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
+  // === celulares ===
+  {
+  name: "iPhone 8 Plus 256GB 100% BATERIA 10/10",
+  price: 3600.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "INCLUYE:",
+    "Vidrio Templado pantalla, Cargador.",
+    "Cobertor anticaidas reforzado."
+  ],
+  images: [
+    "images/iphone84.jpg",
+    "images/iphone81.jpg",
+    "images/iphone82.jpg",
+    "images/iphone83.jpg",
+    "images/iphone85.jpg",
+    "images/iphone86.jpg",
+    "images/iphone87.jpg",
+    "images/iphone88.jpg"
+  ]
+},
+  {
+  name: "Samsung S24 Ultra 256GB 10/10",
+  price: 14600.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "INCLUYE:",
+    "Vidrio Templado pantalla. Con cargador 20w +140 lps",
+    "Cobertor anticaidas reforzado."
+  ],
+  images: [
+    "images/s24x1.jpg",
+    "images/s24x2.jpg",
+    "images/s24x3.jpg",
+    "images/s24x4.jpg",
+    "images/s24x5.jpg",
+    "images/s24x6.jpg"
+  ]
+},
+  {
+  name: "Vivo x200 Pro 1TB 97% 10/10",
+  price: 40000.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "INCLUYE:",
+    "Vidrio Templado Pantalla, Cargador 90W Original.",
+    "Cobertor Anticaidas Resistente y cubre incluso Camaras."
+  ],
+  images: [
+    "images/x2001.png",
+    "images/x2002.png",
+    "images/x2003.png",
+    "images/x2004.png"
+  ]
+},
+  {
+  name: "Infinix GT20 Pro 256GB 24RAM 9.5/10",
+  price: 6600.00,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "INCLUYE:",
+    "Vidrio de Pantalla, Cargador Original de 45W",
+    "Cobertor Resistente de los gruesos."
+  ],
+  images: [
+    "images/gt204.png",
+    "images/gt202.png",
+    "images/gt203.png",
+    "images/gt201.png",
+    "images/gt205.jpg",
+    "images/gt206.jpg"
+  ]
+},
+  // === celulares ===
   {
     name: "PowerBank 20,000 MaH",
     price: 160.00,
@@ -806,7 +880,7 @@ const products = [
 },
  {
   name: "Samsung Tab S10 FE 128GB 1 AÑO DE GARANTIA NUEVA CON SU S-PEN NUEVA DE CAJA",
-  price: 10200.00,
+  price: 9500.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Rendimiento superior y fluido, ideal para trabajo, estudio y entretenimiento con su procesador optimizado.",
@@ -3005,6 +3079,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
