@@ -757,9 +757,9 @@ const products = [
     "Compatible con autos, motos y camiones, ideal para mantener tus vehículos siempre listos — compacto, potente y seguro."
   ],
   images: [
-    "images/CARGXX1.png",
-    "images/CARGXX2.png",
-    "images/CARGXX3.png",
+    "images/CARGXX1.jpg",
+    "images/CARGXX2.jpg",
+    "images/CARGXX3.jpg",
     "images/CARGXX4.jpg",
     "images/CARGXX5.png"
   ]
@@ -3081,6 +3081,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
