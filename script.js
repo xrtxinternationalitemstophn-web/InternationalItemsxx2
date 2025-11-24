@@ -27,12 +27,13 @@ const products = [
 },
   {
   name: "Samsung S24 Ultra 256GB 10/10",
-  price: 14600.00,
+  price: 16899.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "INCLUYE:",
-    "Vidrio Templado pantalla. Con cargador 20w +140 lps",
-    "Cobertor anticaidas reforzado."
+    "Vidrio Full pantalla GRATIS.",
+    "Cobertor anticaidas reforzado GRATIS.",
+    "Si quiere cargador 20w +140 lps"
   ],
   images: [
     "images/s24x1.jpg",
@@ -358,7 +359,7 @@ const products = [
   ]
 },
 {
-  name: "Cargador de Bateria para Carro 12V",
+  name: "Cargador de Bateria para Carro y Moto 12V",
   price: 360.00,
   categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
@@ -367,11 +368,11 @@ const products = [
     "Diseño práctico: Indicadores LED de carga, Solo conéctalo y listo."
   ],
   images: [
-    "images/cargg1.jpg",
-    "images/cargg2.jpg",
-    "images/cargg3.jpg",
-    "images/cargg4.jpg",
-    "images/cargg5.jpg"
+    "images/CARGXXS1.png",
+    "images/CARGXXS2.png",
+    "images/CARGXXS3.png",
+    "images/CARGXXS4.png",
+    "images/CARGXXS5.png"
   ]
 },
 {
@@ -747,7 +748,7 @@ const products = [
   ]
 },
 {
-  name: "Cargador de Bateria Carro 12V",
+  name: "Cargador y Reparador de Bateria Carro y Moto 12V",
   price: 500.00,
   categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
@@ -756,10 +757,11 @@ const products = [
     "Compatible con autos, motos y camiones, ideal para mantener tus vehículos siempre listos — compacto, potente y seguro."
   ],
   images: [
-    "images/cargg1.jpg",
-    "images/cargg2.jpg",
-    "images/cargg3.jpg",
-    "images/cargg4.jpg"
+    "images/CARGXX1.png",
+    "images/CARGXX2.png",
+    "images/CARGXX3.png",
+    "images/CARGXX4.jpg",
+    "images/CARGXX5.png"
   ]
 },
 {
@@ -3079,6 +3081,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
