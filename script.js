@@ -4,6 +4,162 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
+  // === agregado 3 diciembre ===
+  {
+  name: "Forro de Asiento Moto tipo Cuero Impermeable ENVIOS TODO HONDURAS",
+  price: 200.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡Dile adiós al asiento mojado! 💦🔥 Este forro tipo cuero ultra impermeable mantiene tu moto siempre lista, aunque caiga un diluvio.",
+    "Queda PERFECTO 😍 gracias a su ajuste elástico que abraza el asiento y no se mueve ni en carreteras malas. ¡Comodidad y estilo en uno! 🏍️✨",
+    "Material grueso, resistente y con acabado premium 💪🖤. Protege del sol, polvo, raspones y lluvia… ¡tu asiento dura AÑOS más!"
+  ],
+  images: [
+    "images/forrouawen1.jpg",
+    "images/forrouawen2.jpg",
+    "images/forrouawen3.jpg",
+    "images/forrouawen4.jpg"
+  ]
+},
+{
+  name: "Moto Génesis HJ125-7 PAPELES EN REGLA TEGUCIGALPA",
+  price: 9000.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Motor 125cc con cilindro, anillos y pistón NUEVOS 💥🔧 — la moto anda suave, potente y con mantenimiento recién hecho. ¡Lista para cualquier mandado!",
+    "Usada solo para tareas del hogar 🏡✨, súper cuidada, encendida al llavazo y sin fallas. Modelo 2011, económica y perfecta para el día a día.",
+    "Discos de Clutch recién cambiado, asiento impecable y en excelente estado 🏍️💯. Entrega inmediata — ¡la ves y te la llevas!"
+  ],
+  images: [
+    "images/motopapa1.jpg",
+    "images/motopapa2.jpg",
+    "images/motopapa3.jpg",
+    "images/motopapa4.jpg"
+  ]
+},
+{
+  name: "Control para TV Roku 70lps Envios Domicilio 🤯‼️",
+  price: 200.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Control NUEVO para Roku 📺✨ — funciona al instante, sin configuraciones complicadas. ¡Con botones directos a Netflix, YouTube, Disney+ y Hulu! 😍🔥",
+    "Diseño cómodo, rápido y preciso 🎯👌. Cambia volumen, retrocede, adelanta y pausa con un solo toque. ¡Tu Roku vuelve a la vida!",
+    "Precio súper oferta: solo 70 LPS 😱💥. Entregas a domicilio y envíos a toda Honduras 🚚🇭🇳. ¡No te quedes sin el tuyo!"
+  ],
+  images: [
+    "images/rokuc1.jpg",
+    "images/rokuc2.jpg",
+    "images/rokuc3.jpg",
+    "images/rokuc4.jpg"
+  ]
+},
+{
+  name: "Smart TV Hisense 58 pulgadas 4K ENVIO GRATIS TODO HONDURAS NUEVO SELLADO‼️",
+  price: 10700.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Pantalla gigante de 58 pulgadas con resolución 4K Ultra HD 📺✨. Vive el fútbol, películas y juegos con colores más vivos y detalles que impresionan.",
+    "Tecnología Dolby Vision + Escalador 4K con IA 🤖🎥 — imagen más brillante, suave y realista. ¡La misma marca patrocinadora oficial de la FIFA!",
+    "Producto nuevo y sellado, modelo 2024 ⭐. Envío GRATIS a todo Honduras 🇭🇳🚚. ¡Llévatela hoy y convierte tu sala en un cine!"
+  ],
+  images: [
+    "images/hiss1.jpg",
+    "images/hiss2.jpg",
+    "images/hiss3.jpg"
+  ]
+},
+{
+  name: "TV Led Tekno 32 pulgadas ENVIO GRATIS TODO HONDURAS NUEVO SELLADO",
+  price: 2700.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Pantalla de 32 pulgadas con colores vivos y excelente claridad 📺✨. Ideal para cuartos, salas pequeñas o negocios. ¡Se mira nítida desde cualquier ángulo!",
+    "Con 2 HDMI + 2 USB 🔌⚡ perfectos para conectar Roku, decodificadores, consolas, memorias USB y mucho más. ¡Listo para disfrutar al instante!",
+    "Producto nuevo, sellado y garantizado 🆕📦. Incluye envío GRATIS a todo Honduras 🚚🇭🇳. ¡Aprovecha antes que se agoten!"
+  ],
+  images: [
+    "images/tekk1.jpg",
+    "images/tekk2.jpg"
+  ]
+},
+{
+  name: "Smart TV Hisense 32 Pulgadas NUEVO SELLADO GARANTIA 6 MESES ENVIO GRATIS TODO HONDURAS‼️",
+  price: 4000.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Smart TV Hisense 32” con sistema VIDAA: rápido, moderno e ideal para Netflix, YouTube, Prime Video y más 📺✨. ¡Colores vivos y audio nítido!",
+    "Producto nuevo, sellado de fábrica 📦💯. Incluye 6 meses de garantía para que compres con total confianza. Perfecta para cuarto o sala.",
+    "Envío GRATIS a todo Honduras 🇭🇳🚚. Fácil de instalar, ligera y lista para usar. ¡Conéctala y disfruta tu contenido favorito al instante!"
+  ],
+  images: [
+    "images/hissx1.jpg",
+    "images/hissx2.jpg",
+    "images/hissx3.jpg"
+  ]
+},
+{
+  name: "Pizarra Magica Para Niños ENVIOS TODO HONDURAS",
+  price: 100.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡Diversión sin límites! 🎨✨ Los niños dibujan con colores brillantes y borran con un toque. Ideal para creatividad, juegos y aprendizaje.",
+    "Pantalla LCD de 8.5” súper liviana y cómoda 🧒📘. Perfecta para llevar a la escuela, viajes o usar en casa sin gastar papel.",
+    "Incluye lápiz, modo bloqueo y batería de larga duración 🔒🔋. Un regalo útil, educativo y entretenido que les encanta a todos los peques."
+  ],
+  images: [
+    "images/maggggg1.jpg",
+    "images/maggggg2.jpg"
+  ]
+},
+{
+  name: "Intercomunicador K06 para Casco SUPER PRECIO‼️",
+  price: 450.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Disfrutá música nítida y llamadas claras mientras manejás 🚀🎧. El K06 trae sonido Hi-Fi, botones grandes y hasta 72 horas de batería REAL.",
+    "Resistente al agua 🌧️💦, Bluetooth 6.0 súper estable y micrófono doble (suave + rígido). ¡Escuchás y te escuchan perfecto incluso con casco cerrado!",
+    "Instalación rápida con doble montaje 🔧✨. Ideal para viajes largos, mototaxistas, repartidores y motociclistas que quieren andar conectados y seguros."
+  ],
+  images: [
+    "images/k06x1.jpg",
+    "images/k06x2.jpg",
+    "images/k06x3.jpg"
+  ]
+},
+{
+  name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
+  price: 1300.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
+    "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
+    "Instalación súper fácil: lo conectás y se infla solo 🎉🔌. Material resistente, colores vivos y calidad espectacular. ¡Hacé tu casa la más bonita del barrio!"
+  ],
+  images: [
+    "images/santax1.jpg",
+    "images/santax2.jpg"
+  ]
+},
+{
+  name: "PROTEÍNA ISO100 – SABOR BIRTHDAY CAKE 🎂💪✨",
+  price: 1880.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡25g de proteína por scoop para músculo puro! 💪🔥 ISO100 es de absorción rápida, ideal para después del gym o para empezar tu día con energía.",
+    "Textura suave, sabor tipo pastel de cumpleaños 🎂🤤 y solo 120 calorías por porción. ¡Disfrutá delicioso SIN remordimientos!",
+    "Fórmula premium con 5.5g de BCAA y 2.6g de Leucina 💥. Cero grasas trans, bajísima azúcar y perfecta para definición o aumento limpio."
+  ],
+  images: [
+    "images/isosss1.jpg",
+    "images/isosss2.jpg",
+    "images/isosss3.jpg",
+    "images/isosss4.jpg"
+  ]
+},
+  // === agregado 3 diciembre ===
+
+
+  
   // === celulares ===
   {
   name: "iPhone 8 Plus 256GB 100% BATERIA 10/10",
@@ -3081,6 +3237,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
