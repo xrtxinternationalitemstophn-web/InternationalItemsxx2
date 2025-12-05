@@ -6,6 +6,25 @@
 const products = [
   // === agregado 3 diciembre ===
   {
+  name: "iPhone 15 Pro Max 256GB 86% ENVIOS GRATIS TODO HONDURAS",
+  price: 18000.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⭐ INCLUYE: VIDRIO PARA CAMARAS COMPLETO DE DOBLE REFUERZO",
+    "⭐ CARGADOR 20W CARGA RAPIDA GRATIS",
+    "⭐ VIDRIO PANTALLA Y SI NECESITA INSTALACIÓN ES GRATIS"
+  ],
+  images: [
+    "images/ip15pm1.jpg",
+    "images/ip15pm2.jpg",
+    "images/ip15pm3.jpg",
+    "images/ip15pm4.jpg",
+    "images/ip15pm5.jpg",
+    "images/ip15pm6.jpg",
+    "images/ip15pm7.jpg"
+  ]
+},
+  {
   name: "Forro de Asiento Moto tipo Cuero Impermeable ENVIOS TODO HONDURAS",
   price: 200.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
@@ -3237,6 +3256,7 @@ renderProducts();
 
 /* === INICIO === */
 /*renderProducts();*/
+
 
 
 
