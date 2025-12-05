@@ -2157,38 +2157,118 @@ function updateFloatingCartCount() {
 
 let cart = [];
 
+
+
+/* === 🔗 COMPARTIR PRODUCTOS (link individual + WhatsApp) === */
+function slugify(text) {
+  return String(text || "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+function getProductLink(index) {
+  const p = products[index];
+  if (!p) return window.location.href;
+  const slug = slugify(p.name);
+  const base = `${window.location.origin}${window.location.pathname}`;
+  return `${base}#product-${slug}`;
+}
+
+async function copyProductLink(index) {
+  const url = getProductLink(index);
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(url);
+    } else {
+      const temp = document.createElement("textarea");
+      temp.value = url;
+      temp.setAttribute("readonly", "");
+      temp.style.position = "absolute";
+      temp.style.left = "-9999px";
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      temp.remove();
+    }
+    if (typeof showToast === "function") showToast("Link copiado ✅");
+  } catch (e) {
+    // Último recurso: mostrar un prompt para copiar manualmente
+    prompt("Copia este link:", url);
+  }
+}
+
+function shareProductWhatsApp(index) {
+  const p = products[index];
+  const url = getProductLink(index);
+  const msg = encodeURIComponent(`${p?.name || "Producto"}\n${url}`);
+  window.open(`https://wa.me/?text=${msg}`, "_blank");
+}
+
+function scrollToHashProduct() {
+  if (!window.location.hash) return;
+  const id = window.location.hash.slice(1);
+  if (!id.startsWith("product-")) return;
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.add("flash");
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => el.classList.remove("flash"), 1200);
+  }
+}
+
+window.addEventListener("hashchange", scrollToHashProduct);
+
 /* === RENDERIZAR PRODUCTOS CON SLIDER === */
 function renderProducts(list = products) {
   productList.innerHTML = "";
+
   list.forEach((p, i) => {
+    const originalIndex = products.indexOf(p);
+    const safeIndex = originalIndex >= 0 ? originalIndex : i;
+
     const card = document.createElement("div");
     card.classList.add("product");
 
+    const slug = slugify(p.name);
+    card.id = `product-${slug}`;
+
     card.innerHTML = `
-      <div class="slider" id="slider-${i}">
+      <div class="slider" id="slider-${safeIndex}">
         <div class="slides-container">
           ${p.images.map((img, index) => `
             <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${p.name}">
           `).join("")}
         </div>
-        <button class="prev" data-index="${i}">❮</button>
-        <button class="next" data-index="${i}">❯</button>
+        <button class="prev" data-index="${safeIndex}">❮</button>
+        <button class="next" data-index="${safeIndex}">❯</button>
       </div>
+
       <h3>${p.name}</h3>
       <p class="price">${formatLempiras(p.price)}</p>
+
+      <div class="product-share">
+        <button class="copy-link-btn" type="button" onclick="copyProductLink(${safeIndex})">🔗 Copiar link</button>
+        <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${safeIndex})">🟢 WhatsApp</button>
+      </div>
 
       <ul class="description">
         ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
       </ul>
 
-      <button class="add-btn" onclick="addToCart(${i})">Agregar al carrito</button>
+      <button class="add-btn" onclick="addToCart(${safeIndex})">Agregar al carrito</button>
     `;
 
     productList.appendChild(card);
   });
 
   initSliders();
+  scrollToHashProduct();
 }
+
 
 
 /* === SLIDERS AUTOMÁTICOS Y MANUALES === */
@@ -2201,6 +2281,8 @@ function initSliders() {
     const slides = document.querySelectorAll(`#slider-${i} .slide`);
     const prevBtn = document.querySelector(`#slider-${i} .prev`);
     const nextBtn = document.querySelector(`#slider-${i} .next`);
+
+    if (!slides.length || !prevBtn || !nextBtn) return;
 
     // Mostrar flechas
     prevBtn.style.display = "block";
@@ -2905,6 +2987,7 @@ function showToast(message) {
 
 /************** 🔎 BUSCADOR – CÓDIGO NUEVO (no toca nada existente) **************/
 const floatingSearch = document.getElementById("floating-search");
+const floatingWhatsApp = document.getElementById("floating-whatsapp");
 const searchModal = document.getElementById("search-modal");
 const closeSearchModalBtn = document.getElementById("close-search-modal");
 const fsInput = document.getElementById("fs-input");
@@ -2917,6 +3000,11 @@ const clearSearchBtn = document.getElementById("clear-search");
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) floatingSearch.classList.remove("hidden");
   else floatingSearch.classList.add("hidden");
+
+  if (floatingWhatsApp) {
+    if (window.scrollY > 300) floatingWhatsApp.classList.remove("hidden");
+    else floatingWhatsApp.classList.add("hidden");
+  }
 });
 
 /* Drag seguro como el carrito */
