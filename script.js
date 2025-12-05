@@ -2210,20 +2210,21 @@ function shareProductWhatsApp(index) {
   window.open(waLink, "_blank");
 }
 
-/* === ANIMACIÓN DEL ICONO FLOTANTE === */
+/* === 🟣 AVISO CENTRAL CYBER WEEK (3s) === */
 window.addEventListener("DOMContentLoaded", () => {
-  const bubble = document.getElementById("whatsapp-bubble");
-  if (bubble) {
+  const alertBox = document.getElementById("cyber-alert");
+  if (!alertBox) return;
+
+  // Mostrar 0.5 s después de cargar
+  setTimeout(() => {
+    alertBox.classList.add("show");
+    // Ocultar después de 3 s
     setTimeout(() => {
-      bubble.classList.add("show");
-      bubble.classList.remove("hidden");
-      setTimeout(() => {
-        bubble.classList.remove("show");
-        bubble.classList.add("hidden");
-      }, 3000);
-    }, 1500);
-  }
+      alertBox.classList.remove("show");
+    }, 3000);
+  }, 500);
 });
+
 
 function scrollToHashProduct() {
   if (!window.location.hash) return;
@@ -3352,6 +3353,67 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+/******************************************
+ * ⚡ CYBER WEEK COUNTDOWN (FECHA FIJA GMT-6)
+ * No se reinicia al recargar
+ ******************************************/
+(function cyberWeekCountdownFixed(){
+  const $ = (id) => document.getElementById(id);
+
+  const daysEl  = $("cw-days");
+  const hoursEl = $("cw-hours");
+  const minsEl  = $("cw-mins");
+  const secsEl  = $("cw-secs");
+
+  if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+  // ✅ Define el INICIO real de tu promo (hora local GMT-6)
+  // CAMBIA SOLO LA FECHA cuando la campaña sea otra
+  const start = new Date("2025-12-05T13:00:00-06:00"); // 1:00 PM Honduras
+
+  // 6 días 23 horas -> 167 horas total
+  const durationMs = (6 * 24 + 23) * 60 * 60 * 1000;
+  const end = new Date(start.getTime() + durationMs);
+
+  function pad(n){ return String(n).padStart(2, "0"); }
+
+  function tick(){
+    const now = Date.now();
+
+    // Si aún no inicia, puedes mostrar “INICIA EN”
+    // o simplemente dejar que cuente para el fin.
+    // Aquí lo dejamos directo al fin como tú pediste:
+    let diff = end.getTime() - now;
+
+    const wrap = document.getElementById("cyber-countdown");
+
+    if (diff <= 0){
+      daysEl.textContent  = "00";
+      hoursEl.textContent = "00";
+      minsEl.textContent  = "00";
+      secsEl.textContent  = "00";
+      if (wrap) wrap.setAttribute("data-ended", "true");
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff %= (1000 * 60 * 60 * 24);
+    const h = Math.floor(diff / (1000 * 60 * 60));
+    diff %= (1000 * 60 * 60);
+    const m = Math.floor(diff / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    daysEl.textContent  = pad(d);
+    hoursEl.textContent = pad(h);
+    minsEl.textContent  = pad(m);
+    secsEl.textContent  = pad(s);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
 
 
 
