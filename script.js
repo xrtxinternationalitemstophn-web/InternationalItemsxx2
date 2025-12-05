@@ -2201,12 +2201,29 @@ async function copyProductLink(index) {
   }
 }
 
+/* === FUNCIÓN COMPARTIR POR WHATSAPP === */
 function shareProductWhatsApp(index) {
-  const p = products[index];
-  const url = getProductLink(index);
-  const msg = encodeURIComponent(`${p?.name || "Producto"}\n${url}`);
-  window.open(`https://wa.me/?text=${msg}`, "_blank");
+  const product = products[index];
+  const productURL = `${window.location.origin}${window.location.pathname}#product-${slugify(product.name)}`;
+  const message = encodeURIComponent(`quiero este producto listo para enviar ${productURL}`);
+  const waLink = `https://wa.me/50496310102?text=${message}`;
+  window.open(waLink, "_blank");
 }
+
+/* === ANIMACIÓN DEL ICONO FLOTANTE === */
+window.addEventListener("DOMContentLoaded", () => {
+  const bubble = document.getElementById("whatsapp-bubble");
+  if (bubble) {
+    setTimeout(() => {
+      bubble.classList.add("show");
+      bubble.classList.remove("hidden");
+      setTimeout(() => {
+        bubble.classList.remove("show");
+        bubble.classList.add("hidden");
+      }, 3000);
+    }, 1500);
+  }
+});
 
 function scrollToHashProduct() {
   if (!window.location.hash) return;
