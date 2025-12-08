@@ -8,7 +8,7 @@ const products = [
 {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
   price: 1300.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
     "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
@@ -22,7 +22,7 @@ const products = [
 {
   name: "Flores Pascuas Navideñas Decoraciones Navidad",
   price: 120.00,
-  categories: ["Damas", "Bolsos y Carteras"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
     "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
@@ -39,7 +39,7 @@ const products = [
 {
   name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
   price: 600.00,
-  categories: ["Damas", "Bolsos y Carteras"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
     "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
@@ -56,7 +56,7 @@ const products = [
 {
   name: "Forro de Casco Peluche Santa Claus",
   price: 500.00,
-  categories: ["Juguetes", "Auto y Moto"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "Diseño festivo y divertido — Transforma tu casco en un casco navideño con gorro de Santa y nariz de reno.",
     "Material de peluche suave — Cálido, cómodo y fácil de colocar, no daña la pintura del casco.",
@@ -70,7 +70,7 @@ const products = [
 {
   name: "Pie Base De Arbol Navidad Talla L ENVIOS TODO HONDURAS",
   price: 500.00,
-  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "🎄✨ Dale un toque mágico a tu árbol con este hermoso pie navideño talla L, diseño premium y súper llamativo.",
     "🦌❤️ Su patrón navideño con reno y detalles festivos transforma cualquier sala en un ambiente cálido y elegante.",
@@ -84,7 +84,7 @@ const products = [
 {
   name: "INFLABLE SANTA CLAUS NAVIDAD 1.8 METROS",
   price: 1300.00,
-  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
+  categories: ["Accesorios Varios", "Navidad"],
   description: [
     "🎅✨ ¡Santa Claus inflable gigante de 1.8 m que convierte tu casa en la Navidad PERFECTA y atrae todas las miradas al instante!",
     "💡🌟 Se infla solo, incluye luces y se vuelve el adorno más IMPRESIONANTE y elegante para tu hogar, negocio o evento.",
@@ -3223,6 +3223,7 @@ if (fsInput) {
 /* 1) EDITA AQUÍ tus categorías visibles en la barra */
 const CATEGORIES = [
   "Todos",
+  "Navidad",
   "Tecnologia y Juegos",
   "Joyeria",
   "Celulares y Tablets",
@@ -3241,6 +3242,7 @@ const CATEGORIES = [
 
 /* Normaliza nombres con o sin acentos para que coincidan con CATEGORIES */
 const canonicalMap = {
+  "Navidad": "navidad",
   "tecnologia y juegos": "Tecnologia y Juegos",
   "tecnología y juegos": "Tecnologia y Juegos",
   "joyeria": "Joyeria",
