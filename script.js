@@ -5,6 +5,96 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
   // === agregado 3 diciembre ===
+{
+  name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
+  price: 1300.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
+    "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
+    "Instalación súper fácil: lo conectás y se infla solo 🎉🔌. Material resistente, colores vivos y calidad espectacular. ¡Hacé tu casa la más bonita del barrio!"
+  ],
+  images: [
+    "images/santax1.jpg",
+    "images/santax2.jpg"
+  ]
+},
+{
+  name: "Flores Pascuas Navideñas Decoraciones Navidad",
+  price: 120.00,
+  categories: ["Damas", "Bolsos y Carteras"],
+  description: [
+    "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
+    "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
+    "Material resistente y duradero, con acabado suave tipo terciopelo y hojas doradas brillantes."
+  ],
+  images: [
+    "images/pasc1.jpg",
+    "images/pasc2.jpg",
+    "images/pasc3.jpg",
+    "images/pasc4.jpg",
+    "images/pasc5.jpg"
+  ]
+},
+{
+  name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
+  price: 600.00,
+  categories: ["Damas", "Bolsos y Carteras"],
+  description: [
+    "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
+    "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
+    "Variedad de acabados: mate, brillantes y con glitter. Resistentes, ligeras y fáciles de colocar."
+  ],
+  images: [
+    "images/esf1.jpg",
+    "images/esf2.jpg",
+    "images/esf3.jpg",
+    "images/esf4.jpg",
+    "images/esf5.jpg"
+  ]
+},
+{
+  name: "Forro de Casco Peluche Santa Claus",
+  price: 500.00,
+  categories: ["Juguetes", "Auto y Moto"],
+  description: [
+    "Diseño festivo y divertido — Transforma tu casco en un casco navideño con gorro de Santa y nariz de reno.",
+    "Material de peluche suave — Cálido, cómodo y fácil de colocar, no daña la pintura del casco.",
+    "Ideal para motorizados navideños — Perfecto para desfiles, regalos o simplemente llevar el espíritu de Navidad en cada recorrido."
+  ],
+  images: [
+    "images/clausc1.jpg",
+    "images/clausc2.jpg"
+  ]
+},
+{
+  name: "Pie Base De Arbol Navidad Talla L ENVIOS TODO HONDURAS",
+  price: 500.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
+  description: [
+    "🎄✨ Dale un toque mágico a tu árbol con este hermoso pie navideño talla L, diseño premium y súper llamativo.",
+    "🦌❤️ Su patrón navideño con reno y detalles festivos transforma cualquier sala en un ambiente cálido y elegante.",
+    "🎁🚚 Ideal para decorar y cubrir cables o bases—¡perfecto para fotos! Envíos a TODO Honduras."
+  ],
+  images: [
+    "images/arb1.jpg",
+    "images/arb2.jpg"
+  ]
+},
+{
+  name: "INFLABLE SANTA CLAUS NAVIDAD 1.8 METROS",
+  price: 1300.00,
+  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
+  description: [
+    "🎅✨ ¡Santa Claus inflable gigante de 1.8 m que convierte tu casa en la Navidad PERFECTA y atrae todas las miradas al instante!",
+    "💡🌟 Se infla solo, incluye luces y se vuelve el adorno más IMPRESIONANTE y elegante para tu hogar, negocio o evento.",
+    "🎄🔥 Sorprende a tu familia y vecinos con un Santa gigante digno de película—¡no puede faltar en tu decoración este año!"
+  ],
+  images: [
+    "images/santa1.jpg",
+    "images/santa2.jpg"
+  ]
+},
   {
   name: "iPhone 15 Pro Max 256GB 86% ENVIOS GRATIS TODO HONDURAS",
   price: 18000.0,
@@ -145,20 +235,7 @@ const products = [
     "images/k06x3.jpg"
   ]
 },
-{
-  name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
-  price: 1300.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
-    "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
-    "Instalación súper fácil: lo conectás y se infla solo 🎉🔌. Material resistente, colores vivos y calidad espectacular. ¡Hacé tu casa la más bonita del barrio!"
-  ],
-  images: [
-    "images/santax1.jpg",
-    "images/santax2.jpg"
-  ]
-},
+
 {
   name: "PROTEÍNA ISO100 – SABOR BIRTHDAY CAKE 🎂💪✨",
   price: 1880.0,
@@ -1306,40 +1383,6 @@ const products = [
   ]
 },
 {
-  name: "Flores Pascuas Navideñas Decoraciones Navidad",
-  price: 120.00,
-  categories: ["Damas", "Bolsos y Carteras"],
-  description: [
-    "Hermoso diseño con detalles dorados, ideal para dar un toque elegante y festivo a tu árbol o guirnaldas.",
-    "Tamaño perfecto (15 cm) para destacar entre las ramas y combinar con luces o esferas.",
-    "Material resistente y duradero, con acabado suave tipo terciopelo y hojas doradas brillantes."
-  ],
-  images: [
-    "images/pasc1.jpg",
-    "images/pasc2.jpg",
-    "images/pasc3.jpg",
-    "images/pasc4.jpg",
-    "images/pasc5.jpg"
-  ]
-},
-{
-  name: "Esferas Decoraciones Navideñas Arbol Navidad 101 Pzs",
-  price: 600.00,
-  categories: ["Damas", "Bolsos y Carteras"],
-  description: [
-    "Incluye estrella decorativa para coronar tu árbol y 100 esferas surtidas en tonos rojo, dorado y verde.",
-    "Dale vida a tu árbol, ideal para decoraciones grandes o medianas con un estilo navideño clásico y elegante.",
-    "Variedad de acabados: mate, brillantes y con glitter. Resistentes, ligeras y fáciles de colocar."
-  ],
-  images: [
-    "images/esf1.jpg",
-    "images/esf2.jpg",
-    "images/esf3.jpg",
-    "images/esf4.jpg",
-    "images/esf5.jpg"
-  ]
-},
-{
   name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
   price: 440.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
@@ -1720,20 +1763,6 @@ const products = [
   ]
 },
 {
-  name: "Forro de Casco Peluche Santa Claus",
-  price: 500.00,
-  categories: ["Juguetes", "Auto y Moto"],
-  description: [
-    "Diseño festivo y divertido — Transforma tu casco en un casco navideño con gorro de Santa y nariz de reno.",
-    "Material de peluche suave — Cálido, cómodo y fácil de colocar, no daña la pintura del casco.",
-    "Ideal para motorizados navideños — Perfecto para desfiles, regalos o simplemente llevar el espíritu de Navidad en cada recorrido."
-  ],
-  images: [
-    "images/clausc1.jpg",
-    "images/clausc2.jpg"
-  ]
-},
-{
   name: "RTX 3060 12GB GDDR6 ZOTAC GAMING",
   price: 9500.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablet"],
@@ -1947,20 +1976,6 @@ const products = [
   ]
 },
 {
-  name: "Pie Base De Arbol Navidad Talla L ENVIOS TODO HONDURAS",
-  price: 500.00,
-  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
-  description: [
-    "🎄✨ Dale un toque mágico a tu árbol con este hermoso pie navideño talla L, diseño premium y súper llamativo.",
-    "🦌❤️ Su patrón navideño con reno y detalles festivos transforma cualquier sala en un ambiente cálido y elegante.",
-    "🎁🚚 Ideal para decorar y cubrir cables o bases—¡perfecto para fotos! Envíos a TODO Honduras."
-  ],
-  images: [
-    "images/arb1.jpg",
-    "images/arb2.jpg"
-  ]
-},
-{
   name: "Pasamontañas",
   price: 60.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
@@ -1984,20 +1999,6 @@ const products = [
   ],
   images: [
     "images/sop1.jpg"
-  ]
-},
-{
-  name: "INFLABLE SANTA CLAUS NAVIDAD 1.8 METROS",
-  price: 1300.00,
-  categories: ["Tecnologia y Juegos", "Accesorios Varios"],
-  description: [
-    "🎅✨ ¡Santa Claus inflable gigante de 1.8 m que convierte tu casa en la Navidad PERFECTA y atrae todas las miradas al instante!",
-    "💡🌟 Se infla solo, incluye luces y se vuelve el adorno más IMPRESIONANTE y elegante para tu hogar, negocio o evento.",
-    "🎄🔥 Sorprende a tu familia y vecinos con un Santa gigante digno de película—¡no puede faltar en tu decoración este año!"
-  ],
-  images: [
-    "images/santa1.jpg",
-    "images/santa2.jpg"
   ]
 },
 {
