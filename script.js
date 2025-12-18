@@ -105,7 +105,7 @@ const products = [
     "🔌📺 Conecta, activa y listo. Control total al retroceder, incluso en espacios cerrados. Es esa mejora que no sabías que NECESITABAS… hasta ahora 🔥😍"
   ],
   images: [
-    "images/camararetrocesoc_1.jpg.jpg"
+    "images/camararetrocesoc_1.jpg"
   ]
 },
 {
