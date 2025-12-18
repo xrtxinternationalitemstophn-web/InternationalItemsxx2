@@ -19,6 +19,34 @@ const products = [
     "images/santax2.jpg"
   ]
 },
+  {
+  name: "Tableta Version Chip 5G 256GB - 8GB RAM - con accesorios bluetooth X9+",
+  price: 3000.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "📱⚡ 8GB RAM + 256GB de almacenamiento para que nada te detenga. Rápida, fluida y lista para trabajo, estudio o entretenimiento. ¡Es otro nivel! 😎🚀",
+    "⌨️🖱️ Teclado, mouse, lápiz y funda incluidos. Conéctate, escribe y trabaja como en una laptop. Ideal para clases, oficina o crear contenido 🔥👌",
+    "🌐🎮 Navega, mira series, juega y multitarea sin lag. Diseño elegante y potencia que se siente desde el primer uso. ¡La tablet que SÍ vale la pena! 😍🔥"
+  ],
+  images: [
+    "images/tabletjkhsd1.jpg",
+    "images/tabletjkhsd2.jpg"
+  ]
+},
+{
+  name: "Tableta Fire 7 Niños, Kids 16GB con Cargador 66W GRATIS",
+  price: 1950.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "👶📱 Diseñada especialmente para niños. Resistente, colorida y fácil de usar. Ideal para aprender, jugar y entretenerse sin preocupaciones 😍",
+    "📚🎮 Pantalla perfecta para videos, juegos y apps educativas. Protección infantil y funda ultra resistente para el uso diario 💪✨",
+    "🎁🔥 Tablet Fire 7 Kids 16GB + cargador rápido. Práctica, segura y lista para horas de diversión. ¡A los niños les encanta y a los padres también! 😎💙"
+  ],
+  images: [
+    "images/fire7jkabsd1.jpg",
+    "images/fire7jkabsd2.jpg"
+  ]
+},
 {
   name: "Flores Pascuas Navideñas Decoraciones Navidad",
   price: 120.00,
