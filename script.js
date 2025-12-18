@@ -238,7 +238,7 @@ const products = [
 
 {
   name: "PROTEÍNA ISO100 – SABOR BIRTHDAY CAKE 🎂💪✨",
-  price: 1880.0,
+  price: 2880.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "¡25g de proteína por scoop para músculo puro! 💪🔥 ISO100 es de absorción rápida, ideal para después del gym o para empezar tu día con energía.",
