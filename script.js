@@ -96,6 +96,301 @@ const products = [
   ]
 },
   {
+  name: "Camara de Retroceso para Vehículos ENVIOS A TODO HONDURAS",
+  price: 230.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🚗📷 Estaciona sin miedo ni sorpresas. Visión clara, ángulo amplio y encendido automático al poner reversa. ¡Una vez la pruebas, no vuelves atrás! 😎✨",
+    "👀💡 Imagen nítida de día y de noche, resistente y lista para cualquier clima. Evita golpes, rayones y malos momentos. ¡Tu carro lo agradece! 🚘🛡️",
+    "🔌📺 Conecta, activa y listo. Control total al retroceder, incluso en espacios cerrados. Es esa mejora que no sabías que NECESITABAS… hasta ahora 🔥😍"
+  ],
+  images: [
+    "images/camararetrocesoc_1.jpg.jpg"
+  ]
+},
+{
+  name: "Guantes para Moto Tapa Sol ENVIOS A TODO HONDURAS",
+  price: 95.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🛵🧤 Protege tus manos del sol, el viento y el desgaste. Agarre firme, diseño deportivo y comodidad desde el primer uso. ¡Se sienten brutales! 😎💥",
+    "☀️🛡️ Tapa sol integrado + protección reforzada en nudillos. Maneja con confianza en ciudad o carretera. Una vez los usas… no hay vuelta atrás 🔥🚀",
+    "🤍🖤 Ligeros, resistentes y con ajuste perfecto. Más control, más comodidad y más facha en tu moto. ¡Compra inteligente! 😍👌"
+  ],
+  images: [
+    "images/guantesssxmsnd1.jpg",
+    "images/guantesssxmsnd2.jpg"
+  ]
+},
+{
+  name: "Cuerda para Amarrar Moto 150 cm Envios a TODO HONDURAS",
+  price: 80.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🏍️🪢 Asegura tu moto, carga o casco en segundos. Resistente, elástica y confiable. ¡La tranquilidad que todo motero necesita! 💪😎",
+    "🔒🚀 Ideal para viajes, mandados o parqueos rápidos. No se afloja, no falla y aguanta lo que le pongas. ¡Una vez la usas, no sales sin ella! 🔥👌",
+    "🛵🧲 Fácil de usar, compacta y ultra resistente. Perfecta para el día a día o viajes largos. Compra inteligente, compra seguro 😍🔥"
+  ],
+  images: [
+    "images/cuerdajnasd1.jpg",
+    "images/cuerdajnasd2.jpg"
+  ]
+},
+{
+  name: "Holder Celular para Carro ENVIOS TODO HONDURAS",
+  price: 115.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🚗📱 Mantén tu celular firme y visible mientras conduces. Giro 360°, ajuste perfecto y cero vibraciones. ¡Una vez lo usas, no manejas sin él! 😎✨",
+    "🧲🛣️ Ideal para GPS, llamadas y música sin distraerte. Se adapta a cualquier ángulo y se instala en segundos. Más control, menos estrés 🔥👌",
+    "📲🔒 Sujeción fuerte, diseño moderno y ajuste universal. Convierte cada viaje en una experiencia más cómoda y segura. ¡Lo necesitas hoy! 😍🚀"
+  ],
+  images: [
+    "images/holdefrnrc1.jpg",
+    "images/holdefrnrc2.jpg"
+  ]
+},
+{
+  name: "Lector Micro SD USB 2.0 OFERTA‼️ENVIOS A TODO HONDURAS",
+  price: 50.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "💾⚡ Pasa tus archivos en segundos. Compacto, rápido y compatible con todo. ¡Conéctalo y listo, sin complicaciones! 😎👌",
+    "📲💻 Ideal para celulares, cámaras y laptops. Llévalo a donde quieras y ten tus datos siempre a la mano. ¡Un básico que no puede faltar! 🔥😍",
+    "🔌💾 Diseño resistente, colores llamativos y uso inmediato. Aprovecha la OFERTA antes que se agote 😱🔥"
+  ],
+  images: [
+    "images/microsdlcx1.jpg",
+    "images/microsdlcx2.jpg"
+  ]
+},
+{
+  name: "Cargador para Tipo C Doble Entrada 66W Carga Rapida ENVIOS A TODO HONDURAS",
+  price: 160.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⚡📱 Más potencia, menos espera. Carga tus dispositivos en tiempo récord con tecnología de carga rápida segura. ¡Conéctalo y siente la diferencia! 😎🚀",
+    "🔌🔋 Carga dos equipos al mismo tiempo sin perder potencia. Ideal para casa, oficina o viajes. Un solo cargador, cero preocupaciones 🔥👌",
+    "📲⚡ Diseño moderno, protección inteligente y rendimiento real de 66W. El cargador que tu celular MERECE 😍🔥"
+  ],
+  images: [
+    "images/cargggxfg1.jpg",
+    "images/cargggxfg2.jpg",
+    "images/cargggxfg3.jpg"
+  ]
+},
+{
+  name: "Foco Bluetooth Musical RGB ENVIOS A TODO HONDURAS",
+  price: 160.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "💡🎶 Convierte cualquier espacio en una fiesta. Luces RGB que bailan al ritmo de tu música y sonido envolvente desde tu celular. ¡Enciéndelo y que empiece el show! 😍🔥",
+    "📱🌈 Controla colores, brillo y música vía Bluetooth. Ideal para cuartos, fiestas, reuniones o relajarte con tu playlist favorita. ¡Imposible no quererlo! 😎✨",
+    "🔊💡 Diseño moderno, colores vibrantes y audio potente. El regalo perfecto o el upgrade que tu casa necesita YA 🔥🤩"
+  ],
+  images: [
+    "images/focosdn1.jpg",
+    "images/focosdn2.jpeg"
+  ]
+},
+{
+  name: "Reloj Contra el Agua Digital Multifuncional ENVIOS A TODO HONDURAS",
+  price: 120.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⌚💦 Diseñado para el día a día y la aventura. Resiste salpicaduras, entrenamientos y uso rudo sin perder estilo. ¡Póntelo y olvídate del resto! 😎💪",
+    "⏱️📅 Hora, fecha, alarma y cronómetro en un solo diseño deportivo. Ideal para trabajo, ejercicio o uso diario. Funcionalidad total en tu muñeca 🔥👌",
+    " 🖤⌚ Diseño moderno, pantalla clara y ajuste cómodo. El reloj perfecto para quien exige durabilidad y presencia. ¡Lo necesitas hoy! 😍🔥"
+  ],
+  images: [
+    "images/relogghjysdfgt1.jpg",
+    "images/relogghjysdfgt2.jpg"
+  ]
+},
+{
+  name: "Reloj Digital OFERTA‼️ENVIOS A TODO HONDURAS",
+  price: 70.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⌚⚡ Diseño moderno, lectura clara y estilo minimalista. Perfecto para el día a día, cómodo y fácil de usar. ¡Simplemente póntelo y listo! 😎👌",
+    "⏰🖤 Hora exacta con solo un vistazo. Ideal para trabajo, estudio o uso diario. Calidad que sorprende a precio de OFERTA 🔥😍",
+    "⌚✨ Ligero, cómodo y con pantalla LED llamativa. Aprovecha antes que se agote 😱🔥"
+  ],
+  images: [
+    "images/relohdsfjhf1.jpg"
+  ]
+},
+{
+  name: "Reloj Digital para Niños Niñas de Stitch ENVIOS A TODO HONDURAS",
+  price: 100.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⌚🧒 Diseño súper tierno de Stitch que encanta a los peques. Hora clara, colores llamativos y comodidad total para usar todos los días 😍",
+    "💙⏰ Ideal para escuela, paseos o regalo. Ligero, resistente y fácil de usar. ¡A los niños les encanta desde el primer momento! 🥰✨",
+    "🎁⌚ Bonito, práctico y lleno de estilo. Sorprende a tu hijo o hija con un reloj que querrá usar siempre 😍🔥"
+  ],
+  images: [
+    "images/stitcjsdj1.jpg"
+  ]
+},
+{
+  name: "Gafas Lentes Para Moto Casco ENVIOS A TODO HONDURAS",
+  price: 140.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🏍️🕶️ Bloquea viento, polvo y sol mientras manejas con total comodidad. Visión clara y ajuste firme para cada recorrido. ¡Maneja con seguridad y estilo! 😎💨",
+    "🛡️🌪️ Lentes resistentes, cómodos y compatibles con casco. Ideales para ciudad o carretera. Una vez las pruebas, no sales sin ellas 🔥👌",
+    "🕶️🏍️ Diseño deportivo, protección real y look profesional. El accesorio que todo motero NECESITA 😍🔥"
+  ],
+  images: [
+    "images/gafasmotoxnusd1.jpg"
+  ]
+},
+{
+  name: "Mascara Con Lentes Para Casco Moto ENVIOS A TODO HONDURAS",
+  price: 140.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🏍️🛡️ Protección total contra polvo, viento y sol. Diseño agresivo, visión clara y ajuste firme. ¡Maneja con presencia y seguridad! 😎🔥",
+    "🌪️🕶️ Lentes resistentes + máscara respirable para rutas largas o uso diario. Comodidad y estilo en cada kilómetro. ¡Imposible no quererla! 🔥👌",
+    "🖤🏍️ Look táctico, ajuste perfecto y protección completa. Eleva tu casco y tu experiencia al manejar 😍🔥"
+  ],
+  images: [
+    "images/mascaracijsd1.jpg",
+    "images/mascaracijsd2.jpg",
+    "images/mascaracijsd3.jpg",
+    "images/mascaracijsd4.jpg"
+  ]
+},
+{
+  name: "Mascara Calavera para Casco Moto OFERTA‼️ENVIOS A TODO HONDURAS",
+  price: 190.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "💀🏍️ Impone respeto en la carretera. Diseño brutal tipo calavera con lentes espejo que protegen del sol, viento y polvo. ¡No pasas desapercibido! 😎🔥",
+    "🕶️💀 Look agresivo + protección real. Ideal para riders que quieren seguridad y presencia única. Póntela y siente el poder en cada kilómetro ⚡🏍️",
+    "🖤🔥 Ajuste cómodo, lentes llamativos y diseño de impacto. Aprovecha la OFERTA antes que se agote 😱👌"
+  ],
+  images: [
+    "images/calavvvenr1.jpg",
+    "images/calavvvenr2.jpg",
+    "images/calavvvenr3.jpg"
+  ]
+},
+{
+  name: "Llaveros Variedad Stitch ENVIOS A TODO HONDURAS",
+  price: 70.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑😍 Súper tiernos, coloridos y llenos de personalidad. Perfectos para llaves, mochilas o regalar. ¡Cada uno es imposible de no amar! 🥰",
+    "💙🔑 Diferentes poses y accesorios que enamoran a primera vista. Ideal para fans de Stitch grandes y pequeños. ¡Querrás más de uno! 😍🔥",
+    "🎁✨ Bonitos, resistentes y súper llamativos. Regala ternura o consiéntete con estos llaveros únicos de Stitch 😍💙"
+  ],
+  images: [
+    "images/stititit1.jpg",
+    "images/stititit2.jpg"
+  ]
+},
+{
+  name: "Llaveros Osito Panda ENVIOS A TODO HONDURAS",
+  price: 100.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑😍 Diseños tiernos y coloridos que roban sonrisas. Perfectos para llaves, mochilas o regalar. ¡Imposible elegir solo uno! 🥰",
+    "🐼💖 Pequeños, resistentes y llenos de encanto. Ideales para niños, jóvenes y amantes de lo cute. ¡Te enamoran al instante! 😍🔥",
+    "🎁✨ Variedad de colores y estilos que combinan con todo. Consiente o sorprende con estos lindos ositos panda 😍🐼"
+  ],
+  images: [
+    "images/panddd1.jpg",
+    "images/panddd2.jpg"
+  ]
+},
+{
+  name: "Llaveros Forky Budy Personajes Toy Story ENVIOS A TODO HONDURAS",
+  price: 120.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑😍 Personajes que marcaron tu infancia ahora contigo todos los días. Súper coloridos, tiernos y llenos de nostalgia. ¡Te enamoran al instante! 💙",
+    "🧸🚀 Ideales para llaves, mochilas o regalar. Forky, Woody y más personajes que sacan sonrisas a grandes y pequeños 😍🔥",
+    "🎁✨ Resistentes, llamativos y únicos. Llévate tu personaje favorito antes que se agoten 😱💫"
+  ],
+  images: [
+    "images/bydusdy1.jpg",
+    "images/bydusdy2.jpg"
+  ]
+},
+{
+  name: "Llaveros Ironman Hulk Superheroes Marvel ENVIOS A TODO HONDURAS",
+  price: 95.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑💥 Lleva a tus héroes favoritos contigo todos los días. Súper llamativos, resistentes y llenos de actitud. ¡Imposible no quererlos! 😎",
+    "🦸‍♂️💪 Iron Man, Hulk, Capitán América y más en diseños coloridos que destacan en llaves, mochilas o bolsos. ¡Perfectos para fans de Marvel! 😍🔥",
+    "💥🔑 Detalle único, duradero y con estilo héroe. Elige tu favorito o llévalos todos antes que se agoten 😱✨"
+  ],
+  images: [
+    "images/ironsd1.jpg",
+    "images/ironsd2.jpg"
+  ]
+},
+{
+  name: "Llaveros de Intensamente ENVIOS A TODO HONDURAS",
+  price: 120.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑🌈 Alegría, Tristeza, Furia y más personajes en diseños súper coloridos y tiernos. Perfectos para llaves, mochilas o regalar. ¡Te sacan una sonrisa al instante! 😍",
+    "💖🔑 Ligeros, resistentes y llenos de personalidad. Ideales para niños, jóvenes y fans de Intensamente. ¡Querrás coleccionarlos todos! 🔥🥰",
+    "✨🌈 Regala emoción, color y diversión en un solo accesorio. Elige tu personaje favorito antes que se agoten 😱💫"
+  ],
+  images: [
+    "images/intensasknwre1.jpg",
+    "images/intensasknwre2.jpg"
+  ]
+},
+{
+  name: "Llaveros Labubu VARIEDAD‼️ENVIOS A TODO HONDURAS",
+  price: 90.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🔑😍 Súper tiernos, coloridos y con un diseño que roba miradas. Ideales para llaves, mochilas o regalar. ¡Cada uno es una tentación! 🥰",
+    "🌈💖 Diferentes colores y expresiones que enamoran al instante. Ligeros, resistentes y perfectos para coleccionar 😍🔥",
+    "🎁✨ Bonitos, originales y únicos. Aprovecha la VARIEDAD y elige tu favorito antes que se agoten 😱🐰"
+  ],
+  images: [
+    "images/labububuasjkh1.jpg",
+    "images/labububuasjkh2.jpg"
+  ]
+},
+{
+  name: "Adaptador WIFI 150 mbps ENVIOS A TODO HONDURAS",
+  price: 150.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "💻🚀 Mejora tu conexión al instante. Alta señal, navegación fluida y cero cortes. ¡Conéctalo y disfruta internet estable! 😎",
+    "📡💥 Ideal para PC o laptop. Banda 2.4 GHz, instalación súper fácil y rendimiento confiable. ¡Perfecto para casa u oficina! 👌🔥",
+    "🔌📶 Compacto, potente y práctico. La solución rápida para mejorar tu WiFi sin gastar de más 😍"
+  ],
+  images: [
+    "images/adaptjkner1.jpg",
+    "images/adaptjkner2.jpg"
+  ]
+},
+{
+  name: "Repetidor Wifi Tenda N300 ENVIO TODO HONDURAS",
+  price: 680.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "🏠🚀 Amplía tu WiFi y despídete de las zonas sin señal. Conexión estable, rápida y confiable para toda la casa. ¡Notarás la diferencia desde el primer día! 😎",
+    "📡💥 Ideal para hogares y oficinas. Antenas potentes, fácil configuración y rendimiento constante para navegar, ver videos y trabajar sin interrupciones 👌🔥",
+    "🔌📶 Marca Tenda reconocida por su calidad. Mejora tu red WiFi sin complicaciones ni gastos extra 😍"
+  ],
+  images: [
+    "images/tendajksnd1.jpg",
+    "images/tendajksnd2.jpg",
+    "images/tendajksnd3.jpg"
+  ]
+},
+  {
   name: "iPhone 15 Pro Max 256GB 86% ENVIOS GRATIS TODO HONDURAS",
   price: 18000.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
