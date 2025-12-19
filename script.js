@@ -1457,7 +1457,7 @@ const products = [
 },
  {
   name: "Samsung Tab S10 FE 128GB 1 AÑO DE GARANTIA NUEVA CON SU S-PEN NUEVA DE CAJA",
-  price: 9500.00,
+  price: 10200.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Rendimiento superior y fluido, ideal para trabajo, estudio y entretenimiento con su procesador optimizado.",
