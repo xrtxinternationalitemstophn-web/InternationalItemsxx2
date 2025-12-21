@@ -2387,7 +2387,7 @@ function setTheme(theme) {
 
 function getSavedTheme() {
   const t = (localStorage.getItem(THEME_STORAGE_KEY) || "").toLowerCase();
-  return t === "light" ? "light" : "dark";
+  return t === "dark" ? "dark" : "light";
 }
 
 function updateThemeToggleUI(theme) {
