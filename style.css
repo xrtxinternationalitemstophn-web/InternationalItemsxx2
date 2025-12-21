@@ -188,7 +188,7 @@ body {
 
 .product .description li {
   font-size: 0.9rem;
-  color: #444;
+  color: var(--text);
   line-height: 1.4;
   margin-bottom: 0.3rem;
   padding-left: 1.2rem;
@@ -1581,6 +1581,10 @@ body.theme-dark .search-banner,
 body.theme-dark .category-bar{
   background: #0f172a;
   border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.theme-dark .product .description li{
+  color: #fff;
 }
 
 body.theme-dark .nav-links a{
