@@ -86,7 +86,18 @@
   <section class="products" id="productos">
 <!-- 🏷️ Categorías -->
 <div id="category-bar" class="category-bar"></div>
-    <h2 class="section-title">Nuestros Productos</h2>
+    <div class="products-header">
+      <div class="sort-control">
+        <label for="sort-select">Ordenar de:</label>
+        <select id="sort-select" aria-label="Ordenar productos">
+          <option value="recent" selected>Producto recien ingresado</option>
+          <option value="price_asc">de menor a mayor precio</option>
+          <option value="az">Ordenar de A - Z</option>
+        </select>
+      </div>
+      <h2 class="section-title">Nuestros Productos</h2>
+      <div class="products-header-spacer" aria-hidden="true"></div>
+    </div>
     <!-- 🔎 Banner de resultados de búsqueda -->
 <div id="search-banner" class="search-banner hidden">
   <span id="search-banner-text"></span>

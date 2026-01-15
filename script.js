@@ -4,8 +4,7 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
-   
-{
+ {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
   price: 1300.0,
   categories: ["Accesorios Varios", "Navidad"],
@@ -2424,6 +2423,40 @@ const cartCount = document.getElementById("cart-count");
 const checkoutForm = document.getElementById("checkout-form");
 const checkoutBtn = document.getElementById("checkout-btn");
 
+// === ORDENAR PRODUCTOS (dropdown) ===
+let SORT_MODE = "recent";            // default: no cambia el orden actual
+let CURRENT_VIEW_LIST = products;     // lista actual (búsqueda / categoría / todos)
+
+function applySort(list){
+  if (!Array.isArray(list)) return list;
+  const mode = SORT_MODE || "recent";
+
+  // ✅ "Producto recien ingresado" = mantener el orden actual tal cual
+  if (mode === "recent") return list;
+
+  const arr = [...list];
+
+  if (mode === "price_asc"){
+    arr.sort((a,b) => (Number(a?.price) || 0) - (Number(b?.price) || 0));
+  } else if (mode === "az"){
+    arr.sort((a,b) => String(a?.name || "").localeCompare(String(b?.name || ""), "es", { sensitivity: "base" }));
+  }
+
+  return arr;
+}
+
+// Listener del selector (si existe)
+const sortSelect = document.getElementById("sort-select");
+if (sortSelect){
+  SORT_MODE = sortSelect.value || "recent";
+  sortSelect.addEventListener("change", () => {
+    SORT_MODE = sortSelect.value || "recent";
+    // Re-render respetando la vista actual (categoría / búsqueda / todos)
+    renderProducts(CURRENT_VIEW_LIST || products);
+  });
+}
+
+
 // === BOTÓN FLOTANTE (DRAG + TAP FIABLE EN TODOS LOS DISPOSITIVOS) ===
 const floatingCart = document.getElementById("floating-cart");
 let isDragging = false;
@@ -2812,9 +2845,15 @@ function getAvailabilityLabel(p) {
 
 /* === RENDERIZAR PRODUCTOS CON SLIDER === */
 function renderProducts(list = products) {
+  // Guarda la vista actual (categoría / búsqueda / todos)
+  CURRENT_VIEW_LIST = list;
+
+  // Aplica el orden seleccionado (sin modificar el array original)
+  const sortedList = applySort(list);
+
   productList.innerHTML = "";
 
-  list.forEach((p, i) => {
+  sortedList.forEach((p, i) => {
     const originalIndex = products.indexOf(p);
     const safeIndex = originalIndex >= 0 ? originalIndex : i;
 
