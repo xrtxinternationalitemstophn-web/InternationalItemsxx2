@@ -4,8 +4,7 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
-  // === agregado 3 diciembre ===
-  
+   
 {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
   price: 1300.0,
@@ -2387,7 +2386,7 @@ function setTheme(theme) {
 
 function getSavedTheme() {
   const t = (localStorage.getItem(THEME_STORAGE_KEY) || "").toLowerCase();
-  return t === "dark" ? "dark" : "light";
+  return t === "light" ? "light" : "dark";
 }
 
 function updateThemeToggleUI(theme) {
@@ -2528,6 +2527,91 @@ let cart = [];
 
 
 /* === 🔗 COMPARTIR PRODUCTOS (link individual + WhatsApp) === */
+/* === 📦 WHATSAPP SHARE (CACHE DE IMÁGENES PARA ADJUNTAR) ===
+   WhatsApp NO permite adjuntar imágenes por enlace (wa.me). 
+   Para enviar texto + imágenes en 1 toque, usamos Web Share API (móviles) con archivos.
+   Importante: navigator.share() necesita "user activation", por eso pre-cargamos las imágenes en background.
+*/
+const WA_SHARE_CACHE = new Map();        // absUrl -> File
+const WA_SHARE_INFLIGHT = new Map();     // absUrl -> Promise<File>
+let WA_SHARE_PREWARM_STARTED = false;
+
+function waToAbsUrl(u) {
+  try { return new URL(String(u || ""), window.location.href).href; }
+  catch { return String(u || ""); }
+}
+
+function waBaseNameFromUrl(u, fallback) {
+  try {
+    const clean = String(u || "").split("?")[0];
+    const base = clean.split("/").pop();
+    return base || fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function waGuessMimeFromName(name) {
+  const n = String(name || "").toLowerCase();
+  if (n.endsWith(".png")) return "image/png";
+  if (n.endsWith(".webp")) return "image/webp";
+  if (n.endsWith(".gif")) return "image/gif";
+  return "image/jpeg";
+}
+
+function waEnsureFileCached(absUrl, filename) {
+  const key = waToAbsUrl(absUrl);
+  if (!key) return Promise.reject(new Error("URL vacía"));
+  if (WA_SHARE_CACHE.has(key)) return Promise.resolve(WA_SHARE_CACHE.get(key));
+  if (WA_SHARE_INFLIGHT.has(key)) return WA_SHARE_INFLIGHT.get(key);
+
+  const p = fetch(key, { cache: "force-cache" })
+    .then(res => res.blob())
+    .then(blob => {
+      const safeName = filename || waBaseNameFromUrl(key, "imagen.jpg");
+      const type = (blob && blob.type) ? blob.type : waGuessMimeFromName(safeName);
+      const file = new File([blob], safeName, { type });
+      WA_SHARE_CACHE.set(key, file);
+      return file;
+    })
+    .catch(err => {
+      // No guardamos nada si falla
+      return Promise.reject(err);
+    })
+    .finally(() => {
+      WA_SHARE_INFLIGHT.delete(key);
+    });
+
+  WA_SHARE_INFLIGHT.set(key, p);
+  return p;
+}
+
+function waPrewarmAllProductImages() {
+  if (WA_SHARE_PREWARM_STARTED) return;
+  WA_SHARE_PREWARM_STARTED = true;
+
+  // Concurrencia pequeña para no saturar
+  const queue = [];
+  (products || []).forEach(p => {
+    (p.images || []).forEach((u, i) => {
+      const abs = waToAbsUrl(u);
+      const name = waBaseNameFromUrl(u, "imagen" + (i + 1) + ".jpg");
+      queue.push(() => waEnsureFileCached(abs, name));
+    });
+  });
+
+  const MAX_CONC = 4;
+  let idx = 0;
+  const workers = new Array(MAX_CONC).fill(0).map(async () => {
+    while (idx < queue.length) {
+      const job = queue[idx++];
+      try { await job(); } catch (e) { /* ignora */ }
+    }
+  });
+
+  Promise.allSettled(workers);
+}
+
 function slugify(text) {
   return String(text || "")
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -2570,13 +2654,85 @@ async function copyProductLink(index) {
 }
 
 /* === FUNCIÓN COMPARTIR POR WHATSAPP === */
+
 function shareProductWhatsApp(index) {
   const product = products[index];
-  const productURL = `${window.location.origin}${window.location.pathname}#product-${slugify(product.name)}`;
-  const message = encodeURIComponent(`quiero este producto listo para enviar ${productURL}`);
-  const waLink = `https://wa.me/50496310102?text=${message}`;
-  window.open(waLink, "_blank");
+  if (!product) return;
+
+  const phone = "50496310102";
+
+  // Construir mensaje: info primero, imágenes (nombres) al final
+  const availability = getAvailabilityLabel(product);
+  const price = formatLempiras(product.price);
+
+  const descLines = (product.description || []).map(d => {
+    const s = String(d || "").trim();
+    if (!s) return "";
+    return s.startsWith("⭐") ? s : ("⭐ " + s);
+  }).filter(Boolean);
+
+  const imageNames = (product.images || []).map((img, i) => {
+    return waBaseNameFromUrl(img, ("imagen" + (i + 1) + ".jpg"));
+  });
+
+  // ✅ Enviar SOLO la información del producto (sin listar nombres de imágenes en el texto)
+  const message =
+    String(product.name || "") + "\n" +
+    availability + "\n" +
+    price + "\n\n" +
+    descLines.join("\n");
+
+  const openWhatsAppText = () => {
+    const waLink = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    window.open(waLink, "_blank");
+  };
+
+  // Precalentar cache (en background) para que el 1er toque ya tenga archivos listos
+  waPrewarmAllProductImages();
+
+  // Intento 1: Web Share API (adjunta imágenes + texto) -> ideal en móviles
+  // IMPORTANTÍSIMO: no hacemos "await" antes de navigator.share() para no perder el gesto del click.
+  try {
+    const imgs = (product.images || []).map(u => waToAbsUrl(u)).filter(Boolean);
+
+    if (navigator.share && imgs.length) {
+      const files = imgs.map((u, i) => WA_SHARE_CACHE.get(u)).filter(Boolean);
+
+      // Si ya están todas las imágenes cacheadas, intentamos compartir con archivos
+      if (files.length === imgs.length) {
+        const shareData = { text: message, files };
+
+        // Algunos navegadores son muy estrictos con canShare; intentamos de todas formas.
+        const can =
+          !navigator.canShare ||
+          navigator.canShare(shareData) ||
+          navigator.canShare({ files });
+
+        if (can) {
+          navigator.share(shareData).catch((err) => {
+            // Si el usuario cancela, no hacemos nada.
+            if (err && (err.name === "AbortError" || err.name === "NotAllowedError")) return;
+            // Si falló por compatibilidad, usamos fallback
+            openWhatsAppText();
+          });
+          return; // ✅ listo (share sheet abierto)
+        }
+      } else {
+        // Si falta algo, arrancamos la descarga para que el siguiente toque ya salga con imágenes.
+        imgs.forEach((u, i) => {
+          const fname = imageNames[i] || ("imagen" + (i + 1) + ".jpg");
+          waEnsureFileCached(u, fname).catch(() => {});
+        });
+      }
+    }
+  } catch (e) {
+    // continúa al fallback
+  }
+
+  // Fallback: abrir WhatsApp con texto listo para "Enviar"
+  openWhatsAppText();
 }
+
 
 /* === 🟣 AVISO CENTRAL CYBER WEEK (3s) === */
 window.addEventListener("DOMContentLoaded", () => {
@@ -2688,7 +2844,7 @@ function renderProducts(list = products) {
 
       <div class="product-share">
         <button class="copy-link-btn" type="button" onclick="copyProductLink(${safeIndex})">🔗 Copiar link</button>
-        <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${safeIndex})">🟢 WhatsApp</button>
+        <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${safeIndex})"><svg class="wa-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.253 2 11.5c0 1.985.65 3.833 1.76 5.357L2.5 22l5.303-1.431c1.233.62 2.63.931 4.197.931 5.523 0 10-4.253 10-9.5S17.523 2 12 2zm0 17.6c-1.352 0-2.55-.29-3.57-.862l-.41-.23-3.144.849.84-2.966-.268-.4C4.544 15.05 4.2 13.96 4.2 11.5 4.2 7.37 7.76 4.2 12 4.2s7.8 3.17 7.8 7.3-3.56 8.1-7.8 8.1z"/><path d="M16.57 14.2c-.2-.1-1.18-.6-1.36-.67-.18-.07-.31-.1-.44.1-.13.2-.51.67-.63.8-.11.13-.22.15-.42.05-.2-.1-.84-.3-1.6-1.02-.59-.53-.98-1.18-1.1-1.38-.11-.2-.01-.3.09-.4.09-.09.2-.22.31-.33.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.05-.6-1.44-.16-.38-.32-.33-.44-.33h-.38c-.13 0-.33.05-.5.25-.18.2-.67.66-.67 1.6 0 .95.69 1.86.78 1.99.09.13 1.35 2.18 3.27 3.05.46.2.81.33 1.09.42.46.15.88.13 1.22.08.37-.06 1.18-.48 1.35-.95.17-.46.17-.85.12-.95-.05-.1-.18-.15-.38-.25z"/></svg>WhatsApp</button>
       </div>
 
       <ul class="description">
@@ -3823,6 +3979,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* === INICIO === */
 initThemeToggle();
+waPrewarmAllProductImages();
 renderProducts();
 
 

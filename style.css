@@ -952,7 +952,22 @@ body.modal-open {
   background: #25D366;
   color: #fff;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
 }
+
+.product-share .wa-share-btn .wa-btn-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+.product-share .wa-share-btn .wa-btn-icon path {
+  fill: #fff;
+}
+
 
 .product-share .copy-link-btn {
   background: #fff;
