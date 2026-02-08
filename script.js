@@ -2804,6 +2804,74 @@ window.addEventListener("hashchange", scrollToHashProduct);
    o
    - stock: 0 (agotado) / >0 (disponible)
 */
+/* === ℹ️ MODAL: MÁS INFORMACIÓN === */
+function openProductInfo(index) {
+  const p = products[index];
+  if (!p) return;
+
+  const modal = document.getElementById("product-info-modal");
+  const body  = document.getElementById("product-info-body");
+  if (!modal || !body) return;
+
+  const availability = getAvailabilityLabel(p);
+  const availClass = isProductAvailable(p) ? "available" : "soldout";
+
+  const imagesHtml = (p.images || []).map((img) => `
+    <img class="pi-img" src="${img}" alt="${p.name}">
+  `).join("");
+
+  const descHtml = (p.description || []).map(d => `<li>⭐ ${String(d || "").trim()}</li>`).join("");
+
+  body.innerHTML = `
+    <div class="pi-head">
+      <h2 class="pi-title">${p.name}</h2>
+      <div class="availability ${availClass}">
+        <span class="availability-dot"></span>
+        <span class="availability-text">${availability}</span>
+      </div>
+      <p class="price pi-price">${formatLempiras(p.price)}</p>
+
+      <div class="pi-actions">
+        <button class="copy-link-btn" type="button" onclick="copyProductLink(${index})">🔗 Copiar link</button>
+        <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${index})">WhatsApp</button>
+      </div>
+    </div>
+
+    <div class="pi-gallery">
+      ${imagesHtml || "<p class='pi-empty'>Sin imágenes.</p>"}
+    </div>
+
+    ${descHtml ? `<ul class="pi-desc">${descHtml}</ul>` : ""}
+  `;
+
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+}
+
+function closeProductInfo() {
+  const modal = document.getElementById("product-info-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("product-info-modal");
+  const closeBtn = document.getElementById("close-product-info");
+
+  if (closeBtn) closeBtn.addEventListener("click", closeProductInfo);
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeProductInfo();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeProductInfo();
+  });
+});
+
 function isProductAvailable(p) {
   if (!p) return true;
 
@@ -2863,7 +2931,7 @@ function renderProducts(list = products) {
     const slug = slugify(p.name);
     card.id = `product-${slug}`;
 
-    card.innerHTML = `
+        card.innerHTML = `
       <div class="slider" id="slider-${safeIndex}">
         <div class="slides-container">
           ${p.images.map((img, index) => `
@@ -2886,11 +2954,7 @@ function renderProducts(list = products) {
         <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${safeIndex})"><svg class="wa-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.253 2 11.5c0 1.985.65 3.833 1.76 5.357L2.5 22l5.303-1.431c1.233.62 2.63.931 4.197.931 5.523 0 10-4.253 10-9.5S17.523 2 12 2zm0 17.6c-1.352 0-2.55-.29-3.57-.862l-.41-.23-3.144.849.84-2.966-.268-.4C4.544 15.05 4.2 13.96 4.2 11.5 4.2 7.37 7.76 4.2 12 4.2s7.8 3.17 7.8 7.3-3.56 8.1-7.8 8.1z"/><path d="M16.57 14.2c-.2-.1-1.18-.6-1.36-.67-.18-.07-.31-.1-.44.1-.13.2-.51.67-.63.8-.11.13-.22.15-.42.05-.2-.1-.84-.3-1.6-1.02-.59-.53-.98-1.18-1.1-1.38-.11-.2-.01-.3.09-.4.09-.09.2-.22.31-.33.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.05-.6-1.44-.16-.38-.32-.33-.44-.33h-.38c-.13 0-.33.05-.5.25-.18.2-.67.66-.67 1.6 0 .95.69 1.86.78 1.99.09.13 1.35 2.18 3.27 3.05.46.2.81.33 1.09.42.46.15.88.13 1.22.08.37-.06 1.18-.48 1.35-.95.17-.46.17-.85.12-.95-.05-.1-.18-.15-.38-.25z"/></svg>WhatsApp</button>
       </div>
 
-      <ul class="description">
-        ${(p.description || []).map(d => `<li>⭐ ${d}</li>`).join("")}
-      </ul>
-
-      <button class="add-btn" onclick="addToCart(${safeIndex})">Agregar al carrito</button>
+      <button class="more-info-btn" type="button" onclick="openProductInfo(${safeIndex})">ℹ️ Más información</button>
     `;
 
     productList.appendChild(card);
@@ -3911,7 +3975,7 @@ function renderCategoryBar() {
       if (cat === "Todos") {
         // si tienes buscador con banner, lo limpiamos si existe
         if (typeof clearSearch === "function") try { clearSearch(); } catch {}
-        renderProducts();
+        if (productList) renderProducts();
       } else {
         const filtered = products.filter(p => getCategories(p).includes(cat));
         renderProducts(filtered);
@@ -4019,55 +4083,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* === INICIO === */
 initThemeToggle();
 waPrewarmAllProductImages();
-renderProducts();
-
-
+if (productList) renderProducts();
 /* === INICIO === */
 /*renderProducts();*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
