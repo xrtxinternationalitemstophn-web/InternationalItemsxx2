@@ -2518,43 +2518,22 @@ function openCartModal() {
   document.body.classList.add("modal-open");
 }
 
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
-});
-
-
-
 const floatingCartCount = document.getElementById("floating-cart-count");
-
-// Mostrar/ocultar según scroll
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingCart.classList.remove("hidden");
-  else floatingCart.classList.add("hidden");
-});
-
-
-
-
 
 // Sincronizar cantidad del carrito
 function updateFloatingCartCount() {
-  // 🔹 Contador exacto: suma las cantidades de todos los productos
   const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
 
-  // 🔹 Actualiza el numerito rojo
-  floatingCartCount.textContent = totalQty;
+  const floatingCartCountEl = document.getElementById("floating-cart-count");
+  if (floatingCartCountEl) {
+    floatingCartCountEl.textContent = totalQty;
+    floatingCartCountEl.classList.add("bounce");
+    setTimeout(() => floatingCartCountEl.classList.remove("bounce"), 300);
+  }
 
-  // 🔹 Animación pequeña al cambiar
-  floatingCartCount.classList.add("bounce");
-  setTimeout(() => floatingCartCount.classList.remove("bounce"), 300);
+  const dockCountEl = document.getElementById("dock-cart-count");
+  if (dockCountEl) dockCountEl.textContent = totalQty;
 }
-
-
-
-
-
 let cart = [];
 
 
@@ -2834,6 +2813,8 @@ function openProductInfo(index) {
       <div class="pi-actions">
         <button class="copy-link-btn" type="button" onclick="copyProductLink(${index})">🔗 Copiar link</button>
         <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${index})">WhatsApp</button>
+      
+        <button class="cart-btn pi-cart-btn" type="button" onclick="addToCart(${index})">🛒 Agregar</button>
       </div>
     </div>
 
@@ -2952,6 +2933,8 @@ function renderProducts(list = products) {
       <div class="product-share">
         <button class="copy-link-btn" type="button" onclick="copyProductLink(${safeIndex})">🔗 Copiar link</button>
         <button class="wa-share-btn" type="button" onclick="shareProductWhatsApp(${safeIndex})"><svg class="wa-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.253 2 11.5c0 1.985.65 3.833 1.76 5.357L2.5 22l5.303-1.431c1.233.62 2.63.931 4.197.931 5.523 0 10-4.253 10-9.5S17.523 2 12 2zm0 17.6c-1.352 0-2.55-.29-3.57-.862l-.41-.23-3.144.849.84-2.966-.268-.4C4.544 15.05 4.2 13.96 4.2 11.5 4.2 7.37 7.76 4.2 12 4.2s7.8 3.17 7.8 7.3-3.56 8.1-7.8 8.1z"/><path d="M16.57 14.2c-.2-.1-1.18-.6-1.36-.67-.18-.07-.31-.1-.44.1-.13.2-.51.67-.63.8-.11.13-.22.15-.42.05-.2-.1-.84-.3-1.6-1.02-.59-.53-.98-1.18-1.1-1.38-.11-.2-.01-.3.09-.4.09-.09.2-.22.31-.33.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.05-.6-1.44-.16-.38-.32-.33-.44-.33h-.38c-.13 0-.33.05-.5.25-.18.2-.67.66-.67 1.6 0 .95.69 1.86.78 1.99.09.13 1.35 2.18 3.27 3.05.46.2.81.33 1.09.42.46.15.88.13 1.22.08.37-.06 1.18-.48 1.35-.95.17-.46.17-.85.12-.95-.05-.1-.18-.15-.38-.25z"/></svg>WhatsApp</button>
+      
+        <button class="cart-btn add-cart-btn" type="button" onclick="addToCart(${safeIndex})">🛒 Agregar al carrito</button>
       </div>
 
       <button class="more-info-btn" type="button" onclick="openProductInfo(${safeIndex})">ℹ️ Más información</button>
@@ -3673,20 +3656,28 @@ const searchModal = document.getElementById("search-modal");
 const closeSearchModalBtn = document.getElementById("close-search-modal");
 const fsInput = document.getElementById("fs-input");
 const searchConfirm = document.getElementById("search-confirm");
+
+/* ✅ Siempre visibles en PC/Tablet. En móvil usamos la barra inferior (dock) para que NO tapen tarjetas. */
+function uiIsMobileDockMode(){ return window.matchMedia("(max-width: 700px)").matches; }
+function uiSyncFloatingButtons(){
+  const hide = uiIsMobileDockMode();
+  if (floatingCart) floatingCart.classList.toggle("hidden", hide);
+  if (floatingSearch) floatingSearch.classList.toggle("hidden", hide);
+  if (floatingWhatsApp) floatingWhatsApp.classList.toggle("hidden", hide);
+}
+window.addEventListener("resize", uiSyncFloatingButtons);
+document.addEventListener("DOMContentLoaded", uiSyncFloatingButtons);
+uiSyncFloatingButtons();
+
+/* Dock móvil */
+const dockSearch = document.getElementById("dock-search");
+const dockCart = document.getElementById("dock-cart");
+if (dockSearch) dockSearch.addEventListener("click", () => openSearchModal());
+if (dockCart) dockCart.addEventListener("click", () => openCartModal());
+
 const searchBanner = document.getElementById("search-banner");
 const searchBannerText = document.getElementById("search-banner-text");
 const clearSearchBtn = document.getElementById("clear-search");
-
-/* Mostrar/ocultar el botón de la lupa con el scroll (igual que el carrito) */
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) floatingSearch.classList.remove("hidden");
-  else floatingSearch.classList.add("hidden");
-
-  if (floatingWhatsApp) {
-    if (window.scrollY > 300) floatingWhatsApp.classList.remove("hidden");
-    else floatingWhatsApp.classList.add("hidden");
-  }
-});
 
 /* Drag seguro como el carrito */
 let isDraggingSearch = false;

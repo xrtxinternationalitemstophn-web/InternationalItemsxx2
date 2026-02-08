@@ -1803,6 +1803,7 @@ body.theme-dark .product-info-content{
 
 .pi-actions{
   display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
   margin: 0.8rem 0 1rem;
 }
@@ -1850,3 +1851,87 @@ body.theme-dark .pi-img{ background: rgba(255,255,255,0.04); }
   margin-bottom: 0.35rem;
   line-height: 1.35;
 }
+
+
+/* ===========================
+   ✅ FIX: Dock móvil (no tapa tarjetas)
+   =========================== */
+.mobile-dock{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: rgba(12, 18, 32, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.10);
+  z-index: 12000;
+  justify-content: space-between;
+}
+.mobile-dock .dock-btn{
+  flex: 1;
+  border: none;
+  border-radius: 16px;
+  padding: 0.8rem 0.6rem;
+  font-weight: 800;
+  cursor: pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 0.45rem;
+  background: rgba(255,255,255,0.10);
+  color:#fff;
+  text-decoration: none;
+}
+.mobile-dock .dock-wa{ background: #25D366; }
+.mobile-dock .dock-cart{ background: var(--secondary); }
+#dock-cart-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #ff3b6b;
+  color:#fff;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+@media (max-width: 700px){
+  /* en móvil mostramos la barra y ocultamos los flotantes para que NO tapen */
+  .mobile-dock{ display:flex; }
+  .floating-cart, .floating-search, .floating-whatsapp, .whatsapp-bubble{ display:none !important; }
+
+  /* deja espacio para que la barra inferior no tape nada */
+  body{ padding-bottom: 98px; }
+
+  /* Acciones de tarjeta: 3 botones sin desbordes */
+  .product-share{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .product-share button{
+    flex: unset;
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 0.5rem 0.55rem;
+  }
+  .product-share .add-cart-btn{
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablet: 3 por fila */
+@media (min-width: 701px) and (max-width: 1024px){
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* Móvil: 2 por fila */
+@media (max-width: 700px){
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
