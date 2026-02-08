@@ -1681,3 +1681,36 @@ body.theme-dark textarea::placeholder{
 body.theme-dark .close-cart{
   color: rgba(232,237,245,0.85);
 }
+
+/* === RESPONSIVE GRID: móvil 2, tablet 3 === */
+
+/* Tablet: 3 productos por fila */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .product img {
+    height: 190px;
+  }
+}
+
+/* Móvil: 2 productos por fila */
+@media (max-width: 700px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .product { padding: 0.75rem; }
+
+  .product img { height: 170px; }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .product-grid { gap: 0.75rem; }
+  .product img { height: 150px; }
+}
+
