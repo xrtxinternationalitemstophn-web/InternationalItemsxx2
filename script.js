@@ -5,7 +5,7 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
  {
-  name: "🍎✨ iPhone 8 Plus - 256GB - 100% Bateria.*.",
+  name: "🍎✨ iPhone 8 Plus Negro - 256GB - 100% Bateria.*.",
   price: 3800.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
@@ -23,7 +23,7 @@ const products = [
   ]
 },
  {
-  name: "🍎🔥 iPhone 16 Pro Max 256GB 97% Negro",
+  name: "🍎🔥 iPhone 16 Pro Max 256GB 97% Negro ***",
   price: 21400.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
@@ -44,7 +44,7 @@ const products = [
   ]
 },
  {
-  name: "🍎✨ iPhone 8 Plus - 256GB - 100% Bateria..*",
+  name: "🍎✨ iPhone 8 Plus Rose - 256GB - 100% Bateria..*",
   price: 3800.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
