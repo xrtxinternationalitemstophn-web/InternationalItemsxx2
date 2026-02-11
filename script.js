@@ -674,7 +674,7 @@ const products = [
   // === celulares ===
   {
   name: "iPhone 8 Plus 256GB 100% BATERIA 10/10",
-  price: 3600.00,
+  price: 3800.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "INCLUYE:",
