@@ -5,7 +5,7 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
  {
-  name: "Samsung S24 Ultra - 256GB - 12 RAM",
+  name: "Samsung S24 Ultra - 256GB - 12 RAM*",
   price: 16500.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
