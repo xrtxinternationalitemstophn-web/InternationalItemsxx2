@@ -14,10 +14,10 @@ const products = [
     "Estado impecable, batería 100% y kit completo. Rendimiento confiable y diseño que nunca pasa de moda. 😎⚡"
   ],
   images: [
-    "images/8plusc1.jpg",
-    "images/8plusc2.jpg",
-    "images/8plusc3.jpg",
-    "images/8plusc4.jpg"
+    "images/8plusc1.png",
+    "images/8plusc2.png",
+    "images/8plusc3.png",
+    "images/8plusc4.png"
   ]
 },
  {
