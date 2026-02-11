@@ -5,6 +5,41 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
  {
+  name: "Samsung S24 Ultra - 256GB - 12 RAM",
+  price: 16500.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "📱🔥 Samsung S24 Ultra — Potencia extrema con 12 GB RAM, 256 GB de espacio y cámara brutal para fotos y videos de nivel pro. 🚀📸",
+    "💎⚡ Diseño premium + rendimiento monstruoso: multitarea sin límites, pantalla espectacular y batería para todo el día. 🔋✨",
+    "🎯📷 El flagship definitivo: velocidad ultra rápida, almacenamiento amplio y fotos que parecen de estudio profesional."
+  ],
+  images: [
+    "images/S24ull1.png",
+    "images/S24ull2.png",
+    "images/S24ull3.png",
+    "images/S24ull4.png",
+    "images/S24ull6.png",
+    "images/S24ull7.png",
+    "images/S24ull8.png"
+  ]
+},
+  {
+  name: "8 PLUS 256GB - EN CAJA CON ACCESORIOS‼️",
+  price: 5400.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
+    "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
+    "Instalación súper fácil: lo conectás y se infla solo 🎉🔌. Material resistente, colores vivos y calidad espectacular. ¡Hacé tu casa la más bonita del barrio!"
+  ],
+  images: [
+    "images/8pcaja1.jpg",
+    "images/8pcaja2.jpg",
+   "images/8pcaja3.jpg",
+   "images/8pcaja4.jpg"
+  ]
+},
+ {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
   price: 1300.0,
   categories: ["Accesorios Varios", "Navidad"],
