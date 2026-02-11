@@ -14,12 +14,12 @@ const products = [
     "⭐ 256GB espacio, Desbloqueado global de cualquier Red, Libre iCloud."
   ],
   images: [
-    "images/8p.a.1.jpg",
-    "images/8p.a.2.jpg",
-    "images/8p.a.3.jpg",
-    "images/8p.a.4.jpg",
-    "images/8p.a.5.jpg",
-    "images/8p.a.6.jpg"
+    "images/8p.a.1.png",
+    "images/8p.a.2.png",
+    "images/8p.a.3.png",
+    "images/8p.a.4.png",
+    "images/8p.a.5.png",
+    "images/8p.a.6.png"
   ]
 },
  {
