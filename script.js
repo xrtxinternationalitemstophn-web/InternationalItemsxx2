@@ -5,6 +5,25 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
  {
+  name: "🍎✨ iPhone 8 Plus - 256GB - 100% Bateria",
+  price: 3800.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "⭐ INCLUYE:",
+    "⭐ Vidrio Templado pantalla, Cargador y Cobertor.",
+    "⭐ 256GB espacio, Desbloqueado global de cualquier Red, Libre iCloud."
+  ],
+  images: [
+    "images/8p..c1.png",
+    "images/8p..c2.png",
+    "images/8p..c3.png",
+    "images/8p..c4.png",
+    "images/8p..c5.png",
+    "images/8p..c6.png",
+    "images/8p..c7.png"
+  ]
+},
+ {
   name: "🍎✨ iPhone 8 Plus 256GB NUEVO*.",
   price: 5600.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
