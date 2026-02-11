@@ -39,22 +39,6 @@ const products = [
     "images/S24ull8.png"
   ]
 },
-  {
-  name: "8 PLUS 256GB - EN CAJA CON ACCESORIOS‼️",
-  price: 5400.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
-    "Con luces internas que se ven hermosas de noche 🌟🏠. Ideal para salas, porches, negocios, jardines o eventos navideños.",
-    "Instalación súper fácil: lo conectás y se infla solo 🎉🔌. Material resistente, colores vivos y calidad espectacular. ¡Hacé tu casa la más bonita del barrio!"
-  ],
-  images: [
-    "images/8pcaja1.jpg",
-    "images/8pcaja2.jpg",
-   "images/8pcaja3.jpg",
-   "images/8pcaja4.jpg"
-  ]
-},
  {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
   price: 1300.0,
