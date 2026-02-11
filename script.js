@@ -23,6 +23,27 @@ const products = [
   ]
 },
  {
+  name: "🍎🔥 iPhone 16 Pro Max 256GB 97% Negro",
+  price: 21400.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Batería 97% 🔋, incluye cobertor + vidrio de pantalla instalado, vidrio de cámaras GRATIS y cargador 20W ⚡. ¡Listo para usar!",
+    "protección completa (pantalla + cámaras) y cargador rápido 20W incluido 🚀. Potencia y elegancia en tu mano.",
+    "Case y vidrio ya instalado 🔥, vidrio de cámaras de regalo 🎁 y cargador original 20W ⚡. Solo compras y disfrutas."
+  ],
+  images: [
+    "images/16pm97b1.png",
+    "images/16pm97b2.png",
+    "images/16pm97b3.png",
+    "images/16pm97b4.png",
+    "images/16pm97b5.png",
+    "images/16pm97b6.png",
+    "images/16pm97b7.png",
+    "images/16pm97b8.png",
+    "images/16pm97b9.png"
+  ]
+},
+ {
   name: "🍎✨ iPhone 8 Plus - 256GB - 100% Bateria..*",
   price: 3800.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
