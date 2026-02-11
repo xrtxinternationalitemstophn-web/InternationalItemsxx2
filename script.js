@@ -5,6 +5,22 @@
 // === LISTA DE PRODUCTOS ===
 const products = [
  {
+  name: "🍎✨ iPhone 8 Plus 256GB NUEVO*.",
+  price: 5600.0,
+  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
+  description: [
+    "Batería 100% 🔋, en caja con todos sus accesorios originales. Potencia y elegancia clásica. 📦🔥",
+    "256GB para todo, batería al 100% y accesorios completos. Ideal si buscás calidad premium a buen precio. 🚀🍏",
+    "Estado impecable, batería 100% y kit completo. Rendimiento confiable y diseño que nunca pasa de moda. 😎⚡"
+  ],
+  images: [
+    "images/8plusc1.jpg",
+    "images/8plusc2.jpg",
+    "images/8plusc3.jpg",
+    "images/8plusc4.jpg"
+  ]
+},
+ {
   name: "Samsung S24 Ultra - 256GB - 12 RAM*",
   price: 16500.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
