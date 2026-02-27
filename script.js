@@ -4,7 +4,7 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
- {
+  /*{
   name: "🍎✨ iPhone 8 Plus Negro - 256GB - 100% Bateria.*.",
   price: 3800.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
@@ -61,10 +61,11 @@ const products = [
     "images/8p..c6.png",
     "images/8p..c7.png"
   ]
-},
+},*/
  {
   name: "🍎✨ iPhone 8 Plus 256GB NUEVO*.",
   price: 5600.0,
+   profitFixed: 400,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Batería 100% 🔋, en caja con todos sus accesorios originales. Potencia y elegancia clásica. 📦🔥",
@@ -81,6 +82,7 @@ const products = [
  {
   name: "Samsung S24 Ultra - 256GB - 12 RAM*",
   price: 16500.0,
+   profitFixed: 400,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "📱🔥 Samsung S24 Ultra — Potencia extrema con 12 GB RAM, 256 GB de espacio y cámara brutal para fotos y videos de nivel pro. 🚀📸",
@@ -99,7 +101,7 @@ const products = [
 },
  {
   name: "INFABLE SANTA CLAUS NAVIDAD 1.8 METROS🥳‼️🎄",
-  price: 1300.0,
+  price: 1500.0,
   categories: ["Accesorios Varios", "Navidad"],
   description: [
     "¡Decoración NAVIDEÑA nivel PRO! 🎅✨ Este Santa inflable mide 1.8 metros, tan grande como una persona. ¡Llama la atención desde lejos!",
@@ -113,7 +115,7 @@ const products = [
 },
   {
   name: "Tableta Version Chip 5G 256GB - 8GB RAM - con accesorios bluetooth X9+",
-  price: 3000.0,
+  price: 3450.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "📱⚡ 8GB RAM + 256GB de almacenamiento para que nada te detenga. Rápida, fluida y lista para trabajo, estudio o entretenimiento. ¡Es otro nivel! 😎🚀",
@@ -127,7 +129,7 @@ const products = [
 },
 {
   name: "Tableta Fire 7 Niños, Kids 16GB con Cargador 66W GRATIS",
-  price: 1950.0,
+  price: 2180.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "👶📱 Diseñada especialmente para niños. Resistente, colorida y fácil de usar. Ideal para aprender, jugar y entretenerse sin preocupaciones 😍",
@@ -217,7 +219,7 @@ const products = [
 },
   {
   name: "Camara de Retroceso para Vehículos ENVIOS A TODO HONDURAS",
-  price: 230.0,
+  price: 250.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🚗📷 Estaciona sin miedo ni sorpresas. Visión clara, ángulo amplio y encendido automático al poner reversa. ¡Una vez la pruebas, no vuelves atrás! 😎✨",
@@ -230,7 +232,7 @@ const products = [
 },
 {
   name: "Guantes para Moto Tapa Sol ENVIOS A TODO HONDURAS",
-  price: 95.0,
+  price: 100.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🛵🧤 Protege tus manos del sol, el viento y el desgaste. Agarre firme, diseño deportivo y comodidad desde el primer uso. ¡Se sienten brutales! 😎💥",
@@ -286,7 +288,7 @@ const products = [
 },
 {
   name: "Cargador para Tipo C Doble Entrada 66W Carga Rapida ENVIOS A TODO HONDURAS",
-  price: 160.0,
+  price: 180.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "⚡📱 Más potencia, menos espera. Carga tus dispositivos en tiempo récord con tecnología de carga rápida segura. ¡Conéctalo y siente la diferencia! 😎🚀",
@@ -301,7 +303,7 @@ const products = [
 },
 {
   name: "Foco Bluetooth Musical RGB ENVIOS A TODO HONDURAS",
-  price: 160.0,
+  price: 180.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "💡🎶 Convierte cualquier espacio en una fiesta. Luces RGB que bailan al ritmo de tu música y sonido envolvente desde tu celular. ¡Enciéndelo y que empiece el show! 😍🔥",
@@ -355,7 +357,7 @@ const products = [
 },
 {
   name: "Gafas Lentes Para Moto Casco ENVIOS A TODO HONDURAS",
-  price: 140.0,
+  price: 150.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🏍️🕶️ Bloquea viento, polvo y sol mientras manejas con total comodidad. Visión clara y ajuste firme para cada recorrido. ¡Maneja con seguridad y estilo! 😎💨",
@@ -368,7 +370,7 @@ const products = [
 },
 {
   name: "Mascara Con Lentes Para Casco Moto ENVIOS A TODO HONDURAS",
-  price: 140.0,
+  price: 150.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🏍️🛡️ Protección total contra polvo, viento y sol. Diseño agresivo, visión clara y ajuste firme. ¡Maneja con presencia y seguridad! 😎🔥",
@@ -441,7 +443,7 @@ const products = [
 },
 {
   name: "Llaveros Ironman Hulk Superheroes Marvel ENVIOS A TODO HONDURAS",
-  price: 95.0,
+  price: 100.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🔑💥 Lleva a tus héroes favoritos contigo todos los días. Súper llamativos, resistentes y llenos de actitud. ¡Imposible no quererlos! 😎",
@@ -469,7 +471,7 @@ const products = [
 },
 {
   name: "Llaveros Labubu VARIEDAD‼️ENVIOS A TODO HONDURAS",
-  price: 90.0,
+  price: 100.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🔑😍 Súper tiernos, coloridos y con un diseño que roba miradas. Ideales para llaves, mochilas o regalar. ¡Cada uno es una tentación! 🥰",
@@ -483,7 +485,7 @@ const products = [
 },
 {
   name: "Adaptador WIFI 150 mbps ENVIOS A TODO HONDURAS",
-  price: 150.0,
+  price: 155.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "💻🚀 Mejora tu conexión al instante. Alta señal, navegación fluida y cero cortes. ¡Conéctalo y disfruta internet estable! 😎",
@@ -497,7 +499,7 @@ const products = [
 },
 {
   name: "Repetidor Wifi Tenda N300 ENVIO TODO HONDURAS",
-  price: 680.0,
+  price: 700.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "🏠🚀 Amplía tu WiFi y despídete de las zonas sin señal. Conexión estable, rápida y confiable para toda la casa. ¡Notarás la diferencia desde el primer día! 😎",
@@ -511,27 +513,8 @@ const products = [
   ]
 },
   {
-  name: "iPhone 15 Pro Max 256GB 86% ENVIOS GRATIS TODO HONDURAS",
-  price: 18000.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "⭐ INCLUYE: VIDRIO PARA CAMARAS COMPLETO DE DOBLE REFUERZO",
-    "⭐ CARGADOR 20W CARGA RAPIDA GRATIS",
-    "⭐ VIDRIO PANTALLA Y SI NECESITA INSTALACIÓN ES GRATIS"
-  ],
-  images: [
-    "images/ip15pm1.jpg",
-    "images/ip15pm2.jpg",
-    "images/ip15pm3.jpg",
-    "images/ip15pm4.jpg",
-    "images/ip15pm5.jpg",
-    "images/ip15pm6.jpg",
-    "images/ip15pm7.jpg"
-  ]
-},
-  {
   name: "Forro de Asiento Moto tipo Cuero Impermeable ENVIOS TODO HONDURAS",
-  price: 200.0,
+  price: 220.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "¡Dile adiós al asiento mojado! 💦🔥 Este forro tipo cuero ultra impermeable mantiene tu moto siempre lista, aunque caiga un diluvio.",
@@ -543,22 +526,6 @@ const products = [
     "images/forrouawen2.jpg",
     "images/forrouawen3.jpg",
     "images/forrouawen4.jpg"
-  ]
-},
-{
-  name: "Moto Génesis HJ125-7 PAPELES EN REGLA TEGUCIGALPA",
-  price: 9000.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "Motor 125cc con cilindro, anillos y pistón NUEVOS 💥🔧 — la moto anda suave, potente y con mantenimiento recién hecho. ¡Lista para cualquier mandado!",
-    "Usada solo para tareas del hogar 🏡✨, súper cuidada, encendida al llavazo y sin fallas. Modelo 2011, económica y perfecta para el día a día.",
-    "Discos de Clutch recién cambiado, asiento impecable y en excelente estado 🏍️💯. Entrega inmediata — ¡la ves y te la llevas!"
-  ],
-  images: [
-    "images/motopapa1.jpg",
-    "images/motopapa2.jpg",
-    "images/motopapa3.jpg",
-    "images/motopapa4.jpg"
   ]
 },
 {
@@ -579,7 +546,7 @@ const products = [
 },
 {
   name: "Smart TV Hisense 58 pulgadas 4K ENVIO GRATIS TODO HONDURAS NUEVO SELLADO‼️",
-  price: 10700.0,
+  price: 12150.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Pantalla gigante de 58 pulgadas con resolución 4K Ultra HD 📺✨. Vive el fútbol, películas y juegos con colores más vivos y detalles que impresionan.",
@@ -593,22 +560,8 @@ const products = [
   ]
 },
 {
-  name: "TV Led Tekno 32 pulgadas ENVIO GRATIS TODO HONDURAS NUEVO SELLADO",
-  price: 2700.0,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "Pantalla de 32 pulgadas con colores vivos y excelente claridad 📺✨. Ideal para cuartos, salas pequeñas o negocios. ¡Se mira nítida desde cualquier ángulo!",
-    "Con 2 HDMI + 2 USB 🔌⚡ perfectos para conectar Roku, decodificadores, consolas, memorias USB y mucho más. ¡Listo para disfrutar al instante!",
-    "Producto nuevo, sellado y garantizado 🆕📦. Incluye envío GRATIS a todo Honduras 🚚🇭🇳. ¡Aprovecha antes que se agoten!"
-  ],
-  images: [
-    "images/tekk1.jpg",
-    "images/tekk2.jpg"
-  ]
-},
-{
   name: "Smart TV Hisense 32 Pulgadas NUEVO SELLADO GARANTIA 6 MESES ENVIO GRATIS TODO HONDURAS‼️",
-  price: 4000.0,
+  price: 4250.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Smart TV Hisense 32” con sistema VIDAA: rápido, moderno e ideal para Netflix, YouTube, Prime Video y más 📺✨. ¡Colores vivos y audio nítido!",
@@ -637,7 +590,7 @@ const products = [
 },
 {
   name: "Intercomunicador K06 para Casco SUPER PRECIO‼️",
-  price: 450.0,
+  price: 480.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Disfrutá música nítida y llamadas claras mientras manejás 🚀🎧. El K06 trae sonido Hi-Fi, botones grandes y hasta 72 horas de batería REAL.",
@@ -653,7 +606,7 @@ const products = [
 
 {
   name: "PROTEÍNA ISO100 – SABOR BIRTHDAY CAKE 🎂💪✨",
-  price: 2880.0,
+  price: 3240.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "¡25g de proteína por scoop para músculo puro! 💪🔥 ISO100 es de absorción rápida, ideal para después del gym o para empezar tu día con energía.",
@@ -668,83 +621,6 @@ const products = [
   ]
 },
   // === agregado 3 diciembre ===
-
-
-  
-  // === celulares ===
-  {
-  name: "iPhone 8 Plus 256GB 100% BATERIA 10/10",
-  price: 3800.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "INCLUYE:",
-    "Vidrio Templado pantalla, Cargador.",
-    "Cobertor anticaidas reforzado."
-  ],
-  images: [
-    "images/iphone84.jpg",
-    "images/iphone81.jpg",
-    "images/iphone82.jpg",
-    "images/iphone83.jpg",
-    "images/iphone85.jpg",
-    "images/iphone86.jpg",
-    "images/iphone87.jpg",
-    "images/iphone88.jpg"
-  ]
-},
-  {
-  name: "Samsung S24 Ultra 256GB 10/10",
-  price: 16899.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "INCLUYE:",
-    "Vidrio Full pantalla GRATIS.",
-    "Cobertor anticaidas reforzado GRATIS.",
-    "Si quiere cargador 20w +140 lps"
-  ],
-  images: [
-    "images/s24x1.jpg",
-    "images/s24x2.jpg",
-    "images/s24x3.jpg",
-    "images/s24x4.jpg",
-    "images/s24x5.jpg",
-    "images/s24x6.jpg"
-  ]
-},
-  {
-  name: "Vivo x200 Pro 1TB 97% 10/10",
-  price: 40000.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "INCLUYE:",
-    "Vidrio Templado Pantalla, Cargador 90W Original.",
-    "Cobertor Anticaidas Resistente y cubre incluso Camaras."
-  ],
-  images: [
-    "images/x2001.png",
-    "images/x2002.png",
-    "images/x2003.png",
-    "images/x2004.png"
-  ]
-},
-  {
-  name: "Infinix GT20 Pro 256GB 24RAM 9.5/10",
-  price: 6600.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "INCLUYE:",
-    "Vidrio de Pantalla, Cargador Original de 45W",
-    "Cobertor Resistente de los gruesos."
-  ],
-  images: [
-    "images/gt204.png",
-    "images/gt202.png",
-    "images/gt203.png",
-    "images/gt201.png",
-    "images/gt205.jpg",
-    "images/gt206.jpg"
-  ]
-},
   // === celulares ===
   {
     name: "PowerBank 20,000 MaH",
@@ -776,7 +652,7 @@ const products = [
   },
   {
     name: "Proyector HD Portatil",
-    price: 620.00,
+    price: 640.00,
     categories: ["Tecnologia y Juegos", "Accesorios Varios"],
     description: [
     "Disfruta tus películas, series o juegos con calidad HD y colores vivos, incluso en espacios con poca luz.",
@@ -804,7 +680,7 @@ const products = [
   },
   {
     name: "Camara Exterior Wifi Giratoria 360°",
-    price: 550.00,
+    price: 580.00,
     categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
     description: [
     "Vigila tu casa, negocio o patio con visión Full HD, detección de movimiento y visión nocturna.",
@@ -818,7 +694,7 @@ const products = [
   },
   {
     name: "Pecheras para Cámaras o Go Pro",
-    price: 300.00,
+    price: 320.00,
     category: "Auto y Moto",
     description: [
     "Captura tus aventuras con perspectiva real desde el pecho, ideal para ciclismo, motos, senderismo, deportes extremos y más.",
@@ -831,7 +707,7 @@ const products = [
   },
   {
     name: "Cargador iPhone 20W Tipo C Carga Rápida",
-    price: 140.00,
+    price: 150.00,
     categories: ["Tecnologia y Juegos", "Accesorios Varios"],
     description: [
     "Carga tu iPhone del 0% al 50% en solo 30 minutos gracias a la tecnología Power Delivery (PD).",
@@ -862,7 +738,7 @@ const products = [
   },
   {
     name: "Repetidor WiFi 300 Mbps",
-    price: 300.00,
+    price: 320.00,
     categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
     description: [
     "Elimina las zonas sin señal y mejora la conexión en dormitorios, terrazas u oficinas.",
@@ -970,7 +846,7 @@ const products = [
 },
 {
   name: "Kit Go Pro 9/10/11/12 Funda Silicona y Vidrios Templados",
-  price: 500.00,
+  price: 540.00,
   categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Protege tu cámara al máximo: Funda de silicona resistente a golpes, rayones y polvo.",
@@ -1027,7 +903,7 @@ const products = [
 },
 {
   name: "Cargador de Bateria para Carro y Moto 12V",
-  price: 360.00,
+  price: 380.00,
   categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Carga inteligente: Detecta el nivel de batería y ajusta la corriente automáticamente para una carga rápida y segura.",
@@ -1057,7 +933,7 @@ const products = [
 },
 {
   name: "SanDisk Ultra Micro SD 128 GB con Adaptador y Lector USB",
-  price: 650.00,
+  price: 700.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidades de lectura de hasta 100 MB/s para grabar, transferir o reproducir sin interrupciones.",
@@ -1071,7 +947,7 @@ const products = [
 },
 {
   name: "Mouse Logitech G502 Hero",
-  price: 1400.00,
+  price: 1450.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Precisión extrema con hasta 25,600 DPI y respuesta inmediata, ideal para gamers exigentes.",
@@ -1089,7 +965,7 @@ const products = [
 },
 {
   name: "Kawasaki Ninja Moto a Escala 1:18 con Base Metal y Plástico",
-  price: 400.00,
+  price: 440.00,
   categories: ["Juguetes", "Auto y Moto"],
   description: [
     "Réplica fiel de la legendaria Kawasaki Ninja, con acabados precisos en metal y plástico de alta calidad.",
@@ -1107,7 +983,7 @@ const products = [
 },
 {
   name: "Pechera para Cámara y Celular",
-  price: 480.00,
+  price: 500.00,
   categories: ["Tecnologia y Juegos", "Auto y Moto"],
   description: [
     "Captura tus recorridos en moto, bicicleta, caminatas o deportes con vista real desde el pecho.",
@@ -1154,7 +1030,7 @@ const products = [
 },
 {
   name: "Set Destornilladores 32 en 1 Portátil",
-  price: 180.00,
+  price: 160.00,
   categories: ["Tecnologia y Juegos", "Herramientas"],
   description: [
     "Incluye 32 puntas magnéticas diferentes para reparar celulares, relojes, consolas, laptops y más.",
@@ -1217,7 +1093,7 @@ const products = [
 },
 {
   name: "Disco SSD 960GB NUEVO SELLADO",
-  price: 1800.00,
+  price: 1900.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Hasta 10x más rápido que un disco duro tradicional: arranque, carga y transferencia en segundos.",
@@ -1302,7 +1178,7 @@ const products = [
 },
 {
   name: "Monitor Gaming 240hz KTC Certificado 32”",
-  price: 11000.00,
+  price: 11500.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Pantalla curva FHD (1920×1080) con tecnología Fast HVA para colores más vivos y realismo total.",
@@ -1320,7 +1196,7 @@ const products = [
 },
 {
   name: "Camara Exterior Wifi Gira 360",
-  price: 400.00,
+  price: 440.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Rotación 360° y visión nocturna HD, vigila cada rincón de tu hogar día y noche.",
@@ -1334,7 +1210,7 @@ const products = [
 },
 {
   name: "Foco Camara Doble Lente Wifi Gira 360",
-  price: 600.00,
+  price: 670.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Cobertura total 360°, doble lente inteligente que graba cada ángulo sin dejar puntos ciegos.",
@@ -1366,26 +1242,8 @@ const products = [
   ]
 },
 {
-  name: "Accesorios Go Pro 50 en 1 4/5/6/7/8/9/10/11/12 Insta 360",
-  price: 1650.00,
-  categories: ["Tecnologia y Juegos", "Auto y Moto"],
-  description: [
-    "50 accesorios en un solo set, incluye estuche, soportes, correas, adaptadores, trípode y más para cualquier situación.",
-    "Compatibilidad total, funciona con todas las versiones GoPro e Insta360, ideal para deporte, viaje o grabación profesional.",
-    "Alta resistencia y calidad, materiales duraderos diseñados para soportar agua, impactos y largas jornadas de grabación."
-  ],
-  images: [
-    "images/accesorios1.jpg",
-    "images/accesorios2.jpg",
-    "images/accesorios3.jpg",
-    "images/accesorios4.jpg",
-    "images/accesorios5.jpg",
-    "images/accesorios6.jpg"
-  ]
-},
-{
   name: "Kit Organizador Ropa Interior",
-  price: 250.00,
+  price: 270.00,
   categories: ["Ropa y Calzado", "Accesorios Varios"],
   description: [
     "Orden inmediato, guarda ropa interior, calcetines y brasieres en compartimientos separados y visibles.",
@@ -1448,21 +1306,6 @@ const products = [
   ]
 },
 {
-  name: "Camara Deportiva 4K Full Accesorios",
-  price: 550.00,
-  categories: ["Tecnologia y Juegos", "Auto y Moto"],
-  description: [
-    "Ideal para capturar tus aventuras con una nitidez impresionante en cualquier entorno.",
-    "Resistente al agua y a impactos, perfecta para moto, bicicleta, buceo o deportes extremos.",
-    "Incluye kit completo de accesorios, soportes, cables y adaptadores para usarla donde quieras desde el primer día."
-  ],
-  images: [
-    "images/gopro1.jpg",
-    "images/gopro2.jpg",
-    "images/gopro3.jpg"
-  ]
-},
-{
   name: "Set Reloj para Regalo",
   price: 280.00,
   categories: ["Joyeria", "Damas"],
@@ -1491,7 +1334,7 @@ const products = [
 },
 {
   name: "Powerbank 40,000 MaH OFERTA❗️",
-  price: 700.00,
+  price: 750.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Carga solar y doble salida USB, ideal para mantener todos tus dispositivos con energía en cualquier lugar.",
@@ -1522,7 +1365,7 @@ const products = [
 },
 {
   name: "Lapiz Tactil Universal LIQUIDACIÓN‼️",
-  price: 300.00,
+  price: 320.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Compatible con iOS, Android y Windows, úsalo en tablets, celulares y pantallas táctiles sin configuraciones.",
@@ -1536,7 +1379,7 @@ const products = [
 },
  {
   name: "Kit Grabacion Celular y Camara",
-  price: 220.00,
+  price: 240.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Luz LED potente y regulable, perfecta para grabaciones nocturnas o en interiores con calidad profesional.",
@@ -1545,21 +1388,6 @@ const products = [
   ],
   images: [
     "images/kig1.jpg"
-  ]
-},
- {
-  name: "Samsung Tab S10 FE 128GB 1 AÑO DE GARANTIA NUEVA CON SU S-PEN NUEVA DE CAJA",
-  price: 10200.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
-  description: [
-    "Rendimiento superior y fluido, ideal para trabajo, estudio y entretenimiento con su procesador optimizado.",
-    "Incluye S-Pen original, perfecta para tomar notas, dibujar y trabajar con precisión profesional.",
-    "Garantía de 1 año y totalmente nueva en caja, ofreciéndote seguridad, estilo y tecnología Samsung de última generación."
-  ],
-  images: [
-    "images/tabs101.jpg",
-    "images/tabs102.jpg",
-    "images/tabs103.jpg"
   ]
 },
 {
@@ -1594,7 +1422,7 @@ const products = [
 },
 {
   name: "Camara Vigilancia Giratoria Wifi Exterior 360°",
-  price: 400.00,
+  price: 440.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Conexión WiFi 2.4GHz estable y visión panorámica de 360°, controla cada rincón desde tu celular en tiempo real.",
@@ -1610,7 +1438,7 @@ const products = [
 },
 {
   name: "Camara Giratoria Exterior Multiled 360°",
-  price: 550.00,
+  price: 600.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Iluminación LED e infrarroja dual, ofrece imagen nítida tanto de día como de noche con visión a color.",
@@ -1625,7 +1453,7 @@ const products = [
 },
 {
   name: "Helicoptero Control Remoto Recargable",
-  price: 250.00,
+  price: 270.00,
   categories: ["Tecnologia y Juegos", "Juguetes"],
   description: [
     "Recargable por USB, olvídate de las pilas y disfruta de vuelos más largos y estables.",
@@ -1641,7 +1469,7 @@ const products = [
 },
 {
   name: "Mini Camara WiFi HD",
-  price: 220.00,
+  price: 240.00,
   categories: ["Tecnologia y Juegos", "Seguridad Hogar"],
   description: [
     "Conexión WiFi en tiempo real, visualiza desde tu celular todo lo que ocurre en tu hogar u oficina estés donde estés.",
@@ -1655,7 +1483,7 @@ const products = [
 },
 {
   name: "Carrito Plegable Metal Hasta 400 lbs",
-  price: 1750.00,
+  price: 1880.00,
   categories: ["Herramientas", "Seguridad Hogar"],
   description: [
     "Estructura metálica ultra resistente, soporta hasta 400 lbs ideal para carga pesada, herramientas, compras o actividades al aire libre.",
@@ -1670,7 +1498,7 @@ const products = [
 },
 {
   name: "Mouse Inalambrico Económico",
-  price: 140.00,
+  price: 160.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Conexión inalámbrica estable, sin cables molestos y con respuesta rápida ideal para trabajo o estudio.",
@@ -1687,7 +1515,7 @@ const products = [
 },
 {
   name: "Relojes para Dama Variedad Set",
-  price: 250.00,
+  price: 280.00,
   categories: ["Damas", "Joyeria"],
   description: [
     "Diseños exclusivos y femeninos, con relojes decorados y accesorios que realzan cualquier estilo.",
@@ -1771,7 +1599,7 @@ const products = [
 },
 {
   name: "Cartera Grande para Mujer Incluye Lazo",
-  price: 450.00,
+  price: 480.00,
   categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Diseño sofisticado y femenino, con detalle de lazo desmontable que agrega un toque chic a cualquier look.",
@@ -1785,21 +1613,8 @@ const products = [
   ]
 },
 {
-  name: "Esferas Navideñas Set de 50 Piezas Surtido",
-  price: 300.00,
-  categories: ["Damas", "Bolsos y Carteras"],
-  description: [
-    "Decoración completa para tu árbol, con una hermosa combinación de colores clásicos: rojo, verde, dorado y azul.",
-    "Acabados variados (brillantes, mate y con glitter) para darle un toque elegante y festivo a cualquier espacio.",
-    "Ligero y resistente, ideales para árboles grandes o pequeños, fáciles de colgar y reutilizables año tras año."
-  ],
-  images: [
-    "images/pelot1.jpg"
-  ]
-},
-{
   name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
-  price: 440.00,
+  price: 460.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Conecta y juega sin cables — Compatible con PS3, PS4 y PC, con respuesta rápida y sin retrasos.",
@@ -1811,19 +1626,6 @@ const products = [
     "images/contrr2.jpg",
     "images/contrr3.jpg",
     "images/contrr4.jpg"
-  ]
-},
-{
-  name: "Kit Accesorios Go Pro 4/5/6/7/8/9/10/11/12 27 en 1",
-  price: 1300.00,
-  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
-  description: [
-    "Todo en uno para cualquier aventura — Soportes de pecho, cabeza, muñeca, bicicleta, trípode, flotador y más.",
-    "Compatibilidad total — Funciona con todas las cámaras GoPro y deportivas (Hero 4/5/6/7/8/9/10/11/12).",
-    "Listo para acción extrema — Material resistente, cómodo y fácil de transportar con su bolsa de viaje incluida."
-  ],
-  images: [
-    "images/kittgg1.jpg"
   ]
 },
 {
@@ -1845,7 +1647,7 @@ const products = [
 },
 {
   name: "Forro para Casco Conejo Tipo Peluche CALIDAD",
-  price: 500.00,
+  price: 550.00,
   categories: ["Accesorios Varios", "Auto y Moto"],
   description: [
     "Diseño único y llamativo — Convierte tu casco en el centro de atención con su estilo divertido y suave al tacto.",
@@ -1860,7 +1662,7 @@ const products = [
 },
 {
   name: "Accesorios Go Pro Hero 9/10/11/12 63 en 1 INCLUYE VIDRIOS TEMPLADOS",
-  price: 1800.00,
+  price: 1850.00,
   categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Todo lo que necesitas en un solo kit — Incluye correas, soportes, trípodes, flotador, ventosa, filtros y más para cualquier tipo de grabación.",
@@ -1869,20 +1671,6 @@ const products = [
   ],
   images: [
     "images/kitggp1.jpg"
-  ]
-},
-{
-  name: "ENVIO GRATIS MicroSD 512GB 200MB/s SanDisk Extreme Pro 4K UHD",
-  price: 2500.00,
-  categories: ["Accesorios Varios", "Tecnologia y Juegos"],
-  description: [
-    "Velocidad extrema de hasta 200MB/s — Ideal para grabar y transferir videos en 4K UHD sin interrupciones.",
-    "Diseño resistente — Soporta agua, golpes, rayos X y temperaturas extremas.",
-    "Perfecta para cámaras, drones y celulares — Incluye adaptador SD para mayor compatibilidad."
-  ],
-  images: [
-    "images/sandddk1.jpg",
-    "images/sandddk2.jpg"
   ]
 },
 {
@@ -1904,7 +1692,7 @@ const products = [
 },
 {
   name: "Ganchos para Maquillaje Sujeta Cabello SET 6 Piezas",
-  price: 150.00,
+  price: 180.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "No deja marcas — Ideal para sujetar el cabello mientras te maquillas o haces skincare sin arruinar el peinado.",
@@ -1919,7 +1707,7 @@ const products = [
 },
 {
   name: "Borlas/Puff para Maquillaje Suaves y Calidad",
-  price: 25.00,
+  price: 45.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "Acabado profesional — Borlas ultra suaves ideales para aplicar polvos sueltos o compactos con un acabado aterciopelado.",
@@ -1934,7 +1722,7 @@ const products = [
 },
 {
   name: "Cubre Pezon Adhesivo Silicona 2 Figuras",
-  price: 120.00,
+  price: 140.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "Comodidad y discreción total — Hechos de silicona suave, se adaptan perfectamente al cuerpo y no se marcan bajo la ropa.",
@@ -1950,7 +1738,7 @@ const products = [
 },
 {
   name: "Set Aretes Collar 3 piezas Delicados Joyeria Europea",
-  price: 190.00,
+  price: 200.00,
   categories: ["Damas", "Joyeria"],
   description: [
     "Diseños elegantes y modernos — Cada set combina brillo y estilo europeo, perfectos para lucir con cualquier outfit.",
@@ -2029,7 +1817,7 @@ const products = [
 },
 {
   name: "Esponja Mágica Limpia de TODO",
-  price: 10.00,
+  price: 15.00,
   categories: ["Seguridad Hogar", "Accesorios Varios"],
   description: [
     "Elimina manchas al instante — Ideal para paredes, cocina, baño, zapatos, autos y más. Solo añade agua, ¡sin químicos!",
@@ -2047,7 +1835,7 @@ const products = [
 },
 {
   name: "GANGA‼️Cobertor TPU Nintendo Switch V1/V2 CONTRA RAYONES",
-  price: 150.00,
+  price: 170.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Protección total — A prueba de rayones, salpicaduras y suciedad. Ideal para mantener tu consola como nueva.",
@@ -2063,7 +1851,7 @@ const products = [
 },
 {
   name: "Dedales Gamer Por Mayor y Al Detalle",
-  price: 30.00,
+  price: 40.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Reacción ultra rápida — Mejora tu precisión y evita resbalones gracias a su tejido conductivo sensible al tacto.",
@@ -2079,7 +1867,7 @@ const products = [
 },
 {
   name: "Gorros Suavecitos Calentitos para Bebé 1-2 años Set 3 piezas",
-  price: 300.00,
+  price: 330.00,
   categories: ["Ropa y Calzado", "Juguetes"],
   description: [
     "Diseño tierno — Bordado con un adorable dinosaurio, ideal para bebés de 1 a 2 años.",
@@ -2092,7 +1880,7 @@ const products = [
 },
 {
   name: "Organizadores de Maleta para Viajes Set 6 Piezas VARIEDAD COLORES",
-  price: 300.00,
+  price: 330.00,
   categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ahorra espacio y mantén todo en orden — Separa tu ropa, calzado y accesorios fácilmente para viajes sin estrés.",
@@ -2106,7 +1894,7 @@ const products = [
 },
 {
   name: "Bolso Mensajero para Viajes",
-  price: 360.00,
+  price: 390.00,
   categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ideal para viajeros — Tamaño compacto pero espacioso (26×21×9 cm) con múltiples compartimentos y cierres de alta calidad.",
@@ -2178,22 +1966,6 @@ const products = [
   ]
 },
 {
-  name: "RTX 3060 12GB GDDR6 ZOTAC GAMING",
-  price: 9500.00,
-  categories: ["Tecnologia y Juegos", "Celulares y Tablet"],
-  description: [
-    "Memoria: 12GB GDDR6 ultra rápida / Arquitectura NVIDIA Ampere: con núcleos RT y Tensor de última generación.",
-    "Tecnología IceStorm 2.0: refrigeración avanzada y silenciosa / Freeze Tech: apaga los ventiladores cuando no hay carga.",
-    "FireStorm Utility: personaliza rendimiento, velocidad y RGB. / Soporte Ray Tracing y DLSS: gráficos realistas y mejor rendimiento.",
-    "Ideal para gamers y creadores que buscan potencia, estabilidad, alto rendimiento gráfico y edición profesional."
-  ],
-  images: [
-    "images/zotac1.jpg",
-    "images/zotac2.jpg",
-    "images/zotac3.jpg"
-  ]
-},
-{
   name: "Teclado y Mouse RGB Gaming Combo PROMO",
   price: 450.00,
   categories: ["Tecnologia y Juegos", "Juguetes"],
@@ -2225,7 +1997,7 @@ const products = [
 },
 {
   name: "Mesa Gaming Tipo L con Luz Led Facil Armado",
-  price: 3800.00,
+  price: 4150.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Iluminación LED ambiental: transforma tu setup con luces RGB que realzan el ambiente gamer.",
@@ -2240,7 +2012,7 @@ const products = [
 },
 {
   name: "Bolso Grande Bandolera Calidad",
-  price: 420.00,
+  price: 450.00,
   categories: ["Bolsos y Carteras", "Accesorios Varios"],
   description: [
     "Amplio y funcional: espacio ideal para tablet, documentos, billetera y más, perfecto para uso diario o viajes.",
@@ -2269,7 +2041,7 @@ const products = [
 },
 {
   name: "Cosmetiquera de Viaje Plegable Práctica y Elegante",
-  price: 280.00,
+  price: 300.00,
   categories: ["Bolsos y Carteras", "Accesorios Varios"],
   description: [
     "Organización total: múltiples compartimentos con cierre y malla transparente para tener todo a la vista y al alcance.",
@@ -2289,7 +2061,7 @@ const products = [
 //ULTIMO PRODUCTO
   {
   name: "Auriculares Gaming X15 con LEDS y Pantalla PAGA AL RECIBIR TODO HONDURAS",
-  price: 290.00,
+  price: 300.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🎧🔥 Auriculares Gaming X15 con LEDs y pantalla digital: sonido potente, estilo futurista y cero retraso para jugar al máximo.",
@@ -2337,7 +2109,7 @@ const products = [
 },
 {
   name: "Jabon para Cara ORIGINAL Piel Seca a Normal ENVIOS A TODO HONDURAS",
-  price: 500.00,
+  price: 550.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🧴💧 Limpieza suave y efectiva con CeraVe Hydrating Facial Cleanser—ideal para piel normal a seca y respetuoso con la barrera de tu piel.",
@@ -2350,7 +2122,7 @@ const products = [
     "images/crr3.jpg"
   ]
 },
-{
+/*{
   name: "Detox Suplemento Greens y Superfoods tipo Bloom ENVIOS TODO HONDURAS",
   price: 780.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
@@ -2363,7 +2135,7 @@ const products = [
     "images/det1.jpg",
     "images/det2.jpg"
   ]
-},
+},*/
 {
   name: "Colageno Suplemento Tableta 5 COLAGENOS‼️ENVIOS TODO HONDURAS",
   price: 450.00,
