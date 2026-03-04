@@ -1588,7 +1588,7 @@ const products = [
 },
 {
   name: "Control Inalambrico PS3/ PS4/ PC COMPLETAMENTE NUEVOS",
-  price: 460.00,
+  price: 480.00,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
   description: [
     "Conecta y juega sin cables — Compatible con PS3, PS4 y PC, con respuesta rápida y sin retrasos.",
@@ -1604,7 +1604,7 @@ const products = [
 },
 {
   name: "Lapiz 2da Generacion para iPad Rechazo de Palma Carga Magnetica",
-  price: 1000.00,
+  price: 1150.00,
   categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Conexión instantánea y carga magnética — Se adhiere al iPad y se carga sin cables en solo 2 h para hasta 9 h de uso continuo.",
