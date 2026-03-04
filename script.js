@@ -675,8 +675,8 @@ const products = [
     "Ideal para exterior, impermeable y con rotación de 360° para cubrir cada ángulo sin puntos ciegos."
   ],
     images: [
-      "images/cam1.jpg",
-      "images/cam2.jpg"
+      "images/camxs1.jpeg",
+      "images/camxs2.jpeg"
     ]
   },
   {
@@ -1433,9 +1433,8 @@ const products = [
     "Detección inteligente de movimiento y audio bidireccional, recibe alertas en tiempo real y comunícate al instante."
   ],
   images: [
-    "images/multiled1.jpg",
-    "images/multiled2.jpg",
-    "images/multiled3.jpg"
+    "images/multiledd1.jpeg",
+    "images/multiledd2.jpeg"
   ]
 },
 {
