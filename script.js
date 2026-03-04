@@ -4,7 +4,7 @@
 
 // === LISTA DE PRODUCTOS ===
 const products = [
-  /*{
+ /*{
   name: "🍎✨ iPhone 8 Plus Negro - 256GB - 100% Bateria.*.",
   price: 3800.0,
   categories: ["Tecnologia y Juegos", "Celulares y Tablets"],
@@ -1551,7 +1551,7 @@ const products = [
  /* POR AQUI ME QUEDE */
 {
   name: "Carteras para Dama Variedad",
-  price: 235.00,
+  price: 280.00,
   categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Diseños modernos y versátiles, ideales para combinar con cualquier outfit, desde casual hasta elegante.",
@@ -1573,7 +1573,7 @@ const products = [
 },
 {
   name: "Cartera Grande para Mujer Incluye Lazo",
-  price: 480.00,
+  price: 520.00,
   categories: ["Damas", "Bolsos y Carteras"],
   description: [
     "Diseño sofisticado y femenino, con detalle de lazo desmontable que agrega un toque chic a cualquier look.",
@@ -1621,7 +1621,7 @@ const products = [
 },
 {
   name: "Forro para Casco Conejo Tipo Peluche CALIDAD",
-  price: 550.00,
+  price: 580.00,
   categories: ["Accesorios Varios", "Auto y Moto"],
   description: [
     "Diseño único y llamativo — Convierte tu casco en el centro de atención con su estilo divertido y suave al tacto.",
@@ -1636,7 +1636,7 @@ const products = [
 },
 {
   name: "Accesorios Go Pro Hero 9/10/11/12 63 en 1 INCLUYE VIDRIOS TEMPLADOS",
-  price: 1850.00,
+  price: 2080.00,
   categories: ["Accesorios Varios", "Tecnologia y Juegos"],
   description: [
     "Todo lo que necesitas en un solo kit — Incluye correas, soportes, trípodes, flotador, ventosa, filtros y más para cualquier tipo de grabación.",
@@ -1649,7 +1649,7 @@ const products = [
 },
 {
   name: "Dron Premium K3 E99Pro 4K Doble Camara Luz Led con Estuche",
-  price: 800.00,
+  price: 920.00,
   categories: ["Juguetes", "Tecnologia y Juegos"],
   description: [
     "Imágenes Ultra HD — Cámara doble de alta definición para capturar fotos y videos con máxima claridad.",
@@ -1666,7 +1666,7 @@ const products = [
 },
 {
   name: "Ganchos para Maquillaje Sujeta Cabello SET 6 Piezas",
-  price: 180.00,
+  price: 200.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "No deja marcas — Ideal para sujetar el cabello mientras te maquillas o haces skincare sin arruinar el peinado.",
@@ -1681,7 +1681,7 @@ const products = [
 },
 {
   name: "Borlas/Puff para Maquillaje Suaves y Calidad",
-  price: 45.00,
+  price: 55.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "Acabado profesional — Borlas ultra suaves ideales para aplicar polvos sueltos o compactos con un acabado aterciopelado.",
@@ -1696,7 +1696,7 @@ const products = [
 },
 {
   name: "Cubre Pezon Adhesivo Silicona 2 Figuras",
-  price: 140.00,
+  price: 160.00,
   categories: ["Damas", "Accesorios Varios"],
   description: [
     "Comodidad y discreción total — Hechos de silicona suave, se adaptan perfectamente al cuerpo y no se marcan bajo la ropa.",
@@ -1712,7 +1712,7 @@ const products = [
 },
 {
   name: "Set Aretes Collar 3 piezas Delicados Joyeria Europea",
-  price: 200.00,
+  price: 230.00,
   categories: ["Damas", "Joyeria"],
   description: [
     "Diseños elegantes y modernos — Cada set combina brillo y estilo europeo, perfectos para lucir con cualquier outfit.",
@@ -1729,7 +1729,7 @@ const products = [
 },
 {
   name: "Camara Web con Microfono 1080HD",
-  price: 400.00,
+  price: 450.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Imagen nítida y clara — Resolución Full HD ideal para videollamadas, clases en línea, streaming o reuniones profesionales.",
@@ -1742,9 +1742,9 @@ const products = [
     "images/webc3.jpg"
   ]
 },
-{
+/*{
   name: "Llave Yamaha en Blanco para Ybr/Genesis/Fz/Yzf/R1/R6/R6S/Xjr 1300",
-  price: 200.00,
+  price: 230.00,
   categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Repuesto ideal y resistente — Llave en blanco lista para cortar según tu modelo Yamaha, fabricada en metal duradero.",
@@ -1757,10 +1757,10 @@ const products = [
     "images/yamh2.jpg",
     "images/yamh3.jpg"
   ]
-},
+},*/
 {
   name: "Llave Yamaha en Blanco R25/R3/Xmax/R125/200/250/MT01/SR400/FZ6R/FZ6N/MT03/R15",
-  price: 200.00,
+  price: 230.00,
   categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Alta compatibilidad y precisión — Diseñada para adaptarse perfectamente a varios modelos Yamaha, lista para cortar según tu llave original.",
@@ -1776,7 +1776,7 @@ const products = [
 },
 {
   name: "Funda para Volante Set 3 Piezas Timon Carro 37-38cm",
-  price: 300.00,
+  price: 350.00,
   categories: ["Auto y Moto", "Accesorios Varios"],
   description: [
     "Comodidad y agarre total — Material antideslizante que brinda control firme al conducir, incluso en trayectos largos.",
@@ -1809,7 +1809,7 @@ const products = [
 },
 {
   name: "GANGA‼️Cobertor TPU Nintendo Switch V1/V2 CONTRA RAYONES",
-  price: 170.00,
+  price: 175.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Protección total — A prueba de rayones, salpicaduras y suciedad. Ideal para mantener tu consola como nueva.",
@@ -1841,7 +1841,7 @@ const products = [
 },
 {
   name: "Gorros Suavecitos Calentitos para Bebé 1-2 años Set 3 piezas",
-  price: 330.00,
+  price: 370.00,
   categories: ["Ropa y Calzado", "Juguetes"],
   description: [
     "Diseño tierno — Bordado con un adorable dinosaurio, ideal para bebés de 1 a 2 años.",
@@ -1854,7 +1854,7 @@ const products = [
 },
 {
   name: "Organizadores de Maleta para Viajes Set 6 Piezas VARIEDAD COLORES",
-  price: 330.00,
+  price: 400.00,
   categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ahorra espacio y mantén todo en orden — Separa tu ropa, calzado y accesorios fácilmente para viajes sin estrés.",
@@ -1868,7 +1868,7 @@ const products = [
 },
 {
   name: "Bolso Mensajero para Viajes",
-  price: 390.00,
+  price: 440.00,
   categories: ["Ropa y Calzado", "Bolsos y Carteras"],
   description: [
     "Ideal para viajeros — Tamaño compacto pero espacioso (26×21×9 cm) con múltiples compartimentos y cierres de alta calidad.",
@@ -1882,7 +1882,7 @@ const products = [
 },
 {
   name: "Peluche Perrito San Valentin para Niño Rígido",
-  price: 150.00,
+  price: 170.00,
   categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Perfecto para regalar — Ideal para expresar cariño en San Valentín o cualquier ocasión especial.",
@@ -1896,7 +1896,7 @@ const products = [
 },
 {
   name: "Linterna Foco Recargable 4 modos 6 Leds",
-  price: 200.00,
+  price: 240.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Potente y versátil — Con 6 focos LED y 4 modos de luz (alta, media, estroboscópica y lateral COB), ilumina cualquier espacio con gran intensidad.",
@@ -1911,7 +1911,7 @@ const products = [
 },
 {
   name: "Camión con 10 carros de Cuerda",
-  price: 500.00,
+  price: 520.00,
   categories: ["Juguetes", "Accesorios Varios"],
   description: [
     "Set completo — Incluye 1 camión de transporte de 3 niveles y 10 carros plasticos de colores diseño deportivo y de cuerda veloces.",
@@ -1941,7 +1941,7 @@ const products = [
 },
 {
   name: "Teclado y Mouse RGB Gaming Combo PROMO",
-  price: 450.00,
+  price: 520.00,
   categories: ["Tecnologia y Juegos", "Juguetes"],
   description: [
     "Iluminación arcoíris profesional: luces LED personalizables con efecto brillante para sesiones de juego épicas.",
@@ -1958,7 +1958,7 @@ const products = [
 },
 {
   name: "Memoria USB 2TB 3.0 Xiaomi + Adaptador Tipo C Incluido",
-  price: 550.00,
+  price: 580.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Velocidad extrema USB 3.0: transfiere archivos grandes en segundos con conexión estable y rápida.",
@@ -1971,7 +1971,7 @@ const products = [
 },
 {
   name: "Mesa Gaming Tipo L con Luz Led Facil Armado",
-  price: 4150.00,
+  price: 4350.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Iluminación LED ambiental: transforma tu setup con luces RGB que realzan el ambiente gamer.",
@@ -1986,7 +1986,7 @@ const products = [
 },
 {
   name: "Bolso Grande Bandolera Calidad",
-  price: 450.00,
+  price: 530.00,
   categories: ["Bolsos y Carteras", "Accesorios Varios"],
   description: [
     "Amplio y funcional: espacio ideal para tablet, documentos, billetera y más, perfecto para uso diario o viajes.",
@@ -2033,7 +2033,7 @@ const products = [
 
 
 //ULTIMO PRODUCTO
-  {
+ /* {
   name: "Auriculares Gaming X15 con LEDS y Pantalla PAGA AL RECIBIR TODO HONDURAS",
   price: 300.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
@@ -2050,10 +2050,10 @@ const products = [
     "images/x15x5.jpg",
     "images/x15x6.jpg"
   ]
-},
+},*/
 {
   name: "Microfono Lavalier Inalámbrico Recargable Tipo C PAGA AL RECIBIR TODO HONDURAS",
-  price: 200.00,
+  price: 250.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🎤📱 Audio claro y profesional con este micrófono inalámbrico Tipo C—ideal para videos, TikTok, entrevistas y contenido sin ruidos.",
@@ -2067,7 +2067,7 @@ const products = [
 },
 {
   name: "Proyector Galaxia Niños y Bebes Giratorio 17 Modos Potente PAGA AL RECIBIR TODO HONDURAS",
-  price: 150.00,
+  price: 180.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🌙✨ Convierte cualquier cuarto en una galaxia mágica con su proyección potente y giratoria—¡los niños quedan encantados al instante!",
@@ -2083,7 +2083,7 @@ const products = [
 },
 {
   name: "Jabon para Cara ORIGINAL Piel Seca a Normal ENVIOS A TODO HONDURAS",
-  price: 550.00,
+  price: 580.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🧴💧 Limpieza suave y efectiva con CeraVe Hydrating Facial Cleanser—ideal para piel normal a seca y respetuoso con la barrera de tu piel.",
@@ -2112,7 +2112,7 @@ const products = [
 },*/
 {
   name: "Colageno Suplemento Tableta 5 COLAGENOS‼️ENVIOS TODO HONDURAS",
-  price: 450.00,
+  price: 500.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "✨💊 Suplemento de colágeno con 5 tipos esenciales para apoyar tu piel, articulaciones y bienestar general—¡fácil de tomar y súper completo!",
@@ -2125,7 +2125,7 @@ const products = [
 },
 {
   name: "Camara Exterior 360 Giratoria Wifi LIQUIDACIÓN",
-  price: 380.00,
+  price: 460.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "📹🚨 Cámara exterior giratoria WiFi con visión clara día/noche—protege tu hogar con tecnología premium a PRECIO DE LIQUIDACIÓN.",
@@ -2138,7 +2138,7 @@ const products = [
 },
 {
   name: "Pasamontañas",
-  price: 60.00,
+  price: 70.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "🧵✨ Pasamontañas de tela suave y cómoda, ideal para moto, ciclismo o actividades al aire libre sin molestias.",
@@ -2151,7 +2151,7 @@ const products = [
 },
 {
   name: "Soporte Camara y Celular para Casco OFERTA",
-  price: 180.00,
+  price: 220.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "📸🔥 Graba tus rutas como un PRO con este soporte de cámara y celular para casco: firme, seguro y listo para cualquier aventura.",
@@ -2164,7 +2164,7 @@ const products = [
 },
 {
   name: "Mini Camara Vigilancia 1080HD ‼️",
-  price: 250.00,
+  price: 290.00,
   categories: ["Tecnologia y Juegos", "Accesorios Varios"],
   description: [
     "Mini Cámara WiFi 1080P 🔥 Económica, práctica y recargable 💪 ¡Envíos a todo Honduras! 🇭🇳",
@@ -2175,6 +2175,8 @@ const products = [
     "images/bala1.jpg"
   ]
 }
+
+
 
 
   
